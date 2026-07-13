@@ -1,0 +1,74 @@
+body {
+  background: linear-gradient(135deg, #F8F5FF 0%, #EDE9FE 50%, #D8B4FE 100%);
+}
+
+.add-card {
+  max-width: 750px;
+  margin: 60px auto;
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.add-card h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.3);
+}
+
+.preview-image {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 2px solid #ddd;
+  display: block;
+  margin: 20px auto;
+}
+
+.btn-save {
+  background: linear-gradient(135deg, #7C3AED, #6366F1);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.35);
+}
+
+.btn-reset {
+  border-radius: 10px;
+}
+.upload-box {
+  border: 2px dashed #7c3aed;
+  border-radius: 15px;
+  padding: 20px;
+  background: #faf7ff;
+}
+.btn-reset:hover {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-outline-dark:hover {
+  background: #111827;
+  color: white;
+}
