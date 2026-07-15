@@ -10,6 +10,9 @@ import {
 } from "react-icons/fa";
 
 function Login() {
+
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -22,12 +25,12 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "http://${API_URL}/api/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+  `${API_URL}/api/auth/login`,
+  {
+    email,
+    password,
+  }
+);
 
       // Save logged in user
       localStorage.setItem("userId", res.data.user.id);

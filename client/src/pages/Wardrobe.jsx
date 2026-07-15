@@ -39,7 +39,7 @@ const fetchClothes = async () => {
 const userId = localStorage.getItem("userId");
 
 const res = await axios.get(
-  `http://${API_URL}/api/clothes/${userId}`
+  `${API_URL}//api/clothes/${userId}`
 );
     console.log(res.data);
 
@@ -58,7 +58,7 @@ const deleteCloth = async (id) => {
 
   try {
     await axios.delete(
-      `http://${API_URL}/api/clothes/${id}`
+      `${API_URL}//api/clothes/${id}`
     );
 
     alert("Cloth Deleted Successfully");
@@ -74,7 +74,7 @@ const deleteCloth = async (id) => {
 const toggleFavorite = async (id) => {
   try {
     await axios.put(
-      `http://${API_URL}/api/clothes/favorite/${id}`
+      `${API_URL}//api/clothes/favorite/${id}`
     );
 
     fetchClothes();
@@ -131,7 +131,7 @@ const toggleFavorite = async (id) => {
   <img
     src={
       item.image
-        ? `http://${API_URL}/uploads/${item.image}`
+        ? `${API_URL}//uploads/${item.image}`
         : tshirt
     }
     alt={item.name}
