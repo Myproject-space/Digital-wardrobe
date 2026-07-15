@@ -4,6 +4,9 @@ import "./addClothes.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function AddClothes() {
+
+  const API_URL = import.meta.env.VITE_API_URL;
+
     const navigate = useNavigate();
 
 const location = useLocation();
@@ -32,9 +35,9 @@ const editData = location.state;
       notes: editData.notes || "",
     });
 
-    if (editData.image) {
-      setPreview(`http://localhost:5000/uploads/${editData.image}`);
-    }
+   if (editData.image) {
+  setPreview(`${API_URL}/uploads/${editData.image}`);
+}
   }
 }, [editData]);
 
@@ -83,25 +86,25 @@ const userId = localStorage.getItem("userId");
     let res;
 
 if (editData) {
-  res = await axios.put(
-    `http://localhost:5000/api/clothes/update/${editData._id}`,
-    data,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
+ res = await axios.put(
+  `${API_URL}/api/clothes/update/${editData._id}`,
+  data,
+  {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  }
+);
 } else {
-  res = await axios.post(
-    "http://localhost:5000/api/clothes/add",
-    data,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
+ res = await axios.post(
+  `${API_URL}/api/clothes/add`,
+  data,
+  {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  }
+);
 }
 
 alert(res.data.message);

@@ -30,7 +30,7 @@ function Dashboard() {
       const userId = localStorage.getItem("userId");
 
       const res = await axios.get(
-        `http://localhost:5000/api/clothes/${userId}`
+        `http://${API_URL}/api/clothes/${userId}`
       );
 
       setClothes(res.data);
@@ -44,7 +44,7 @@ function Dashboard() {
       const userId = localStorage.getItem("userId");
 
       const res = await axios.get(
-        `http://localhost:5000/api/clothes/recommend/${userId}`
+        `http://${API_URL}/api/clothes/recommend/${userId}`
       );
 
       setOutfit(res.data);
