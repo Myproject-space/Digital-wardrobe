@@ -23,7 +23,7 @@ function Register() {
 
     try {
       const res = await axios.post(
-        `${API_URL}//api/auth/register`,
+        `${API_URL}/api/auth/register`,
         {
           name,
           email,
