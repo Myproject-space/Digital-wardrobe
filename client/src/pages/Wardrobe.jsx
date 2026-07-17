@@ -12,6 +12,8 @@ import handbag from "../assets/bag.jpeg";
 
 function Wardrobe() {
 
+const API_URL = import.meta.env.VITE_API_URL;
+
   const [clothes, setClothes] = useState([]);
 
   const [search, setSearch] = useState("");
@@ -39,7 +41,7 @@ const fetchClothes = async () => {
 const userId = localStorage.getItem("userId");
 
 const res = await axios.get(
-  `${API_URL}//api/clothes/${userId}`
+  `${API_URL}/api/clothes/${userId}`
 );
     console.log(res.data);
 
@@ -58,7 +60,7 @@ const deleteCloth = async (id) => {
 
   try {
     await axios.delete(
-      `${API_URL}//api/clothes/${id}`
+      `${API_URL}/api/clothes/${id}`
     );
 
     alert("Cloth Deleted Successfully");
@@ -74,7 +76,7 @@ const deleteCloth = async (id) => {
 const toggleFavorite = async (id) => {
   try {
     await axios.put(
-      `${API_URL}//api/clothes/favorite/${id}`
+      `${API_URL}/api/clothes/favorite/${id}`
     );
 
     fetchClothes();
@@ -131,7 +133,7 @@ const toggleFavorite = async (id) => {
   <img
     src={
       item.image
-        ? `${API_URL}//uploads/${item.image}`
+        ? `${API_URL}/uploads/${item.image}`
         : tshirt
     }
     alt={item.name}

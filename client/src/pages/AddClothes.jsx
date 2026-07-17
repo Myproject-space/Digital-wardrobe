@@ -74,11 +74,10 @@ data.append("season", formData.season);
 data.append("occasion", formData.occasion);
 data.append("brand", formData.brand);
 data.append("size", formData.size);
-data.append("notes", formData.notes);
-const userId = localStorage.getItem("userId");
+data.append("favorite", false);
+data.append("userId", userId);
 
-     data.append("favorite", false);
-     data.append("userId", userId);
+const userId = localStorage.getItem("userId");
 
     if (image) {
       data.append("image", image);
