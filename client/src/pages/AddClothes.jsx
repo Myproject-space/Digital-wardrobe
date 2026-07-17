@@ -66,6 +66,9 @@ const handleSubmit = async (e) => {
   }
 
   try {
+    
+    const userId = localStorage.getItem("userId");
+
     const data = new FormData();
 data.append("name", formData.name);
 data.append("category", formData.category);
@@ -77,7 +80,6 @@ data.append("size", formData.size);
 data.append("favorite", false);
 data.append("userId", userId);
 
-const userId = localStorage.getItem("userId");
 
     if (image) {
       data.append("image", image);
