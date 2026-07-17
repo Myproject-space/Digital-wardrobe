@@ -67,13 +67,14 @@ const handleSubmit = async (e) => {
 
   try {
     const data = new FormData();
-
-    data.append("name", formData.name);
-    data.append("category", formData.category);
-    data.append("color", formData.color);
-    data.append("size", formData.size);
-    data.append("brand", formData.brand);
-    data.append("favorite", false);
+data.append("name", formData.name);
+data.append("category", formData.category);
+data.append("color", formData.color);
+data.append("season", formData.season);
+data.append("occasion", formData.occasion);
+data.append("brand", formData.brand);
+data.append("size", formData.size);
+data.append("notes", formData.notes);
 const userId = localStorage.getItem("userId");
 
      data.append("favorite", false);
