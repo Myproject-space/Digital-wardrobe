@@ -35,8 +35,8 @@ const editData = location.state;
       notes: editData.notes || "",
     });
 
-   if (editData.image) {
-  setPreview(`${API_URL}/uploads/${editData.image}`);
+  if (editData.image) {
+  setPreview(editData.image);
 }
   }
 }, [editData]);

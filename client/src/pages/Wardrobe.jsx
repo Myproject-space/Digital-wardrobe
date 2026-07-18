@@ -131,11 +131,8 @@ const toggleFavorite = async (id) => {
 <div className="image-container">
 
   <img
-    src={
-      item.image
-        ? `${API_URL}/uploads/${item.image}`
-        : tshirt
-    }
+    src={item.image ? item.image : tshirt}
+    
     alt={item.name}
     className="wardrobe-img"
   />
