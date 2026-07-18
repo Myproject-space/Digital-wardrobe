@@ -51,6 +51,7 @@ const image = req.file
     });
 
   } catch (error) {
+    console.log("ADD ERROR:", error); 
     res.status(500).json({
       message: error.message,
     });
@@ -85,6 +86,7 @@ router.delete("/:id", async (req, res) => {
       message: "Cloth Deleted Successfully",
     });
   } catch (error) {
+    console.log("ADD ERROR:", error); 
     res.status(500).json({
       message: error.message,
     });
