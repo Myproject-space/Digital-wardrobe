@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 
 function Dashboard() {
+  const API_URL = import.meta.env.VITE_API_URL;
   const hour = new Date().getHours();
   const navigate = useNavigate();
 
@@ -30,7 +31,7 @@ function Dashboard() {
       const userId = localStorage.getItem("userId");
 
       const res = await axios.get(
-        `${API_URL}//api/clothes/${userId}`
+        `${API_URL}/api/clothes/${userId}`
       );
 
       setClothes(res.data);
@@ -44,7 +45,7 @@ function Dashboard() {
       const userId = localStorage.getItem("userId");
 
       const res = await axios.get(
-        `${API_URL}//api/clothes/recommend/${userId}`
+        `${API_URL}/api/clothes/recommend/${userId}`
       );
 
       setOutfit(res.data);
@@ -103,7 +104,7 @@ function Dashboard() {
           <StatCard
             icon={<FaShoppingBag color="#8B5CF6" />}
             title="Outfits"
-            count="1"
+            count="0"
           />
 
           <StatCard
