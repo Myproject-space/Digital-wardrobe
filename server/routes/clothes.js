@@ -27,7 +27,7 @@ console.log(req.body);
 } = req.body;
 
 const image = req.file
-  ? req.file.filename
+  ? req.file.path
   : "";
 
    const newCloth = new Clothes({
@@ -107,7 +107,7 @@ router.put("/update/:id", upload.single("image"), async (req, res) => {
 };
 
     if (req.file) {
-      updatedData.image = req.file.filename;
+      updatedData.image = req.file.path;
     }
 
     const cloth = await Clothes.findByIdAndUpdate(
