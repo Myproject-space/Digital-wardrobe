@@ -74,7 +74,7 @@ function Dashboard() {
       <Logo />
 
       {/* Greeting Card */}
-      <div className="card p-4 shadow-lg mt-2">
+      <div className="card p-4 shadow-lg mt-5">
 
         <h3 className="fw-bold">{greeting}</h3>
 
