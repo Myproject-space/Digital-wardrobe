@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Welcome from "./components/Welcome";
 import ForgotPassword from "./pages/ForgotPassword";
 import OtpVerification from "./pages/OtpVerification";
 import AddClothes from "./pages/AddClothes";
@@ -12,7 +13,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Welcome />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/wardrobe" element={<Wardrobe />} />
         <Route path="/add-clothes" element={<AddClothes />} />
         <Route path="/register" element={<Register />} />
