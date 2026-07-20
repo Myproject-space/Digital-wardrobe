@@ -287,3 +287,7 @@ html{
 .nav-links a.active::after{
     width:100%;
 }
+
+.brand{
+    margin-left: -25px;
+}
