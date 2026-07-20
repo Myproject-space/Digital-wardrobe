@@ -21,9 +21,26 @@ body{
 
 .welcome-page{
     min-height:100vh;
-    background:linear-gradient(135deg,#faf7ff,#f1edff,#ece7ff);
+    background-image:url("../assets/Background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
     overflow:hidden;
     position:relative;
+}
+
+.welcome-page::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,0.12);
+    z-index:0;
+}
+
+.navbar,
+.hero-section{
+    position:relative;
+    z-index:1;
 }
 
 /* ========================= */
