@@ -1,9 +1,37 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
 import "./welcome.css";
 
 function Welcome() {
   const navigate = useNavigate();
+  const [active, setActive] = useState("");
+
+useEffect(() => {
+  const sections = document.querySelectorAll(".section");
+
+  const handleScroll = () => {
+    let current = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 150;
+      const sectionHeight = section.offsetHeight;
+
+      if (
+        window.scrollY >= sectionTop &&
+        window.scrollY < sectionTop + sectionHeight
+      ) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    setActive(current);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   return (
     <>
@@ -23,12 +51,33 @@ function Welcome() {
             </h2>
           </div>
 
-          <nav className="nav-links">
-            <a href="#features">Features</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-          </nav>
+          const [active, setActive] = useState("");
+
+useEffect(() => {
+  const sections = document.querySelectorAll(".section");
+
+  const handleScroll = () => {
+    let current = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 150;
+      const sectionHeight = section.offsetHeight;
+
+      if (
+        window.scrollY >= sectionTop &&
+        window.scrollY < sectionTop + sectionHeight
+      ) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    setActive(current);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
         </header>
 
         {/* Hero Section */}
