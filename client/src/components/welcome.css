@@ -194,3 +194,8 @@ body{
 .brand h2 span{
     color:#7c3aed;
 }
+
+.hero-image{
+    width:550px;
+    animation:float 4s ease-in-out infinite;
+}
