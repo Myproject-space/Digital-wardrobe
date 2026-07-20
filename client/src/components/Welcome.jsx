@@ -68,7 +68,7 @@ function Welcome() {
         <div className="right">
 
           <img
-            src={hero}
+            src={logo}
             alt="Style Vault"
             className="hero-image"
           />
