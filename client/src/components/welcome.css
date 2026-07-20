@@ -67,11 +67,6 @@ body{
     z-index:10;
 }
 
-.brand h2{
-    color:#5b21b6;
-    font-size:38px;
-    font-weight:700;
-}
 
 .nav-links{
     display:flex;
@@ -111,11 +106,11 @@ body{
     width:48%;
 }
 
-.small-heading{
-    color:#8b5cf6;
-    letter-spacing:4px;
-    font-weight:600;
-    font-size:17px;
+.hero-image{
+    width:500px;
+    position:relative;
+    z-index:2;
+    animation:float 4s ease-in-out infinite;
 }
 
 .left h1{
