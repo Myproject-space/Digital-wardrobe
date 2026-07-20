@@ -212,7 +212,14 @@ body{
     display:flex;
     flex-direction:column;
     justify-content:center;
-    background:#fff;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #f8f4ff 25%,
+        #f0e8ff 60%,
+        #eadcff 100%
+    );
 }
 
 .section h2{
