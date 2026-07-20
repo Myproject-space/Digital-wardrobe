@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import hero from "../assets/hero.png";
+import logo from "../assets/logo.png";
 import "./welcome.css";
 
 function Welcome() {
