@@ -7,7 +7,10 @@ function Welcome() {
   const navigate = useNavigate();
 
   return (
-    <div className="welcome-page">
+    <div
+  className="welcome-page"
+  style={{ backgroundImage: `url(${background})` }}
+>
 
       {/* Background Blur */}
       <div className="bg-circle circle1"></div>

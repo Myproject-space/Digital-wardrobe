@@ -21,7 +21,10 @@ body{
 
 .welcome-page{
     min-height:100vh;
-    background:url("../assets/Background.jpg");
+    background-image:url("../assets/Background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
     overflow:hidden;
     position:relative;
 }
