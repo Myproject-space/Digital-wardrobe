@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import Background from "../assets/Background.jpg";
 import "./welcome.css";
 
 function Welcome() {
