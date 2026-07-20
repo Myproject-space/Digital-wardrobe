@@ -1,16 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import Background from "../assets/Background.jpg";
 import "./welcome.css";
 
 function Welcome() {
   const navigate = useNavigate();
 
   return (
-    <div
-  className="welcome-page"
-  style={{ backgroundImage: `url(${background})` }}
->
+    <div className="welcome-page">
 
       {/* Background Blur */}
       <div className="bg-circle circle1"></div>
