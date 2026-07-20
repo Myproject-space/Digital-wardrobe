@@ -2,11 +2,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Logo from "../components/Logo";
+import background from "../assets/Background.jpg";
 import {
   FaEnvelope,
   FaLock,
-  FaEye,
-  FaEyeSlash,
 } from "react-icons/fa";
 
 function Login() {
@@ -15,7 +14,6 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -25,100 +23,94 @@ function Login() {
 
     try {
       const res = await axios.post(
-  `${API_URL}/api/auth/login`,
-  {
-    email,
-    password,
-  }
-);
+        `${API_URL}/api/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
 
-      // Save logged in user
       localStorage.setItem("userId", res.data.user.id);
       localStorage.setItem("userName", res.data.user.name);
 
       alert(res.data.message);
-
       navigate("/dashboard");
 
     } catch (err) {
-      console.log(err);
-      console.log(err.response);
-      console.log(err.message);
-
       alert(err.response?.data?.message || err.message);
     }
   };
 
   return (
-    <div className="container vh-100 d-flex justify-content-center align-items-center">
+    <div
+      className="login-page d-flex justify-content-center align-items-center"
+      style={{ backgroundImage: `url(${background})` }}
+    >
+
       <div className="card p-4 shadow" style={{ width: "400px" }}>
         <Logo />
 
         <form onSubmit={handleSubmit}>
 
-         <div className="mb-3 position-relative">
+          <div className="mb-3 position-relative">
             <label>Email</label>
 
             <div className="input-group">
-  <span className="input-group-text">
-    <FaEnvelope />
-  </span>
+              <span className="input-group-text">
+                <FaEnvelope />
+              </span>
 
-  <input
-    type="email"
-    className="form-control"
-    placeholder="Enter Email"
-    value={email}
-onChange={(e) => {
-  const value = e.target.value;
-  setEmail(value);
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Enter Email"
+                value={email}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setEmail(value);
 
-  if (!value.includes("@")) {
-    setSuggestions([]);
-    return;
-  }
+                  if (!value.includes("@")) {
+                    setSuggestions([]);
+                    return;
+                  }
 
-  const [name, domain = ""] = value.split("@");
+                  const [name, domain = ""] = value.split("@");
 
-  const domains = [
-    "gmail.com",
-    "yahoo.com",
-    "outlook.com",
-    "hotmail.com",
-  ];
+                  const domains = [
+                    "gmail.com",
+                    "yahoo.com",
+                    "outlook.com",
+                    "hotmail.com",
+                  ];
 
-  const filtered = domains
-    .filter((d) =>
-      d.toLowerCase().startsWith(domain.toLowerCase())
-    )
-    .map((d) => `${name}@${d}`);
+                  const filtered = domains
+                    .filter((d) =>
+                      d.toLowerCase().startsWith(domain.toLowerCase())
+                    )
+                    .map((d) => `${name}@${d}`);
 
-  setSuggestions(filtered);
-}}
-required
-/>
+                  setSuggestions(filtered);
+                }}
+                required
+              />
 
- 
-  {suggestions.length > 0 && (
-  <div className="email-suggestions">
-    {suggestions.map((item, index) => (
-      <button
-  key={index}
-  type="button"
-  onClick={() => {
-    setEmail(item);
-    setSuggestions([]);
-  }}
->
-  {item}
-</button>
-    ))}
-  </div>
-)}
-</div>
-
-
-
+              {suggestions.length > 0 && (
+                <div className="email-suggestions">
+                  {suggestions.map((item, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => {
+                        setEmail(item);
+                        setSuggestions([]);
+                      }}
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="mb-3">
@@ -130,15 +122,13 @@ required
               </span>
 
               <input
-                type={showPassword ? "text" : "password"}
+                type="password"
                 className="form-control"
                 placeholder="Enter Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-
-             
             </div>
           </div>
 
@@ -181,6 +171,7 @@ required
         </p>
 
       </div>
+
     </div>
   );
 }
