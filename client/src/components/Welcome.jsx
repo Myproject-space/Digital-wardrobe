@@ -7,36 +7,35 @@ function Welcome() {
   const navigate = useNavigate();
   const [active, setActive] = useState("");
 
-useEffect(() => {
-  const sections = document.querySelectorAll(".section");
+  useEffect(() => {
+    const sections = document.querySelectorAll(".section");
 
-  const handleScroll = () => {
-    let current = "";
+    const handleScroll = () => {
+      let current = "";
 
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 150;
-      const sectionHeight = section.offsetHeight;
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.offsetHeight;
 
-      if (
-        window.scrollY >= sectionTop &&
-        window.scrollY < sectionTop + sectionHeight
-      ) {
-        current = section.getAttribute("id");
-      }
-    });
+        if (
+          window.scrollY >= sectionTop &&
+          window.scrollY < sectionTop + sectionHeight
+        ) {
+          current = section.getAttribute("id");
+        }
+      });
 
-    setActive(current);
-  };
+      setActive(current);
+    };
 
-  window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       <div className="welcome-page">
-
         {/* Background Blur */}
         <div className="bg-circle circle1"></div>
         <div className="bg-circle circle2"></div>
@@ -51,41 +50,40 @@ useEffect(() => {
             </h2>
           </div>
 
-          const [active, setActive] = useState("");
+          <nav className="nav-links">
+            <a
+              href="#features"
+              className={active === "features" ? "active" : ""}
+            >
+              Features
+            </a>
 
-useEffect(() => {
-  const sections = document.querySelectorAll(".section");
+            <a
+              href="#about"
+              className={active === "about" ? "active" : ""}
+            >
+              About
+            </a>
 
-  const handleScroll = () => {
-    let current = "";
+            <a
+              href="#services"
+              className={active === "services" ? "active" : ""}
+            >
+              Services
+            </a>
 
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 150;
-      const sectionHeight = section.offsetHeight;
-
-      if (
-        window.scrollY >= sectionTop &&
-        window.scrollY < sectionTop + sectionHeight
-      ) {
-        current = section.getAttribute("id");
-      }
-    });
-
-    setActive(current);
-  };
-
-  window.addEventListener("scroll", handleScroll);
-
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+            <a
+              href="#contact"
+              className={active === "contact" ? "active" : ""}
+            >
+              Contact
+            </a>
+          </nav>
         </header>
 
         {/* Hero Section */}
         <section className="hero-section">
-
-          {/* Left Content */}
           <div className="left">
-
             <h1>
               Welcome To
               <br />
@@ -107,10 +105,8 @@ useEffect(() => {
             >
               Get Started →
             </button>
-
           </div>
 
-          {/* Right Image */}
           <div className="right">
             <img
               src={logo}
@@ -118,14 +114,13 @@ useEffect(() => {
               className="hero-image"
             />
           </div>
-
         </section>
-
       </div>
 
-      {/* Features Section */}
+      {/* Features */}
       <section id="features" className="section">
         <h2>Features</h2>
+
         <p>
           Manage your wardrobe digitally, create outfits,
           organize your clothes, and save your favorite looks
@@ -133,45 +128,55 @@ useEffect(() => {
         </p>
       </section>
 
-      {/* About Section */}
+      {/* About */}
       <section id="about" className="section">
         <h2>About</h2>
+
         <p>
           Style Vault is a smart digital wardrobe application
           that helps users organize clothes, create outfit
-          combinations, and manage fashion collections in one place.
+          combinations, and manage fashion collections in one
+          place.
         </p>
       </section>
 
-      {/* Services Section */}
+      {/* Services */}
       <section id="services" className="section">
         <h2>Services</h2>
 
         <div className="service-container">
-
           <div className="service-card">
             <h3>Digital Wardrobe</h3>
-            <p>Store and organize your clothes digitally.</p>
+
+            <p>
+              Store and organize your clothes digitally.
+            </p>
           </div>
 
           <div className="service-card">
             <h3>Outfit Planner</h3>
-            <p>Create stylish outfit combinations easily.</p>
+
+            <p>
+              Create stylish outfit combinations easily.
+            </p>
           </div>
 
           <div className="service-card">
             <h3>Favorites</h3>
-            <p>Save your favorite outfits for quick access.</p>
-          </div>
 
+            <p>
+              Save your favorite outfits for quick access.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact */}
       <section id="contact" className="section">
         <h2>Contact</h2>
 
         <p>Email: support@stylevault.com</p>
+
         <p>Phone: +91 9876543210</p>
       </section>
     </>

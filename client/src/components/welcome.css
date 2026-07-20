@@ -237,3 +237,35 @@ body{
     color:#6d28d9;
     margin-bottom:15px;
 }
+
+html{
+    scroll-behavior:smooth;
+}
+
+.nav-links a{
+    position:relative;
+    text-decoration:none;
+    color:#555;
+    font-weight:600;
+    transition:.3s;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0;
+    height:3px;
+    background:#7c3aed;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.nav-links a.active{
+    color:#7c3aed;
+}
+
+.nav-links a.active::after{
+    width:100%;
+}
