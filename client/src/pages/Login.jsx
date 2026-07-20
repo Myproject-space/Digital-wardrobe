@@ -43,11 +43,28 @@ function Login() {
 
   return (
     <div
-      className="login-page d-flex justify-content-center align-items-center"
-      style={{ backgroundImage: `url(${background})` }}
+      className="login-page"
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
-
-      <div className="card p-4 shadow" style={{ width: "400px" }}>
+      <div
+        className="card p-4 shadow"
+        style={{
+          width: "400px",
+          borderRadius: "20px",
+          background: "rgba(255,255,255,0.92)",
+          backdropFilter: "blur(10px)",
+        }}
+      >
         <Logo />
 
         <form onSubmit={handleSubmit}>
@@ -171,7 +188,6 @@ function Login() {
         </p>
 
       </div>
-
     </div>
   );
 }
