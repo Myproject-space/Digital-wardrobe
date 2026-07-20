@@ -45,7 +45,7 @@ function Login() {
     <div
       className="login-page"
       style={{
-        backgroundImage: `url(${background})`,
+        backgroundImage: `url(${Background})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
