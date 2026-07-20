@@ -1,221 +1,200 @@
-.welcome-container {
-  min-height: 100vh;
-  width: 100%;
-  background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 45%, #DDD6FE 100%);
-  position: relative;
-  overflow: hidden;
-  padding: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
 }
 
-/* Decorative circles */
-.welcome-circle-top {
-  position: absolute;
-  top: -120px;
-  right: -120px;
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-  background: rgba(124, 58, 237, 0.15);
-  filter: blur(10px);
+html{
+    scroll-behavior:smooth;
 }
 
-.welcome-circle-bottom {
-  position: absolute;
-  bottom: -150px;
-  left: -100px;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: rgba(167, 139, 250, 0.2);
-  filter: blur(10px);
+body{
+    overflow-x:hidden;
 }
 
-/* Center Content */
-.welcome-center-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 600px;
+/* ========================= */
+/* PAGE */
+/* ========================= */
 
-  transform: translateY(-40px);
+.welcome-page{
+    min-height:100vh;
+    background:linear-gradient(135deg,#faf7ff,#f1edff,#ece7ff);
+    overflow:hidden;
+    position:relative;
 }
 
-/* Logo */
-.welcome-logo-wrapper {
-  margin-top: -10px;
-  margin-bottom: 30px;
+/* ========================= */
+/* BACKGROUND BLUR */
+/* ========================= */
+
+.bg-circle{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(90px);
+    opacity:.35;
 }
 
-/* Welcome To */
-.welcome-heading-line1{
-    font-family: "Outfit", sans-serif;
-    font-size: 52px;
-    font-weight: 700;
-    color: #1F2937;
-    margin-bottom: 6px;
+.circle1{
+    width:280px;
+    height:280px;
+    background:#d8b4fe;
+    top:60px;
+    left:-80px;
 }
 
-/* Your Closet */
-.welcome-heading-line2{
-    font-family: "Outfit", sans-serif;
-    font-size: 60px;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-top: 0;
-    margin-bottom: 22px;
-    letter-spacing: -1px;
-    background: linear-gradient(90deg,#7C3AED,#A855F7);
-    -webkit-background-clip: text;
-     background-clip: text;
-    .welcome-container {
-  min-height: 100vh;
-  width: 100%;
-  background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 45%, #DDD6FE 100%);
-  position: relative;
-  overflow: hidden;
-  padding: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.circle2{
+    width:300px;
+    height:300px;
+    background:#c084fc;
+    right:-100px;
+    bottom:40px;
 }
 
-/* Decorative circles */
-.welcome-circle-top {
-  position: absolute;
-  top: -120px;
-  right: -120px;
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-  background: rgba(124, 58, 237, 0.15);
-  filter: blur(10px);
+/* ========================= */
+/* NAVBAR */
+/* ========================= */
+
+.navbar{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:15px 70px 0 70px;
+    position:relative;
+    z-index:10;
 }
 
-.welcome-circle-bottom {
-  position: absolute;
-  bottom: -150px;
-  left: -100px;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: rgba(167, 139, 250, 0.2);
-  filter: blur(10px);
+.brand h2{
+    color:#5b21b6;
+    font-size:38px;
+    font-weight:700;
 }
 
-/* Center Content */
-.welcome-center-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 600px;
-
-  transform: translateY(-40px);
+.nav-links{
+    display:flex;
+    gap:55px;
+    margin-top:10px;
 }
 
-/* Logo */
-.welcome-logo-wrapper {
-  margin-top: -10px;
-  margin-bottom: 30px;
+.nav-links a{
+    text-decoration:none;
+    color:#555;
+    font-size:20px;
+    font-weight:600;
+    transition:.3s;
 }
 
-/* Welcome To */
-.welcome-heading-line1{
-    font-family: "Outfit", sans-serif;
-    font-size: 52px;
-    font-weight: 700;
-    color: #1F2937;
-    margin-bottom: 6px;
+.nav-links a:hover{
+    color:#6d28d9;
 }
 
-/* Your Closet */
-.welcome-heading-line2{
-    font-family: "Outfit", sans-serif;
-    font-size: 60px;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-top: 0;
-    margin-bottom: 22px;
-    letter-spacing: -1px;
-    background: linear-gradient(90deg,#7C3AED,#A855F7);
-    -webkit-background-clip: text;
-     background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* ========================= */
+/* HERO */
+/* ========================= */
+
+.hero-section{
+    width:90%;
+    max-width:1400px;
+    margin:auto;
+    min-height:80vh;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.welcome-heading-line2 span{
-    -webkit-text-fill-color: initial;
-    font-size: 46px;
-    vertical-align: middle;
+/* LEFT */
+
+.left{
+    width:48%;
 }
 
-/* Subtitle */
-.welcome-subtitle {
-  font-family: "Poppins", sans-serif;
-  font-size: 18px;
-  color: #5B6472;
-  line-height: 1.8;
-  max-width: 520px;
-  margin-bottom: 40px;
+.small-heading{
+    color:#8b5cf6;
+    letter-spacing:4px;
+    font-weight:600;
+    font-size:17px;
 }
 
-/* Button */
-.welcome-btn {
-  background: #7C3AED;
-  color: white;
-  border: none;
-  border-radius: 40px;
-  padding: 15px 38px;
-  font-size: 18px;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35);
+.left h1{
+    margin-top:18px;
+    font-size:74px;
+    line-height:1.05;
+    color:#111827;
 }
 
-.welcome-btn:hover {
-  background: #6D28D9;
-  transform: translateY(-3px);
-}
-    -webkit-text-fill-color: transparent;
+.left h1 span{
+    color:#6d28d9;
 }
 
-
-/* Subtitle */
-.welcome-subtitle {
-  font-family: "Poppins", sans-serif;
-  font-size: 18px;
-  color: #5B6472;
-  line-height: 1.8;
-  max-width: 520px;
-  margin-bottom: 40px;
+.tagline{
+    margin-top:25px;
+    font-size:24px;
+    color:#555;
+    font-weight:500;
 }
 
-/* Button */
-.welcome-btn {
-  background: #7C3AED;
-  color: white;
-  border: none;
-  border-radius: 40px;
-  padding: 15px 38px;
-  font-size: 18px;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35);
+.description{
+    margin-top:30px;
+    max-width:520px;
+    font-size:20px;
+    line-height:1.8;
+    color:#555;
 }
 
-.welcome-btn:hover {
-  background: #6D28D9;
-  transform: translateY(-3px);
+/* BUTTON */
+
+.start-btn{
+    margin-top:45px;
+    border:none;
+    cursor:pointer;
+    color:white;
+    font-size:20px;
+    font-weight:600;
+    padding:18px 45px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#7c3aed,#5b21b6);
+    transition:.3s;
+    box-shadow:0 12px 30px rgba(124,58,237,.35);
+}
+
+.start-btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 35px rgba(124,58,237,.45);
+}
+
+/* RIGHT */
+
+.right{
+    width:48%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+.right::before{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    background:#d8b4fe;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.45;
+}
+
+.brand h2{
+    font-family: "Playfair Display", serif;
+    font-size:42px;
+    font-weight:700;
+    line-height:0.9;
+    color:#5b21b6;
+    letter-spacing:1px;
+}
+
+.brand h2 span{
+    color:#7c3aed;
 }

@@ -1,14 +1,14 @@
-import logo from "../assets/logo.png";
+import hero from "../assets/hero.png";
 
-function Logo({ size = 170 }) {
+function Logo() {
   return (
-    <div className="text-center mb-2">
+    <div className="text-center mb-3">
       <img
-        src={logo}
-        alt="ClosetVault Logo"
+        src={hero}
+        alt="Style Vault Logo"
         style={{
-          width: `${size}px`,
-          height: "auto",        // ✅ ye zaroori hai, "170px" fixed nahi hona chahiye
+          width: "180px",
+          height: "180px",
           objectFit: "contain",
         }}
       />

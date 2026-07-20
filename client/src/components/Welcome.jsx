@@ -1,43 +1,82 @@
 import { useNavigate } from "react-router-dom";
-import Logo from "./Logo";
+import hero from "../assets/hero.png";
 import "./welcome.css";
 
 function Welcome() {
   const navigate = useNavigate();
 
   return (
-    <div className="welcome-container">
-      <div className="welcome-circle-top" />
-      <div className="welcome-circle-bottom" />
+    <div className="welcome-page">
 
-      <div className="welcome-center-content">
-        {/* Logo */}
-        <div className="welcome-logo-wrapper">
-          <Logo size={170} />
+      {/* Background Blur */}
+      <div className="bg-circle circle1"></div>
+      <div className="bg-circle circle2"></div>
+
+      {/* Navbar */}
+     <header className="navbar">
+
+  <div className="brand">
+    <h2>
+      Style
+      <br />
+      <span>Vault</span>
+    </h2>
+  </div>
+
+  <nav className="nav-links">
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+</header>
+
+      {/* Hero Section */}
+      <section className="hero-section">
+
+        {/* Left Content */}
+        <div className="left">
+
+        
+
+          <h1>
+            Welcome To
+            <br />
+            <span>Style Vault</span>
+          </h1>
+
+          <h3 className="tagline">
+            Your Smart Digital Wardrobe
+          </h3>
+
+          <p className="description">
+            Organize your wardrobe, create stylish outfits,
+            and manage your fashion effortlessly.
+          </p>
+
+          <button
+            className="start-btn"
+            onClick={() => navigate("/login")}
+          >
+            Get Started →
+          </button>
+
         </div>
 
-        {/* Heading */}
-        <h1 className="welcome-heading-line1">
-  Welcome to
-</h1>
+        {/* Right Image */}
+        <div className="right">
 
-<h1 className="welcome-heading-line2">
-  Your Closet <span>👜</span>
-</h1>
+          <img
+            src={hero}
+            alt="Style Vault"
+            className="hero-image"
+          />
 
-        {/* Subtitle */}
-        <p className="welcome-subtitle">
-          Dress With Confidence
-        </p>
+        </div>
 
-        {/* Button */}
-        <button
-          className="welcome-btn"
-          onClick={() => navigate("/login")}
-        >
-          Get Started →
-        </button>
-      </div>
+      </section>
+
     </div>
   );
 }
