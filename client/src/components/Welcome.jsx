@@ -6,122 +6,126 @@ function Welcome() {
   const navigate = useNavigate();
 
   return (
-    <div className="welcome-page">
+    <>
+      <div className="welcome-page">
 
-      {/* Background Blur */}
-      <div className="bg-circle circle1"></div>
-      <div className="bg-circle circle2"></div>
+        {/* Background Blur */}
+        <div className="bg-circle circle1"></div>
+        <div className="bg-circle circle2"></div>
 
-      {/* Navbar */}
-     <header className="navbar">
+        {/* Navbar */}
+        <header className="navbar">
+          <div className="brand">
+            <h2>
+              Style
+              <br />
+              <span>Vault</span>
+            </h2>
+          </div>
 
-  <div className="brand">
-    <h2>
-      Style
-      <br />
-      <span>Vault</span>
-    </h2>
-  </div>
+          <nav className="nav-links">
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </header>
 
-  <nav className="nav-links">
-    <a href="#features">Features</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
+        {/* Hero Section */}
+        <section className="hero-section">
 
-</header>
+          {/* Left Content */}
+          <div className="left">
 
-      {/* Hero Section */}
-      <section className="hero-section">
+            <h1>
+              Welcome To
+              <br />
+              <span>Style Vault</span>
+            </h1>
 
-        {/* Features Section */}
-<section id="features" className="section">
-  <h2>Features</h2>
-  <p>Manage your wardrobe digitally, create outfits, and organize your fashion effortlessly.</p>
-</section>
+            <h3 className="tagline">
+              Your Smart Digital Wardrobe
+            </h3>
 
-{/* About Section */}
-<section id="about" className="section">
-  <h2>About</h2>
-  <p>
-    Style Vault is a smart digital wardrobe that helps you organize clothes,
-    save outfits, and manage your fashion collection in one place.
-  </p>
-</section>
+            <p className="description">
+              Organize your wardrobe, create stylish outfits,
+              and manage your fashion effortlessly.
+            </p>
 
-{/* Services Section */}
-<section id="services" className="section">
-  <h2>Services</h2>
-  <div className="service-container">
-    <div className="service-card">
-      <h3>Digital Wardrobe</h3>
-      <p>Store and organize your clothes digitally.</p>
-    </div>
+            <button
+              className="start-btn"
+              onClick={() => navigate("/login")}
+            >
+              Get Started →
+            </button>
 
-    <div className="service-card">
-      <h3>Outfit Planner</h3>
-      <p>Create stylish outfit combinations easily.</p>
-    </div>
+          </div>
 
-    <div className="service-card">
-      <h3>Favorites</h3>
-      <p>Save your favorite outfits for quick access.</p>
-    </div>
-  </div>
-</section>
+          {/* Right Image */}
+          <div className="right">
+            <img
+              src={logo}
+              alt="Style Vault"
+              className="hero-image"
+            />
+          </div>
 
-{/* Contact Section */}
-<section id="contact" className="section">
-  <h2>Contact</h2>
+        </section>
 
-  <p>Email: support@stylevault.com</p>
-  <p>Phone: +91 9876543210</p>
-</section>
+      </div>
 
-        {/* Left Content */}
-        <div className="left">
-
-        
-
-          <h1>
-            Welcome To
-            <br />
-            <span>Style Vault</span>
-          </h1>
-
-          <h3 className="tagline">
-            Your Smart Digital Wardrobe
-          </h3>
-
-          <p className="description">
-            Organize your wardrobe, create stylish outfits,
-            and manage your fashion effortlessly.
-          </p>
-
-          <button
-            className="start-btn"
-            onClick={() => navigate("/login")}
-          >
-            Get Started →
-          </button>
-
-        </div>
-
-        {/* Right Image */}
-        <div className="right">
-
-          <img
-            src={logo}
-            alt="Style Vault"
-            className="hero-image"
-          />
-
-        </div>
-
+      {/* Features Section */}
+      <section id="features" className="section">
+        <h2>Features</h2>
+        <p>
+          Manage your wardrobe digitally, create outfits,
+          organize your clothes, and save your favorite looks
+          effortlessly.
+        </p>
       </section>
 
-    </div>
+      {/* About Section */}
+      <section id="about" className="section">
+        <h2>About</h2>
+        <p>
+          Style Vault is a smart digital wardrobe application
+          that helps users organize clothes, create outfit
+          combinations, and manage fashion collections in one place.
+        </p>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="section">
+        <h2>Services</h2>
+
+        <div className="service-container">
+
+          <div className="service-card">
+            <h3>Digital Wardrobe</h3>
+            <p>Store and organize your clothes digitally.</p>
+          </div>
+
+          <div className="service-card">
+            <h3>Outfit Planner</h3>
+            <p>Create stylish outfit combinations easily.</p>
+          </div>
+
+          <div className="service-card">
+            <h3>Favorites</h3>
+            <p>Save your favorite outfits for quick access.</p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="section">
+        <h2>Contact</h2>
+
+        <p>Email: support@stylevault.com</p>
+        <p>Phone: +91 9876543210</p>
+      </section>
+    </>
   );
 }
 
