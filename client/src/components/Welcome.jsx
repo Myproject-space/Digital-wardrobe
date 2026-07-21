@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
+import ThemeButton from "./ThemeButton";
 import "./welcome.css";
 
 function Welcome() {
   const navigate = useNavigate();
+  const [darkMode, setDarkMode] = useState(false);
+
+
   const [active, setActive] = useState("");
 
   useEffect(() => {
@@ -33,53 +37,77 @@ function Welcome() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+  if (darkMode) {
+    document.body.classList.add("welcome-dark");
+  } else {
+    document.body.classList.remove("welcome-dark");
+  }
+
+  return () => document.body.classList.remove("welcome-dark");
+}, [darkMode]);
+
   return (
     <>
-      <div className="welcome-page">
+      <div className={`welcome-page ${darkMode ? "dark" : ""}`}>
+
         {/* Background Blur */}
         <div className="bg-circle circle1"></div>
         <div className="bg-circle circle2"></div>
 
         {/* Navbar */}
+
         <header className="navbar">
-          <div className="brand">
-            <h2>
-              Style
-              <br />
-              <span>Vault</span>
-            </h2>
-          </div>
 
-          <nav className="nav-links">
-            <a
-              href="#features"
-              className={active === "features" ? "active" : ""}
-            >
-              Features
-            </a>
+  <div className="brand">
+    <img
+      src={logo}
+      alt="logo"
+      className="nav-logo"
+    />
 
-            <a
-              href="#about"
-              className={active === "about" ? "active" : ""}
-            >
-              About
-            </a>
+    <div className="brand-text">
+      <h2>Style</h2>
+      <h2>Vault</h2>
+    </div>
+  </div>
 
-            <a
-              href="#services"
-              className={active === "services" ? "active" : ""}
-            >
-              Services
-            </a>
+  <nav className="nav-links">
+    <a
+      href="#features"
+      className={active === "features" ? "active" : ""}
+    >
+      Features
+    </a>
 
-            <a
-              href="#contact"
-              className={active === "contact" ? "active" : ""}
-            >
-              Contact
-            </a>
-          </nav>
-        </header>
+    <a
+      href="#about"
+      className={active === "about" ? "active" : ""}
+    >
+      About
+    </a>
+
+    <a
+      href="#services"
+      className={active === "services" ? "active" : ""}
+    >
+      Services
+    </a>
+
+    <a
+      href="#contact"
+      className={active === "contact" ? "active" : ""}
+    >
+      Contact
+    </a>
+  </nav>
+
+  <ThemeButton
+    darkMode={darkMode}
+    setDarkMode={setDarkMode}
+  />
+
+</header>
 
         {/* Hero Section */}
         <section className="hero-section">
@@ -107,13 +135,6 @@ function Welcome() {
             </button>
           </div>
 
-          <div className="right">
-            <img
-              src={logo}
-              alt="Style Vault"
-              className="hero-image"
-            />
-          </div>
         </section>
       </div>
 

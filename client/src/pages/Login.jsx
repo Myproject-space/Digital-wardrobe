@@ -10,6 +10,7 @@ import {
 
 function Login() {
 
+
   const API_URL = import.meta.env.VITE_API_URL;
 
   const navigate = useNavigate();
@@ -17,6 +18,10 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+
+ 
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,29 +47,32 @@ function Login() {
   };
 
   return (
-    <div
-      className="login-page"
-      style={{
-        backgroundImage: `url(${Background})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        minHeight: "100vh",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+
+   <div
+  className="login-page"
+  style={{
+    backgroundImage: `url(${Background})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    minHeight: "100vh",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }}
+>
+
+    
       <div
-        className="card p-4 shadow"
-        style={{
-          width: "400px",
-          borderRadius: "20px",
-          background: "rgba(255,255,255,0.92)",
-          backdropFilter: "blur(10px)",
-        }}
-      >
+  className="card login-card p-4 shadow"
+  style={{
+    width: "400px",
+    borderRadius: "20px",
+    background: "rgba(255,255,255,0.92)",
+    backdropFilter: "blur(10px)",
+  }}
+>
         <Logo />
 
         <form onSubmit={handleSubmit}>

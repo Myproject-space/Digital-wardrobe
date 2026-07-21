@@ -96,13 +96,42 @@ body{
 }
 
 .login-page{
-    min-height:100vh;
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+    position: relative;
 }
+
+.login-page .theme-btn{
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 1000;
+}
+
+.login-page.dark{
+    background:#111827 !important;
+    background-image:none !important;
+}
+
+.login-page.dark .login-card{
+    background:#1f2937 !important;
+    color:#fff;
+}
+
+.login-page.dark .login-card label,
+.login-page.dark .login-card p,
+.login-page.dark .login-card a{
+    color:#fff;
+}
+
+.login-page.dark .login-card input{
+    background:#374151;
+    color:#fff;
+    border:1px solid #4b5563;
+}
+
+.login-page.dark .login-card .input-group-text{
+    background:#374151;
+    color:#fff;
+    border:1px solid #4b5563;
+}
+
+

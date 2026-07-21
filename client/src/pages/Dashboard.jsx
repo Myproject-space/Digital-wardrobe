@@ -1,6 +1,7 @@
 import Logo from "../components/Logo";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ThemeButton from "../components/ThemeButton";
 import StatCard from "../components/StatCard";
 import { useNavigate } from "react-router-dom";
 import {
@@ -8,8 +9,6 @@ import {
   FaHeart,
   FaShoppingBag,
   FaPlus,
-  FaSearch,
-  FaUser,
 } from "react-icons/fa";
 
 function Dashboard() {
@@ -19,6 +18,10 @@ function Dashboard() {
 
   const [clothes, setClothes] = useState([]);
   const [outfit, setOutfit] = useState(null);
+
+  const [darkMode, setDarkMode] = useState(false);
+
+
 
   const userName = localStorage.getItem("userName");
 
@@ -62,134 +65,128 @@ function Dashboard() {
     greeting = "Good Afternoon 🌤️";
   }
  
-  return (
-    <div
-  className="container-fluid py-4"
- style={{
-  minHeight: "100vh",
-  background: "linear-gradient(135deg, #F8F5FF 0%, #EDE9FE 50%, #D8B4FE 100%)",
-}}
->
-      {/* Logo */}
-      <Logo />
-
-      {/* Greeting Card */}
-      <div className="card p-4 shadow-lg mt-5">
-
-        <h3 className="fw-bold">{greeting}</h3>
-
-        <h5 className="mt-2">
-         Hello, {userName} 👋
-        </h5>
-
-        <p className="text-muted mb-4">
-          Your Fashion, Organized.
-        </p>
-
-        {/* Statistics */}
-        <div className="row">
-
-          <StatCard
-            icon={<FaTshirt color="#6366F1" />}
-            title="Total Clothes"
-            count={clothes.length}
-          />
-
-          <StatCard
-  icon={<FaHeart color="#EC4899" />}
-  title="Favorites"
-  count={clothes.filter((item) => item.favorite).length}
-/>
-
-          <StatCard
-            icon={<FaShoppingBag color="#8B5CF6" />}
-            title="Outfits"
-            count="0"
-          />
-
-          <StatCard
-            icon="🧺"
-            title="Laundry"
-            count="0"
-          />
-
-        </div>
-
-        <hr />
-
-        {/* Quick Actions */}
-
-        <button
-  className="btn btn-success mt-3"
-  style={{ backgroundColor: "#3B82F6" }}
-  onClick={recommendOutfit}
->
-  ✨ Recommend Outfit
-</button>
-
-
-
-{outfit && (
+ return (
   <div
-    className="card mt-3 mb-3 p-3 shadow"
+    className={`container-fluid py-4 wardrobe-page ${darkMode ? "dark" : ""}`}
     style={{
-  background: "#ECFDF5",
-  border: "2px solid #6EE7B7",
-  borderRadius: "15px",
-}}
+      minHeight: "100vh",
+      background: darkMode
+        ? "linear-gradient(135deg,#111827,#1F2937,#374151)"
+        : "linear-gradient(135deg,#F8F5FF 0%,#EDE9FE 50%,#D8B4FE 100%)",
+      position: "relative",
+    }}
   >
-    <h4
-      style={{
-         color: "#2563EB",
-        fontWeight: "700",
-      }}
-    >
-      ✨ Recommended Outfit
-    </h4>
+    <ThemeButton
+      darkMode={darkMode}
+      setDarkMode={setDarkMode}
+    />
 
-    <p>
-      👕 <strong>Top:</strong>{" "}
-      {outfit.top ? outfit.top.name : "Not Available"}
-    </p>
+    <Logo />
 
-    <p>
-      👖 <strong>Bottom:</strong>{" "}
-      {outfit.bottom ? outfit.bottom.name : "Not Available"}
-    </p>
+    <div className="card p-4 shadow-lg mt-5">
+      <h3 className="fw-bold">{greeting}</h3>
 
-    <p>
-      👟 <strong>Shoes:</strong>{" "}
-      {outfit.shoes ? outfit.shoes.name : "Not Available"}
-    </p>
-  </div>
-)}
+      <h5 className="mt-2">
+        Hello, {userName} 👋
+      </h5>
 
-        <button
-  className="btn btn-outline-primary"
-  onClick={() => navigate("/wardrobe")}
->
-  👕 My Wardrobe
-</button>
+      <p className="text-muted mb-4">
+        Your Fashion, Organized.
+      </p>
 
-        <h5 className="mb-3">
-          ⚡ Quick Actions
-        </h5>
+      <div className="row">
+        <StatCard
+          icon={<FaTshirt color="#6366F1" />}
+          title="Total Clothes"
+          count={clothes.length}
+        />
 
-        <div className="d-grid gap-2">
+        <StatCard
+          icon={<FaHeart color="#EC4899" />}
+          title="Favorites"
+          count={clothes.filter((item) => item.favorite).length}
+        />
 
-          <button
-  className="btn btn-primary"
-  onClick={() => navigate("/add-clothes")}
->
-  <FaPlus /> Add Clothes
-</button>
+        <StatCard
+          icon={<FaShoppingBag color="#8B5CF6" />}
+          title="Outfits"
+          count="0"
+        />
 
-        </div>
-
+        <StatCard
+          icon="🧺"
+          title="Laundry"
+          count="0"
+        />
       </div>
 
+      <hr />
+
+      <button
+        className="btn btn-success mt-3"
+        style={{ backgroundColor: "#3B82F6" }}
+        onClick={recommendOutfit}
+      >
+        ✨ Recommend Outfit
+      </button>
+
+      {outfit && (
+        <div
+          className="card mt-3 mb-3 p-3 shadow"
+          style={{
+            background: "#ECFDF5",
+            border: "2px solid #6EE7B7",
+            borderRadius: "15px",
+          }}
+        >
+          <h4
+            style={{
+              color: "#2563EB",
+              fontWeight: "700",
+            }}
+          >
+            ✨ Recommended Outfit
+          </h4>
+
+          <p>
+            👕 <strong>Top:</strong>{" "}
+            {outfit.top ? outfit.top.name : "Not Available"}
+          </p>
+
+          <p>
+            👖 <strong>Bottom:</strong>{" "}
+            {outfit.bottom ? outfit.bottom.name : "Not Available"}
+          </p>
+
+          <p>
+            👟 <strong>Shoes:</strong>{" "}
+            {outfit.shoes ? outfit.shoes.name : "Not Available"}
+          </p>
+        </div>
+      )}
+
+      <button
+        className="btn btn-outline-primary"
+        onClick={() => navigate("/wardrobe")}
+      >
+        👕 My Wardrobe
+      </button>
+
+      <h5 className="mb-3 mt-4">
+        ⚡ Quick Actions
+      </h5>
+
+      <div className="d-grid gap-2">
+        <button
+          className="btn btn-primary"
+          onClick={() => navigate("/add-clothes")}
+        >
+          <FaPlus /> Add Clothes
+        </button>
+      </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default Dashboard;
