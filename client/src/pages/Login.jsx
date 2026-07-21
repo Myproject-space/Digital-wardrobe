@@ -79,6 +79,7 @@ function Login() {
 
               <input
                 type="email"
+                autoComplete="email"
                 className="form-control"
                 placeholder="Enter Email"
                 value={email}
@@ -140,6 +141,7 @@ function Login() {
 
               <input
                 type="password"
+                autoComplete="current-password"
                 className="form-control"
                 placeholder="Enter Password"
                 value={password}
