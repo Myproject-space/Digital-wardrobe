@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Logo from "../components/Logo";
 import Background from "../assets/Background.jpg";
+import { toast } from "react-toastify";
 import {
   FaEnvelope,
   FaLock,
@@ -40,11 +41,11 @@ function Login() {
     localStorage.setItem("userId", res.data.user.id);
     localStorage.setItem("userName", res.data.user.name);
 
-    alert(res.data.message);
+    toast.success(res.data.message);
     navigate("/dashboard");
 
   } catch (err) {
-    alert(err.response?.data?.message || err.message);
+    toast.error(err.response?.data?.message || err.message);
   } finally {
     setLoading(false);
   }

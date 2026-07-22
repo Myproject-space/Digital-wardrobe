@@ -8,6 +8,8 @@ import Wardrobe from "./pages/Wardrobe";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -23,6 +25,15 @@ function App() {
         <Route path="/verify-otp" element={<OtpVerification />} />
         <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
+      <ToastContainer
+  position="top-right"
+  autoClose={2500}
+  hideProgressBar={false}
+  newestOnTop
+  closeOnClick
+  pauseOnHover
+  theme="colored"
+/>
     </BrowserRouter>
   );
 }
