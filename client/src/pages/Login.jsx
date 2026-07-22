@@ -14,6 +14,7 @@ function Login() {
   const API_URL = import.meta.env.VITE_API_URL;
 
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,27 +25,30 @@ function Login() {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const res = await axios.post(
-        `${API_URL}/api/auth/login`,
-        {
-          email,
-          password,
-        }
-      );
+  if (loading) return;   // Double click rokega
 
-      localStorage.setItem("userId", res.data.user.id);
-      localStorage.setItem("userName", res.data.user.name);
+  setLoading(true);
 
-      alert(res.data.message);
-      navigate("/dashboard");
+  try {
+    const res = await axios.post(`${API_URL}/api/auth/login`, {
+      email,
+      password,
+    });
 
-    } catch (err) {
-      alert(err.response?.data?.message || err.message);
-    }
-  };
+    localStorage.setItem("userId", res.data.user.id);
+    localStorage.setItem("userName", res.data.user.name);
+
+    alert(res.data.message);
+    navigate("/dashboard");
+
+  } catch (err) {
+    alert(err.response?.data?.message || err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
 
@@ -183,13 +187,13 @@ function Login() {
             </Link>
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary w-100"
-          >
-            Login
-          </button>
-
+         <button
+  type="submit"
+  className="btn btn-primary w-100"
+  disabled={loading}
+>
+  {loading ? "Logging in..." : "Login"}
+</button>
         </form>
 
         <p className="text-center mt-3">
