@@ -1,16 +1,24 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { toast } from "react-toastify";
+import { useState, useRef } from "react";
 
 function OtpVerification() {
   const navigate = useNavigate();
       const inputRefs = useRef([]);
+      const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+      
       const handleChange = (e, index) => {
-      const value = e.target.value;
+  const value = e.target.value;
 
-       if (value.length === 1 && index < 5) {
-           inputRefs.current[index + 1].focus();
+  const newOtp = [...otp];
+  newOtp[index] = value;
+  setOtp(newOtp);
+
+  if (value.length === 1 && index < 5) {
+    inputRefs.current[index + 1].focus();
   }
 };
+      
 const handleKeyDown = (e, index) => {
   if (
     e.key === "Backspace" &&
@@ -18,6 +26,17 @@ const handleKeyDown = (e, index) => {
     index > 0
   ) {
     inputRefs.current[index - 1].focus();
+  }
+};
+const verifyOTP = () => {
+  const enteredOTP = otp.join("");
+  const savedOTP = localStorage.getItem("otp");
+
+  if (enteredOTP === savedOTP) {
+    toast.success("✅ OTP Verified Successfully");
+    navigate("/reset-password");
+  } else {
+    toast.error("❌ Invalid OTP");
   }
 };
 
@@ -138,7 +157,7 @@ const handleKeyDown = (e, index) => {
 
 <button
   className="btn btn-primary w-100"
-  onClick={() => navigate("/reset-password")}
+  onClick={verifyOTP}
 >
   Verify OTP
 </button>

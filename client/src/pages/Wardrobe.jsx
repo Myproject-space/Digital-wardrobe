@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Wardrobe.css";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import tshirt from "../assets/tshirt.jpeg";
 import jeans from "../assets/jeans.jpeg";
@@ -63,13 +64,13 @@ const deleteCloth = async (id) => {
       `${API_URL}/api/clothes/${id}`
     );
 
-    alert("Cloth Deleted Successfully");
+   toast.success("🗑️ Cloth Deleted Successfully");
 
     fetchClothes();
 
   } catch (error) {
     console.log(error);
-    alert("Delete Failed");
+   toast.error("Delete Failed");
   }
 };
 
@@ -80,6 +81,15 @@ const toggleFavorite = async (id) => {
     );
 
     fetchClothes();
+
+    const cloth = clothes.find((c) => c._id === id);
+
+toast.success(
+  cloth.favorite
+    ? "💔 Removed from Favorites"
+    : "❤️ Added to Favorites"
+);
+
   } catch (error) {
     console.log(error);
   }
@@ -154,13 +164,17 @@ const toggleFavorite = async (id) => {
 
                   <h4>{item.name}</h4>
 
-                  <p>
-                    <strong>Category:</strong> {item.category}
-                  </p>
+                  <div className="cloth-details">
 
-                  <p>
-                    <strong>Color:</strong> {item.color}
-                  </p>
+  <span className="cloth-badge category-badge">
+    🏷 {item.category}
+  </span>
+
+  <span className="cloth-badge color-badge">
+    🎨 {item.color}
+  </span>
+
+</div>
 
                   <div className="d-flex gap-2 mt-3">
 

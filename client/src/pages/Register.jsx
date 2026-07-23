@@ -31,11 +31,11 @@ function Register() {
         }
       );
 
-      alert(res.data.message);
+      toast.success("Registration Successful 🎉");
 
       navigate("/");
     } catch (err) {
-      alert(err.response?.data?.message || "Registration Failed");
+      toast.error(error.response?.data?.message || "Registration Failed");
     }
   };
 

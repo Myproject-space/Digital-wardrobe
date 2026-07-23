@@ -4,6 +4,7 @@ import axios from "axios";
 import ThemeButton from "../components/ThemeButton";
 import StatCard from "../components/StatCard";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   FaTshirt,
   FaHeart,
@@ -18,7 +19,7 @@ function Dashboard() {
 
   const [clothes, setClothes] = useState([]);
   const [outfit, setOutfit] = useState(null);
-
+  const [loadingOutfit, setLoadingOutfit] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
 
@@ -43,19 +44,32 @@ function Dashboard() {
     }
   };
 
-  const recommendOutfit = async () => {
-    try {
-      const userId = localStorage.getItem("userId");
+ const recommendOutfit = async () => {
 
-      const res = await axios.get(
-        `${API_URL}/api/clothes/recommend/${userId}`
-      );
+  // Agar outfit already visible hai to hide kar do
+  if (outfit) {
+    setOutfit(null);
+    return;
+  }
 
-      setOutfit(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  setLoadingOutfit(true);
+
+  try {
+    const userId = localStorage.getItem("userId");
+
+    const res = await axios.get(
+      `${API_URL}/api/clothes/recommend/${userId}`
+    );
+
+    setOutfit(res.data);
+
+  } catch (error) {
+    console.log(error);
+    toast.error("Failed to Generate Outfit");
+  } finally {
+    setLoadingOutfit(false);
+  }
+};
 
   let greeting = "Good Evening 🌙";
 
@@ -123,12 +137,17 @@ function Dashboard() {
       <hr />
 
       <button
-        className="btn btn-success mt-3"
-        style={{ backgroundColor: "#3B82F6" }}
-        onClick={recommendOutfit}
-      >
-        ✨ Recommend Outfit
-      </button>
+  className="btn btn-success mt-3"
+  style={{ backgroundColor: "#3B82F6" }}
+  onClick={recommendOutfit}
+  disabled={loadingOutfit}
+>
+  {loadingOutfit
+    ? "Generating..."
+    : outfit
+      ? "❌ Hide Outfit"
+      : "✨ Generate Smart Outfit"}
+</button>
 
       {outfit && (
         <div
@@ -145,23 +164,71 @@ function Dashboard() {
               fontWeight: "700",
             }}
           >
-            ✨ Recommended Outfit
+            ✨ Today's Smart Outfit
           </h4>
 
-          <p>
-            👕 <strong>Top:</strong>{" "}
-            {outfit.top ? outfit.top.name : "Not Available"}
-          </p>
+          {outfit.top && outfit.bottom && outfit.shoes ? (
+  <div className="alert alert-success mt-3">
+    ✅ Complete outfit generated successfully!
+  </div>
+) : (
+  <div className="alert alert-warning mt-3">
+    ⚠️ Add more clothes to get a complete outfit.
+  </div>
+)}
 
-          <p>
-            👖 <strong>Bottom:</strong>{" "}
-            {outfit.bottom ? outfit.bottom.name : "Not Available"}
-          </p>
+         <div className="row mt-3">
 
-          <p>
-            👟 <strong>Shoes:</strong>{" "}
-            {outfit.shoes ? outfit.shoes.name : "Not Available"}
-          </p>
+  {[
+    { title: "Top", item: outfit.top, icon: "👕" },
+    { title: "Bottom", item: outfit.bottom, icon: "👖" },
+    { title: "Shoes", item: outfit.shoes, icon: "👟" },
+  ].map(({ title, item, icon }) => (
+    <div className="col-md-4 mb-3" key={title}>
+
+      <div className="recommend-card">
+
+        {item ? (
+          <>
+            <img
+              src={item.image}
+              alt={item.name}
+              className="recommend-img"
+            />
+
+            <h5 className="mt-3">
+              {icon} {title}
+            </h5>
+
+            <p>{item.name}</p>
+            <p className="text-muted mb-1">
+  🎨 {item.color}
+</p>
+
+<p className="text-muted">
+  ☀ {item.season}
+</p>
+          </>
+        ) : (
+          <>
+            <div className="recommend-placeholder">
+              {icon}
+            </div>
+
+            <h5 className="mt-3">{title}</h5>
+
+            <p className="text-muted">
+  Not Available
+</p>
+          </>
+        )}
+
+      </div>
+    </div>
+  ))}
+
+</div>
+
         </div>
       )}
 

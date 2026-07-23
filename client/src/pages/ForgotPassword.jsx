@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaMobileAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 function ForgotPassword() {
     const sendOTP = () => {
 
   if (mobile.length !== 10) {
-    alert("Please enter a valid 10-digit mobile number.");
+    toast.warning("📱 Please enter a valid 10-digit mobile number.");
     return;
   }
 
@@ -14,7 +15,7 @@ function ForgotPassword() {
 
   localStorage.setItem("otp", otp);
 
-  alert("Demo OTP: " + otp);
+  toast.success(`📩 Demo OTP: ${otp}`);
 
   navigate("/verify-otp");
 };

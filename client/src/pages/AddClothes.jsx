@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./addClothes.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function AddClothes() {
 
@@ -61,7 +62,7 @@ const handleSubmit = async (e) => {
     !formData.season ||
     !formData.occasion
   ) {
-    alert("Please fill all required fields.");
+   toast.warning("⚠️ Please fill all required fields.");
     return;
   }
 
@@ -109,13 +110,21 @@ if (editData) {
 );
 }
 
-alert(res.data.message);
+toast.success(
+  editData
+    ? "✏️ Cloth Updated Successfully"
+    : "👕 Cloth Added Successfully"
+);
 
 navigate("/wardrobe");
 
   } catch (error) {
     console.log(error);
-    alert("Failed to Add Clothes");
+   toast.error(
+  editData
+    ? "Failed to Update Cloth"
+    : "Failed to Add Cloth"
+);
   }
 };
  const handleImage = (e) => {

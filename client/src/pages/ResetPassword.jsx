@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 function ResetPassword() {
   const navigate = useNavigate();
@@ -13,17 +14,20 @@ function ResetPassword() {
 
   const handleReset = () => {
     if (newPassword === "" || confirmPassword === "") {
-      alert("Please fill all fields");
+      toast.warning("⚠️ Please fill all fields");
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      alert("Passwords do not match");
+      toast.error("❌ Passwords do not match");
       return;
     }
 
-    alert("Password Reset Successfully!");
-    navigate("/");
+    toast.success("🔑 Password Reset Successfully!");
+
+setTimeout(() => {
+  navigate("/");
+}, 1000);
   };
 
   return (
