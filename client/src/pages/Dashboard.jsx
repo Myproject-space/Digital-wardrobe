@@ -21,6 +21,7 @@ function Dashboard() {
   const [outfit, setOutfit] = useState(null);
   const [loadingOutfit, setLoadingOutfit] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [savedOutfits, setSavedOutfits] = useState([]);
 
 
 
@@ -43,6 +44,49 @@ function Dashboard() {
       console.log(error);
     }
   };
+
+  const saveOutfit = async () => {
+  try {
+    const userId = localStorage.getItem("userId");
+    console.log("User ID:", userId);
+console.log("Outfit:", outfit);
+
+    await axios.post(`${API_URL}/api/outfit/save`, {
+      userId,
+      top: outfit.top?._id,
+      bottom: outfit.bottom?._id,
+      shoes: outfit.shoes?._id,
+    });
+
+    toast.success("💾 Outfit Saved Successfully");
+
+    fetchSavedOutfits();
+
+  } catch (err) {
+    toast.error("Failed to Save Outfit");
+  }
+};
+
+  const fetchSavedOutfits = async () => {
+  try {
+    const userId = localStorage.getItem("userId");
+    console.log("Fetching for User ID:", userId);
+
+    const res = await axios.get(
+      `${API_URL}/api/outfit/${userId}`
+    );
+
+    setSavedOutfits(res.data);
+
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+useEffect(() => {
+  fetchClothes();
+  fetchSavedOutfits();
+}, []);
 
  const recommendOutfit = async () => {
 
@@ -70,6 +114,7 @@ function Dashboard() {
     setLoadingOutfit(false);
   }
 };
+
 
   let greeting = "Good Evening 🌙";
 
@@ -124,7 +169,7 @@ function Dashboard() {
         <StatCard
           icon={<FaShoppingBag color="#8B5CF6" />}
           title="Outfits"
-          count="0"
+          count={savedOutfits.length}
         />
 
         <StatCard
@@ -250,6 +295,17 @@ function Dashboard() {
         >
           <FaPlus /> Add Clothes
         </button>
+
+        <div className="text-center mt-3">
+
+  <button
+    className="btn btn-primary"
+    onClick={saveOutfit}
+  >
+    💾 Save Outfit
+  </button>
+
+</div>
       </div>
     </div>
   </div>
