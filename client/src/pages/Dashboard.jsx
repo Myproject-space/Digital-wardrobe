@@ -118,40 +118,17 @@ function Dashboard() {
   // Save Outfit
   // -----------------------------
 
-  const saveOutfit = async () => {
-
-    if (!outfit) {
-      toast.warning("Generate an outfit first.");
-      return;
-    }
-
-    try {
-
-      const userId = localStorage.getItem("userId");
-
-      await axios.post(
-        `${API_URL}/api/outfit/save`,
-        {
-          userId,
-          top: outfit.top?._id,
-          bottom: outfit.bottom?._id,
-          shoes: outfit.shoes?._id,
-        }
-      );
-
-      toast.success("💾 Outfit Saved Successfully");
-
-      fetchSavedOutfits();
-
-    } catch (err) {
-
-      console.log(err);
-
-      toast.error("Failed to Save Outfit");
-
-    }
-
-  };
+  await axios.post(
+  `${API_URL}/api/outfit/save`,
+  {
+    userId,
+    top: outfit.top?._id,
+    bottom: outfit.bottom?._id,
+    shoes: outfit.shoes?._id,
+    dress: outfit.dress?._id,
+    accessory: outfit.accessory?._id,
+  }
+);
 
   // -----------------------------
   // Greeting
@@ -260,9 +237,7 @@ function Dashboard() {
               ✨ Today's Smart Outfit
             </h4>
 
-            {outfit.top &&
-            outfit.bottom &&
-            outfit.shoes ? (
+            {(outfit.dress || (outfit.top && outfit.bottom)) && outfit.shoes ? (
 
               <div className="alert alert-success">
                 ✅ Complete outfit generated successfully!
@@ -278,23 +253,16 @@ function Dashboard() {
 
             <div className="row mt-3">
 
-              {[
-                {
-                  title: "Top",
-                  item: outfit.top,
-                  icon: "👕",
-                },
-                {
-                  title: "Bottom",
-                  item: outfit.bottom,
-                  icon: "👖",
-                },
-                {
-                  title: "Shoes",
-                  item: outfit.shoes,
-                  icon: "👟",
-                },
-              ].map(({ title, item, icon }) => (
+             {[
+  ...(outfit.dress
+    ? [{ title: "Dress", item: outfit.dress, icon: "👗" }]
+    : [
+        { title: "Top", item: outfit.top, icon: "👕" },
+        { title: "Bottom", item: outfit.bottom, icon: "👖" },
+      ]),
+  { title: "Shoes", item: outfit.shoes, icon: "👟" },
+  { title: "Accessory", item: outfit.accessory, icon: "👜" },
+].map(({ title, item, icon }) => (
 
                 <div
                   className="col-md-4 mb-3"
