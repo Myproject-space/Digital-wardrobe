@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 
 const clothesSchema = new mongoose.Schema(
   {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+
     name: {
       type: String,
       required: true,
@@ -17,40 +23,24 @@ const clothesSchema = new mongoose.Schema(
       required: true,
     },
 
-    size: {
+    season: {
       type: String,
       required: true,
     },
 
-    brand: {
+    occasion: {
       type: String,
-      default: "",
+      required: true,
     },
-
-    season: {
-  type: String,
-  default: "",
-},
-
-occasion: {
-  type: String,
-  default: "",
-},
 
     image: {
       type: String,
-      default: "",
+      required: true,
     },
 
     favorite: {
       type: Boolean,
       default: false,
-    },
-
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
     },
   },
   {

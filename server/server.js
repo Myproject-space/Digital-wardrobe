@@ -7,12 +7,14 @@ require("dotenv").config();
 
 const authRoutes = require("./routes/auth");
 const clothesRoutes = require("./routes/clothes");
+const outfitRoutes = require("./routes/outfit");
 
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/api/outfit", outfitRoutes);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 

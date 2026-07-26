@@ -10,11 +10,14 @@ router.post("/save", async (req, res) => {
 
     await outfit.save();
 
-    res.json({
+    res.status(201).json({
       message: "Outfit Saved Successfully",
+      outfit,
     });
 
   } catch (err) {
+    console.error(err);
+
     res.status(500).json({
       message: err.message,
     });
@@ -26,11 +29,16 @@ router.get("/:userId", async (req, res) => {
   try {
     const outfits = await Outfit.find({
       userId: req.params.userId,
-    });
+    })
+      .populate("top")
+      .populate("bottom")
+      .populate("shoes");
 
     res.json(outfits);
 
   } catch (err) {
+    console.error(err);
+
     res.status(500).json({
       message: err.message,
     });
