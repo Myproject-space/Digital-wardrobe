@@ -49,13 +49,10 @@ function Dashboard() {
 
       setClothes(res.data);
 
-    }catch (err) {
-  console.log("Status:", err.response?.status);
-  console.log("Data:", err.response?.data);
-  console.log("Message:", err.message);
-
-  toast.error("Failed to Save Outfit");
-}
+    } catch (err) {
+    console.log(err);
+    toast.error("Failed to load clothes");   // ✅ sahi
+  }
   };
 
   // -----------------------------
@@ -73,12 +70,9 @@ function Dashboard() {
       setSavedOutfits(res.data);
 
     } catch (err) {
-  console.log("Status:", err.response?.status);
-  console.log("Error:", err.response?.data);
-  console.log("Message:", err.message);
-
-  toast.error("Failed to Save Outfit");
-}
+    console.log(err);
+    toast.error("Failed to load saved outfits");   // ✅ sahi
+  }
   };
 
   // -----------------------------
