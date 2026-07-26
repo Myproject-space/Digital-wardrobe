@@ -62,7 +62,9 @@ router.get("/test", (req, res) => {
 
 router.get("/recommend/:userId", async (req, res) => {
   try {
-    const clothes = await Clothes.find({ userId: req.params.userId });
+    const clothes = await Clothes.find({
+      userId: req.params.userId,
+    });
 
     const getRandom = (category) => {
       const items = clothes.filter(item => item.category === category);
@@ -73,12 +75,13 @@ router.get("/recommend/:userId", async (req, res) => {
     const top = getRandom("Top");
     const bottom = getRandom("Bottom");
     const shoes = getRandom("Shoes");
-    const dress = getRandom("Dress");
-    const accessory = getRandom("Accessories");
 
-    res.json({ top, bottom, shoes, dress, accessory });
+    res.json({ top, bottom, shoes });
+
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message,
+    });
   }
 });
 
