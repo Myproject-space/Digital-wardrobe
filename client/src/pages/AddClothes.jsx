@@ -160,11 +160,10 @@ navigate("/wardrobe");
 
     <button
   className="btn btn-outline-dark mb-4"
-  onClick={() => navigate("/")}
+  onClick={() => navigate("/dashboard")}
 >
   ← Back to Dashboard
 </button>
-    
         <h2 className="text-center fw-bold mb-4">
           👕 Add New Clothing
         </h2>
