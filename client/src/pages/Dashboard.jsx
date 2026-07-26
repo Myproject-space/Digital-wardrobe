@@ -118,43 +118,45 @@ function Dashboard() {
   // Save Outfit
   // -----------------------------
 
-  const saveOutfit = async () => {
+ const [savingOutfit, setSavingOutfit] = useState(false);
 
-    if (!outfit) {
-      toast.warning("Generate an outfit first.");
-      return;
-    }
+const saveOutfit = async () => {
 
-    try {
+  if (!outfit) {
+    toast.warning("Generate an outfit first.");
+    return;
+  }
 
-      const userId = localStorage.getItem("userId");
+  if (savingOutfit) return;   // ✅ agar already save ho raha hai, dobara mat chalao
 
-      await axios.post(
-        `${API_URL}/api/outfit/save`,
-        {
-          userId,
-          top: outfit.top?._id,
-          bottom: outfit.bottom?._id,
-          shoes: outfit.shoes?._id,
-           dress: outfit.dress?._id,
+  try {
+    setSavingOutfit(true);
+
+    const userId = localStorage.getItem("userId");
+
+    await axios.post(
+      `${API_URL}/api/outfit/save`,
+      {
+        userId,
+        top: outfit.top?._id,
+        bottom: outfit.bottom?._id,
+        shoes: outfit.shoes?._id,
+        dress: outfit.dress?._id,
         accessory: outfit.accessory?._id,
-        }
-      );
+      }
+    );
 
-      toast.success("💾 Outfit Saved Successfully");
+    toast.success("💾 Outfit Saved Successfully");
 
-      fetchSavedOutfits();
+    fetchSavedOutfits();
 
-    } catch (err) {
-
-      console.log(err);
-
-      toast.error("Failed to Save Outfit");
-
-    }
-
-  };
-
+  } catch (err) {
+    console.log(err);
+    toast.error("Failed to Save Outfit");
+  } finally {
+    setSavingOutfit(false);
+  }
+};
   // -----------------------------
   // Greeting
   // -----------------------------
@@ -353,13 +355,13 @@ function Dashboard() {
             </div>
 
             <div className="text-center mt-3">
-
-              <button
-                className="btn btn-primary"
-                onClick={saveOutfit}
-              >
-                💾 Save Outfit
-              </button>
+<button
+  className="btn btn-primary"
+  onClick={saveOutfit}
+  disabled={savingOutfit}
+>
+  {savingOutfit ? "Saving..." : "💾 Save Outfit"}
+</button>
 
             </div>
 
