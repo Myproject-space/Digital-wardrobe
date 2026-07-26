@@ -139,67 +139,179 @@ function Welcome() {
       </div>
 
       {/* Features */}
-      <section id="features" className="section">
-        <h2>Features</h2>
+<section id="features" className="section">
+  <h2>Features</h2>
 
-        <p>
-          Manage your wardrobe digitally, create outfits,
-          organize your clothes, and save your favorite looks
-          effortlessly.
-        </p>
-      </section>
+  <p>
+    Everything you need to take control of your wardrobe —
+    organized, accessible, and effortless.
+  </p>
 
-      {/* About */}
-      <section id="about" className="section">
-        <h2>About</h2>
+  <div className="feature-grid">
+    <div className="feature-item">
+      <span className="feature-icon">👕</span>
+      <h4>Digital Closet</h4>
+      <p>Upload and catalog every piece of clothing you own, all in one place.</p>
+    </div>
 
-        <p>
-          Style Vault is a smart digital wardrobe application
-          that helps users organize clothes, create outfit
-          combinations, and manage fashion collections in one
-          place.
-        </p>
-      </section>
+    <div className="feature-item">
+      <span className="feature-icon">✨</span>
+      <h4>Smart Outfit Suggestions</h4>
+      <p>Get personalized outfit combinations based on what's already in your closet.</p>
+    </div>
 
-      {/* Services */}
-      <section id="services" className="section">
-        <h2>Services</h2>
+    <div className="feature-item">
+      <span className="feature-icon">❤️</span>
+      <h4>Favorites & Quick Access</h4>
+      <p>Mark your go-to pieces and outfits so they're always one tap away.</p>
+    </div>
 
-        <div className="service-container">
-          <div className="service-card">
-            <h3>Digital Wardrobe</h3>
+    <div className="feature-item">
+      <span className="feature-icon">🔍</span>
+      <h4>Search & Filter</h4>
+      <p>Find exactly what you're looking for by category, color, or occasion instantly.</p>
+    </div>
 
-            <p>
-              Store and organize your clothes digitally.
-            </p>
-          </div>
+    <div className="feature-item">
+      <span className="feature-icon">📱</span>
+      <h4>Access Anywhere</h4>
+      <p>Your wardrobe travels with you — check it from your phone, tablet, or laptop.</p>
+    </div>
 
-          <div className="service-card">
-            <h3>Outfit Planner</h3>
+    <div className="feature-item">
+      <span className="feature-icon">🌗</span>
+      <h4>Light & Dark Mode</h4>
+      <p>Switch between themes for a comfortable experience, day or night.</p>
+    </div>
+  </div>
+</section>
 
-            <p>
-              Create stylish outfit combinations easily.
-            </p>
-          </div>
+{/* About */}
+<section id="about" className="section">
+  <h2>About</h2>
 
-          <div className="service-card">
-            <h3>Favorites</h3>
+  <p>
+    Style Vault was built for anyone who's ever stood in front of
+    a full closet and still felt like they had nothing to wear.
+    We believe getting dressed should be simple, fast, and even
+    a little fun.
+  </p>
 
-            <p>
-              Save your favorite outfits for quick access.
-            </p>
-          </div>
-        </div>
-      </section>
+  <p>
+    Our mission is to bring the same organization you'd expect
+    from a professional stylist's closet to everyone — digitally,
+    for free, and without the clutter. Whether you're planning
+    outfits for the week or just trying to remember what you
+    own, Style Vault keeps your wardrobe visible and easy to use.
+  </p>
 
-      {/* Contact */}
-      <section id="contact" className="section">
-        <h2>Contact</h2>
+  <div className="about-stats">
+    <div className="stat-box">
+      <h3>100%</h3>
+      <p>Digital & Organized</p>
+    </div>
 
-        <p>Email: support@stylevault.com</p>
+    <div className="stat-box">
+      <h3>24/7</h3>
+      <p>Access to Your Closet</p>
+    </div>
 
-        <p>Phone: +91 9876543210</p>
-      </section>
+    <div className="stat-box">
+      <h3>0</h3>
+      <p>Clutter, All Clarity</p>
+    </div>
+  </div>
+</section>
+
+{/* Services */}
+<section id="services" className="section">
+  <h2>Services</h2>
+
+  <p>
+    From organizing to styling, here's how Style Vault helps you
+    every day.
+  </p>
+
+  <div className="service-container">
+    <div className="service-card">
+      <h3>Digital Wardrobe</h3>
+      <p>
+        Store and organize your clothes digitally, with details
+        like category, color, season, and occasion for every item.
+      </p>
+    </div>
+
+    <div className="service-card">
+      <h3>Outfit Planner</h3>
+      <p>
+        Create stylish outfit combinations easily, or let our
+        smart recommender do it for you based on your wardrobe.
+      </p>
+    </div>
+
+    <div className="service-card">
+      <h3>Favorites</h3>
+      <p>
+        Save your favorite outfits and pieces for quick access
+        whenever you need to get dressed in a hurry.
+      </p>
+    </div>
+
+    <div className="service-card">
+      <h3>Smart Recommendations</h3>
+      <p>
+        Get outfit suggestions that match by occasion and season,
+        so every look feels intentional.
+      </p>
+    </div>
+
+    <div className="service-card">
+      <h3>Multi-Device Access</h3>
+      <p>
+        Your wardrobe syncs across devices — check your closet
+        from anywhere, anytime.
+      </p>
+    </div>
+
+    <div className="service-card">
+      <h3>Secure & Private</h3>
+      <p>
+        Your wardrobe data stays yours — securely stored and
+        accessible only to you.
+      </p>
+    </div>
+  </div>
+</section>
+
+{/* Contact */}
+<section id="contact" className="section">
+  <h2>Contact</h2>
+
+  <p>
+    Have questions, feedback, or need help with your account?
+    We'd love to hear from you.
+  </p>
+
+  <div className="contact-grid">
+    <div className="contact-item">
+      <span className="feature-icon">📧</span>
+      <h4>Email</h4>
+      <p>support@stylevault.com</p>
+    </div>
+
+    <div className="contact-item">
+      <span className="feature-icon">📞</span>
+      <h4>Phone</h4>
+      <p>+91 9876543210</p>
+    </div>
+
+    <div className="contact-item">
+      <span className="feature-icon">🕐</span>
+      <h4>Support Hours</h4>
+      <p>Mon – Sat, 9 AM – 7 PM</p>
+    </div>
+  </div>
+</section>
     </>
   );
 }

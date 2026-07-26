@@ -402,3 +402,129 @@ body.welcome-dark .service-card p{
     background:#1f2937;
     color:#fff;
 }
+
+/* ===== Feature Grid ===== */
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:30px;
+    margin-top:45px;
+    width:100%;
+}
+
+.feature-item{
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(124,58,237,.15);
+    border-radius:18px;
+    padding:28px;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.feature-item:hover{
+    transform: translateY(-6px);
+    box-shadow:0 15px 35px rgba(124,58,237,.15);
+}
+
+.feature-icon{
+    font-size:34px;
+    display:block;
+    margin-bottom:14px;
+}
+
+.feature-item h4{
+    font-family:"Outfit", sans-serif;
+    font-size:19px;
+    font-weight:700;
+    color:#6d28d9;
+    margin-bottom:8px;
+}
+
+.feature-item p{
+    font-size:15px;
+    color:#666;
+    max-width:none;
+}
+
+/* ===== About Stats ===== */
+.about-stats{
+    display:flex;
+    gap:30px;
+    margin-top:40px;
+    flex-wrap:wrap;
+}
+
+.stat-box{
+    background: rgba(255,255,255,.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(124,58,237,.15);
+    border-radius:16px;
+    padding:24px 32px;
+    text-align:center;
+    min-width:160px;
+}
+
+.stat-box h3{
+    font-family:"Outfit", sans-serif;
+    font-size:34px;
+    font-weight:800;
+    color:#7c3aed;
+    margin-bottom:6px;
+}
+
+.stat-box p{
+    font-size:14px;
+    color:#666;
+    max-width:none;
+}
+
+/* ===== Contact Grid ===== */
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:30px;
+    margin-top:40px;
+    width:100%;
+    max-width:900px;
+}
+
+.contact-item{
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(124,58,237,.15);
+    border-radius:18px;
+    padding:28px;
+    text-align:center;
+}
+
+.contact-item h4{
+    font-family:"Outfit", sans-serif;
+    color:#6d28d9;
+    margin-bottom:8px;
+}
+
+.contact-item p{
+    font-size:15px;
+    color:#666;
+    max-width:none;
+}
+
+/* Dark mode support for new sections */
+body.welcome-dark .feature-item,
+body.welcome-dark .stat-box,
+body.welcome-dark .contact-item{
+    background: rgba(31,41,55,.6);
+    border-color: rgba(192,132,252,.2);
+}
+
+body.welcome-dark .feature-item h4,
+body.welcome-dark .stat-box h3,
+body.welcome-dark .contact-item h4{
+    color:#c084fc;
+}
+
+body.welcome-dark .feature-item p,
+body.welcome-dark .stat-box p,
+body.welcome-dark .contact-item p{
+    color:#d1d5db;
+}
