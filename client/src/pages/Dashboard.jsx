@@ -118,17 +118,42 @@ function Dashboard() {
   // Save Outfit
   // -----------------------------
 
-  await axios.post(
-  `${API_URL}/api/outfit/save`,
-  {
-    userId,
-    top: outfit.top?._id,
-    bottom: outfit.bottom?._id,
-    shoes: outfit.shoes?._id,
-    dress: outfit.dress?._id,
-    accessory: outfit.accessory?._id,
-  }
-);
+  const saveOutfit = async () => {
+
+    if (!outfit) {
+      toast.warning("Generate an outfit first.");
+      return;
+    }
+
+    try {
+
+      const userId = localStorage.getItem("userId");
+
+      await axios.post(
+        `${API_URL}/api/outfit/save`,
+        {
+          userId,
+          top: outfit.top?._id,
+          bottom: outfit.bottom?._id,
+          shoes: outfit.shoes?._id,
+           dress: outfit.dress?._id,
+        accessory: outfit.accessory?._id,
+        }
+      );
+
+      toast.success("💾 Outfit Saved Successfully");
+
+      fetchSavedOutfits();
+
+    } catch (err) {
+
+      console.log(err);
+
+      toast.error("Failed to Save Outfit");
+
+    }
+
+  };
 
   // -----------------------------
   // Greeting
