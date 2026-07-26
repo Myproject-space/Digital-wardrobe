@@ -5,6 +5,7 @@ import ThemeButton from "../components/ThemeButton";
 import StatCard from "../components/StatCard";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 import {
   FaTshirt,
   FaHeart,
@@ -14,22 +15,29 @@ import {
 
 function Dashboard() {
   const API_URL = import.meta.env.VITE_API_URL;
-  const hour = new Date().getHours();
+
   const navigate = useNavigate();
 
-  const [clothes, setClothes] = useState([]);
-  const [outfit, setOutfit] = useState(null);
-  const [loadingOutfit, setLoadingOutfit] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const [savedOutfits, setSavedOutfits] = useState([]);
-
-
+  const hour = new Date().getHours();
 
   const userName = localStorage.getItem("userName");
 
+  const [clothes, setClothes] = useState([]);
+  const [savedOutfits, setSavedOutfits] = useState([]);
+  const [outfit, setOutfit] = useState(null);
+
+  const [loadingOutfit, setLoadingOutfit] = useState(false);
+
+  const [darkMode, setDarkMode] = useState(false);
+
   useEffect(() => {
     fetchClothes();
+    fetchSavedOutfits();
   }, []);
+
+  // -----------------------------
+  // Fetch Clothes
+  // -----------------------------
 
   const fetchClothes = async () => {
     try {
@@ -40,81 +48,116 @@ function Dashboard() {
       );
 
       setClothes(res.data);
-    } catch (error) {
-      console.log(error);
+
+    } catch (err) {
+      console.log(err);
     }
   };
 
-  const saveOutfit = async () => {
-  try {
-    const userId = localStorage.getItem("userId");
-    console.log("User ID:", userId);
-console.log("Outfit:", outfit);
-
-    await axios.post(`${API_URL}/api/outfit/save`, {
-      userId,
-      top: outfit.top?._id,
-      bottom: outfit.bottom?._id,
-      shoes: outfit.shoes?._id,
-    });
-
-    toast.success("💾 Outfit Saved Successfully");
-
-    fetchSavedOutfits();
-
-  } catch (err) {
-    toast.error("Failed to Save Outfit");
-  }
-};
+  // -----------------------------
+  // Fetch Saved Outfits
+  // -----------------------------
 
   const fetchSavedOutfits = async () => {
-  try {
-    const userId = localStorage.getItem("userId");
-    console.log("Fetching for User ID:", userId);
+    try {
+      const userId = localStorage.getItem("userId");
 
-    const res = await axios.get(
-      `${API_URL}/api/outfit/${userId}`
-    );
+      const res = await axios.get(
+        `${API_URL}/api/outfit/${userId}`
+      );
 
-    setSavedOutfits(res.data);
+      setSavedOutfits(res.data);
 
-  } catch (err) {
-    console.log(err);
-  }
-};
+    } catch (err) {
+  console.log("Status:", err.response?.status);
+  console.log("Error:", err.response?.data);
+  console.log("Message:", err.message);
 
-useEffect(() => {
-  fetchClothes();
-  fetchSavedOutfits();
-}, []);
+  toast.error("Failed to Save Outfit");
+}
+  };
 
- const recommendOutfit = async () => {
+  // -----------------------------
+  // Generate Outfit
+  // -----------------------------
 
-  // Agar outfit already visible hai to hide kar do
-  if (outfit) {
-    setOutfit(null);
-    return;
-  }
+  const recommendOutfit = async () => {
 
-  setLoadingOutfit(true);
+    // Hide Outfit
+    if (outfit) {
+      setOutfit(null);
+      return;
+    }
 
-  try {
-    const userId = localStorage.getItem("userId");
+    try {
 
-    const res = await axios.get(
-      `${API_URL}/api/clothes/recommend/${userId}`
-    );
+      setLoadingOutfit(true);
 
-    setOutfit(res.data);
+      const userId = localStorage.getItem("userId");
 
-  } catch (error) {
-    console.log(error);
-    toast.error("Failed to Generate Outfit");
-  } finally {
-    setLoadingOutfit(false);
-  }
-};
+      const res = await axios.get(
+        `${API_URL}/api/clothes/recommend/${userId}`
+      );
 
+      setOutfit(res.data);
+
+      toast.success("✨ Outfit Generated");
+
+    } catch (err) {
+
+      console.log(err);
+
+      toast.error("Failed to Generate Outfit");
+
+    } finally {
+
+      setLoadingOutfit(false);
+
+    }
+  };
+
+  // -----------------------------
+  // Save Outfit
+  // -----------------------------
+
+  const saveOutfit = async () => {
+
+    if (!outfit) {
+      toast.warning("Generate an outfit first.");
+      return;
+    }
+
+    try {
+
+      const userId = localStorage.getItem("userId");
+
+      await axios.post(
+        `${API_URL}/api/outfit/save`,
+        {
+          userId,
+          top: outfit.top?._id,
+          bottom: outfit.bottom?._id,
+          shoes: outfit.shoes?._id,
+        }
+      );
+
+      toast.success("💾 Outfit Saved Successfully");
+
+      fetchSavedOutfits();
+
+    } catch (err) {
+
+      console.log(err);
+
+      toast.error("Failed to Save Outfit");
+
+    }
+
+  };
+
+  // -----------------------------
+  // Greeting
+  // -----------------------------
 
   let greeting = "Good Evening 🌙";
 
@@ -123,193 +166,244 @@ useEffect(() => {
   } else if (hour < 18) {
     greeting = "Good Afternoon 🌤️";
   }
- 
- return (
-  <div
-    className={`container-fluid py-4 wardrobe-page ${darkMode ? "dark" : ""}`}
-    style={{
-      minHeight: "100vh",
-      background: darkMode
-        ? "linear-gradient(135deg,#111827,#1F2937,#374151)"
-        : "linear-gradient(135deg,#F8F5FF 0%,#EDE9FE 50%,#D8B4FE 100%)",
-      position: "relative",
-    }}
-  >
-    <ThemeButton
-      darkMode={darkMode}
-      setDarkMode={setDarkMode}
-    />
 
-    <Logo />
-
-    <div className="card p-4 shadow-lg mt-5">
-      <h3 className="fw-bold">{greeting}</h3>
-
-      <h5 className="mt-2">
-        Hello, {userName} 👋
-      </h5>
-
-      <p className="text-muted mb-4">
-        Your Fashion, Organized.
-      </p>
-
-      <div className="row">
-        <StatCard
-          icon={<FaTshirt color="#6366F1" />}
-          title="Total Clothes"
-          count={clothes.length}
-        />
-
-        <StatCard
-          icon={<FaHeart color="#EC4899" />}
-          title="Favorites"
-          count={clothes.filter((item) => item.favorite).length}
-        />
-
-        <StatCard
-          icon={<FaShoppingBag color="#8B5CF6" />}
-          title="Outfits"
-          count={savedOutfits.length}
-        />
-
-        <StatCard
-          icon="🧺"
-          title="Laundry"
-          count="0"
-        />
-      </div>
-
-      <hr />
-
-      <button
-  className="btn btn-success mt-3"
-  style={{ backgroundColor: "#3B82F6" }}
-  onClick={recommendOutfit}
-  disabled={loadingOutfit}
->
-  {loadingOutfit
-    ? "Generating..."
-    : outfit
-      ? "❌ Hide Outfit"
-      : "✨ Generate Smart Outfit"}
-</button>
-
-      {outfit && (
+  return (
         <div
-          className="card mt-3 mb-3 p-3 shadow"
-          style={{
-            background: "#ECFDF5",
-            border: "2px solid #6EE7B7",
-            borderRadius: "15px",
-          }}
-        >
-          <h4
-            style={{
-              color: "#2563EB",
-              fontWeight: "700",
-            }}
-          >
-            ✨ Today's Smart Outfit
-          </h4>
+      className={`container-fluid py-4 wardrobe-page ${
+        darkMode ? "dark" : ""
+      }`}
+      style={{
+        minHeight: "100vh",
+        background: darkMode
+          ? "linear-gradient(135deg,#111827,#1F2937,#374151)"
+          : "linear-gradient(135deg,#F8F5FF 0%,#EDE9FE 50%,#D8B4FE 100%)",
+      }}
+    >
+      <ThemeButton
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+      />
 
-          {outfit.top && outfit.bottom && outfit.shoes ? (
-  <div className="alert alert-success mt-3">
-    ✅ Complete outfit generated successfully!
-  </div>
-) : (
-  <div className="alert alert-warning mt-3">
-    ⚠️ Add more clothes to get a complete outfit.
-  </div>
-)}
+      <Logo />
 
-         <div className="row mt-3">
+      <div className="card shadow-lg p-4 mt-5">
 
-  {[
-    { title: "Top", item: outfit.top, icon: "👕" },
-    { title: "Bottom", item: outfit.bottom, icon: "👖" },
-    { title: "Shoes", item: outfit.shoes, icon: "👟" },
-  ].map(({ title, item, icon }) => (
-    <div className="col-md-4 mb-3" key={title}>
+        <h3 className="fw-bold">{greeting}</h3>
 
-      <div className="recommend-card">
+        <h5 className="mt-2">
+          Hello, {userName} 👋
+        </h5>
 
-        {item ? (
-          <>
-            <img
-              src={item.image}
-              alt={item.name}
-              className="recommend-img"
-            />
+        <p className="text-muted">
+          Your Fashion, Organized.
+        </p>
 
-            <h5 className="mt-3">
-              {icon} {title}
-            </h5>
+        <div className="row">
 
-            <p>{item.name}</p>
-            <p className="text-muted mb-1">
-  🎨 {item.color}
-</p>
+          <StatCard
+            icon={<FaTshirt color="#6366F1" />}
+            title="Total Clothes"
+            count={clothes.length}
+          />
 
-<p className="text-muted">
-  ☀ {item.season}
-</p>
-          </>
-        ) : (
-          <>
-            <div className="recommend-placeholder">
-              {icon}
-            </div>
+          <StatCard
+            icon={<FaHeart color="#EC4899" />}
+            title="Favorites"
+            count={clothes.filter((item) => item.favorite).length}
+          />
 
-            <h5 className="mt-3">{title}</h5>
+          <StatCard
+            icon={<FaShoppingBag color="#8B5CF6" />}
+            title="Outfits"
+            count={savedOutfits.length}
+          />
 
-            <p className="text-muted">
-  Not Available
-</p>
-          </>
-        )}
-
-      </div>
-    </div>
-  ))}
-
-</div>
+          <StatCard
+            icon="🧺"
+            title="Laundry"
+            count="0"
+          />
 
         </div>
-      )}
 
-      <button
-        className="btn btn-outline-primary"
-        onClick={() => navigate("/wardrobe")}
-      >
-        👕 My Wardrobe
-      </button>
+        <hr />
 
-      <h5 className="mb-3 mt-4">
-        ⚡ Quick Actions
-      </h5>
-
-      <div className="d-grid gap-2">
         <button
-          className="btn btn-primary"
-          onClick={() => navigate("/add-clothes")}
+          className="btn btn-success"
+          style={{ background: "#3B82F6" }}
+          onClick={recommendOutfit}
+          disabled={loadingOutfit}
         >
-          <FaPlus /> Add Clothes
+          {loadingOutfit
+            ? "Generating..."
+            : outfit
+            ? "❌ Hide Outfit"
+            : "✨ Generate Smart Outfit"}
         </button>
 
-        <div className="text-center mt-3">
+        {outfit && (
 
-  <button
-    className="btn btn-primary"
-    onClick={saveOutfit}
-  >
-    💾 Save Outfit
-  </button>
+          <div
+            className="card mt-4 p-4 shadow"
+            style={{
+              background: "#ECFDF5",
+              border: "2px solid #6EE7B7",
+              borderRadius: "15px",
+            }}
+          >
 
-</div>
+            <h4
+              className="text-center mb-3"
+              style={{
+                color: "#2563EB",
+                fontWeight: "700",
+              }}
+            >
+              ✨ Today's Smart Outfit
+            </h4>
+
+            {outfit.top &&
+            outfit.bottom &&
+            outfit.shoes ? (
+
+              <div className="alert alert-success">
+                ✅ Complete outfit generated successfully!
+              </div>
+
+            ) : (
+
+              <div className="alert alert-warning">
+                ⚠️ Add more clothes for better recommendations.
+              </div>
+
+            )}
+
+            <div className="row mt-3">
+
+              {[
+                {
+                  title: "Top",
+                  item: outfit.top,
+                  icon: "👕",
+                },
+                {
+                  title: "Bottom",
+                  item: outfit.bottom,
+                  icon: "👖",
+                },
+                {
+                  title: "Shoes",
+                  item: outfit.shoes,
+                  icon: "👟",
+                },
+              ].map(({ title, item, icon }) => (
+
+                <div
+                  className="col-md-4 mb-3"
+                  key={title}
+                >
+
+                  <div className="recommend-card">
+
+                    {item ? (
+                      <>
+
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="recommend-img"
+                        />
+
+                        <h5 className="mt-3">
+                          {icon} {title}
+                        </h5>
+
+                        <p>
+                          <strong>{item.name}</strong>
+                        </p>
+
+                        <p className="text-muted">
+                          🎨 {item.color}
+                        </p>
+
+                        <p className="text-muted">
+                          ☀ {item.season}
+                        </p>
+
+                        <p className="text-muted">
+                          🎉 {item.occasion}
+                        </p>
+
+                      </>
+                    ) : (
+                      <>
+
+                        <div className="recommend-placeholder">
+                          {icon}
+                        </div>
+
+                        <h5 className="mt-3">
+                          {title}
+                        </h5>
+
+                        <p className="text-muted">
+                          Not Available
+                        </p>
+
+                      </>
+                    )}
+
+                  </div>
+
+                </div>
+
+              ))}
+
+            </div>
+
+            <div className="text-center mt-3">
+
+              <button
+                className="btn btn-primary"
+                onClick={saveOutfit}
+              >
+                💾 Save Outfit
+              </button>
+
+            </div>
+
+          </div>
+
+        )}
+
+        <button
+          className="btn btn-outline-primary mt-3"
+          onClick={() => navigate("/wardrobe")}
+        >
+          👕 My Wardrobe
+        </button>
+
+        <h5 className="mt-4 mb-3">
+          ⚡ Quick Actions
+        </h5>
+
+        <div className="d-grid gap-2">
+
+          <button
+            className="btn btn-primary"
+            onClick={() =>
+              navigate("/add-clothes")
+            }
+          >
+            <FaPlus /> Add Clothes
+          </button>
+
+        </div>
+
       </div>
+
     </div>
-  </div>
-);
+  );
 }
 
 export default Dashboard;
