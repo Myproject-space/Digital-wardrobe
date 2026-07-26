@@ -49,9 +49,13 @@ function Dashboard() {
 
       setClothes(res.data);
 
-    } catch (err) {
-      console.log(err);
-    }
+    }catch (err) {
+  console.log("Status:", err.response?.status);
+  console.log("Data:", err.response?.data);
+  console.log("Message:", err.message);
+
+  toast.error("Failed to Save Outfit");
+}
   };
 
   // -----------------------------
