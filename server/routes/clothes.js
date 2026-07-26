@@ -66,29 +66,49 @@ router.get("/recommend/:userId", async (req, res) => {
       userId: req.params.userId,
     });
 
-    const getRandom = (category) => {
-      const items = clothes.filter(item => item.category === category);
-      if (items.length === 0) return null;
-      return items[Math.floor(Math.random() * items.length)];
-    };
-
     const dresses = clothes.filter(item => item.category === "Dress");
-    const useDress = dresses.length > 0 && Math.random() > 0.5;
+    const tops = clothes.filter(item => item.category === "Top");
+    const bottoms = clothes.filter(item => item.category === "Bottom");
+    const shoesList = clothes.filter(item => item.category === "Shoes");
+    const accessories = clothes.filter(item => item.category === "Accessories");
+
+    const pickRandom = (arr) => arr.length ? arr[Math.floor(Math.random() * arr.length)] : null;
 
     let outfit = {};
 
+    const useDress = dresses.length > 0 && Math.random() > 0.5;
+
     if (useDress) {
-      outfit.dress = dresses[Math.floor(Math.random() * dresses.length)];
+      const dress = pickRandom(dresses);
+      outfit.dress = dress;
       outfit.top = null;
       outfit.bottom = null;
-    } else {
-      outfit.top = getRandom("Top");
-      outfit.bottom = getRandom("Bottom");
-      outfit.dress = null;
-    }
 
-    outfit.shoes = getRandom("Shoes");
-    outfit.accessory = getRandom("Accessories");
+      const matchingShoes = shoesList.filter(s => s.occasion === dress.occasion);
+      outfit.shoes = pickRandom(matchingShoes.length ? matchingShoes : shoesList);
+
+      const matchingAccessory = accessories.filter(a => a.occasion === dress.occasion);
+      outfit.accessory = pickRandom(matchingAccessory.length ? matchingAccessory : accessories);
+
+    } else {
+      const top = pickRandom(tops);
+      outfit.top = top;
+      outfit.dress = null;
+
+      if (top) {
+        const matchingBottoms = bottoms.filter(b => b.occasion === top.occasion);
+        outfit.bottom = pickRandom(matchingBottoms.length ? matchingBottoms : bottoms);
+      } else {
+        outfit.bottom = pickRandom(bottoms);
+      }
+
+      const referenceOccasion = top?.occasion || outfit.bottom?.occasion;
+      const matchingShoes = shoesList.filter(s => s.occasion === referenceOccasion);
+      outfit.shoes = pickRandom(matchingShoes.length ? matchingShoes : shoesList);
+
+      const matchingAccessory = accessories.filter(a => a.occasion === referenceOccasion);
+      outfit.accessory = pickRandom(matchingAccessory.length ? matchingAccessory : accessories);
+    }
 
     res.json(outfit);
 
