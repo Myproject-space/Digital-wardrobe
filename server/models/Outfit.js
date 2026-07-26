@@ -18,6 +18,15 @@ const outfitSchema = new mongoose.Schema(
       ref: "Clothes",
     },
 
+    dress: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "Clothes",
+},
+accessory: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "Clothes",
+},
+
     shoes: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Clothes",

@@ -72,11 +72,25 @@ router.get("/recommend/:userId", async (req, res) => {
       return items[Math.floor(Math.random() * items.length)];
     };
 
-    const top = getRandom("Top");
-    const bottom = getRandom("Bottom");
-    const shoes = getRandom("Shoes");
+    const dresses = clothes.filter(item => item.category === "Dress");
+    const useDress = dresses.length > 0 && Math.random() > 0.5;
 
-    res.json({ top, bottom, shoes });
+    let outfit = {};
+
+    if (useDress) {
+      outfit.dress = dresses[Math.floor(Math.random() * dresses.length)];
+      outfit.top = null;
+      outfit.bottom = null;
+    } else {
+      outfit.top = getRandom("Top");
+      outfit.bottom = getRandom("Bottom");
+      outfit.dress = null;
+    }
+
+    outfit.shoes = getRandom("Shoes");
+    outfit.accessory = getRandom("Accessories");
+
+    res.json(outfit);
 
   } catch (error) {
     res.status(500).json({
