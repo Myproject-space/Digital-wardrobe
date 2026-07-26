@@ -197,20 +197,46 @@ body{
     display:flex;
     flex-direction:column;
     justify-content:center;
+    position:relative;
+    overflow:hidden;
 
-    background: linear-gradient(
-    135deg,
-    #f4edff 0%,
-    #ebddff 30%,
-    #e2d0ff 65%,
-    #d8bfff 100%
-);
+    background:
+        radial-gradient(circle at 12% 20%, rgba(124,58,237,.14) 0%, transparent 45%),
+        radial-gradient(circle at 88% 78%, rgba(192,132,252,.16) 0%, transparent 50%),
+        linear-gradient(135deg, #f8f4ff 0%, #f0e8ff 50%, #eadcff 100%);
+}
+
+.section::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image: radial-gradient(rgba(124,58,237,.18) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity:.35;
+    pointer-events:none;
+}
+
+.section > *{
+    position:relative;
+    z-index:1;
+}
+
+.section:nth-of-type(even){
+    background:
+        radial-gradient(circle at 85% 22%, rgba(124,58,237,.14) 0%, transparent 45%),
+        radial-gradient(circle at 15% 80%, rgba(192,132,252,.16) 0%, transparent 50%),
+        linear-gradient(135deg, #f0e8ff 0%, #eadcff 50%, #f8f4ff 100%);
 }
 
 .section h2{
+    font-family: "Playfair Display", serif;
     font-size:48px;
-    color:#6d28d9;
+    font-weight:700;
     margin-bottom:20px;
+    background: linear-gradient(135deg,#7c3aed,#5b21b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .section p{
@@ -230,10 +256,18 @@ body{
 .service-card{
     flex:1;
     min-width:250px;
-    background:#f8f3ff;
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(124,58,237,.18);
     border-radius:20px;
     padding:30px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    box-shadow:0 15px 35px rgba(124,58,237,.12);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.service-card:hover{
+    transform: translateY(-6px);
+    box-shadow:0 20px 45px rgba(124,58,237,.2);
 }
 
 .service-card h3{
@@ -315,6 +349,22 @@ body.welcome-dark .section h2{
 
 body.welcome-dark .section p{
     color:#d1d5db;
+}
+
+body.welcome-dark .section{
+    background:
+        radial-gradient(circle at 15% 20%, rgba(124,58,237,.22) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(192,132,252,.18) 0%, transparent 50%),
+        linear-gradient(135deg, #0f172a 0%, #172554 50%, #312e81 100%);
+}
+
+body.welcome-dark .section::before{
+    background-image: radial-gradient(rgba(192,132,252,.25) 1px, transparent 1px);
+}
+
+body.welcome-dark .service-card{
+    background: rgba(31,41,55,.6);
+    border-color: rgba(192,132,252,.2);
 }
 
 body.welcome-dark .service-card{
