@@ -73,7 +73,7 @@ body{
     grid-template-columns:auto 1fr auto;
     align-items:center;
 
-    padding:18px 4%;
+    padding:18px 4% 18px 1.5%;
 
     position: fixed;
     top: 0;
@@ -318,8 +318,9 @@ html{
 }
 
 .nav-logo{
-    width:48px;
-    height:48px;
+    width:60px;
+    height:60px;
+    filter: contrast(1.15) saturate(1.1);
 }
 
 .brand-text h2{
