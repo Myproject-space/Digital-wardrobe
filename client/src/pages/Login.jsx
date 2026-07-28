@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Logo from "../components/Logo";
-import Background from "../assets/Background.jpg";
+import Background from "../assets/Background.png";
+import "./Login.css";
 import { toast } from "react-toastify";
 import {
   FaEnvelope,
@@ -53,31 +54,17 @@ function Login() {
 
   return (
 
-   <div
+<div
   className="login-page"
   style={{
     backgroundImage: `url(${Background})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    minHeight: "100vh",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
   }}
 >
 
     
-      <div
-  className="card login-card p-4 shadow"
-  style={{
-    width: "400px",
-    borderRadius: "20px",
-    background: "rgba(255,255,255,0.92)",
-    backdropFilter: "blur(10px)",
-  }}
->
+      <div className="card login-card p-4 shadow">
+
+        
         <Logo />
 
         <form onSubmit={handleSubmit}>

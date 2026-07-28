@@ -1,0 +1,187 @@
+/* ===========================
+   LOGIN PAGE
+=========================== */
+
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  padding: 20px;
+}
+
+/* Dark Overlay */
+
+.login-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.18);
+
+  z-index: 0;
+}
+
+/* ===========================
+   LOGIN CARD
+=========================== */
+
+.login-card {
+  position: relative;
+  z-index: 2;
+
+  width: 400px;
+
+  background: linear-gradient(135deg, #E9D5FF, #C4B5FD) important;
+
+  border-radius: 22px;
+
+  border: 1px solid rgba(124, 58, 237, 0.15);
+
+  box-shadow: 0 20px 45px rgba(124, 58, 237, 0.25);
+
+  backdrop-filter: blur(15px);
+
+  transition: all 0.3s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 30px 60px rgba(124, 58, 237, 0.3);
+}
+
+/* ===========================
+   LABELS
+=========================== */
+
+.login-card label {
+  font-weight: 600;
+  color: #4c1d95;
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+.login-card .form-control {
+  border-radius: 10px;
+  height: 48px;
+  border: 1px solid #ddd6fe;
+}
+
+.login-card .form-control:focus {
+  border-color: #8b5cf6;
+
+  box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.2);
+}
+
+.input-group-text {
+  background: #f3e8ff;
+  color: #7c3aed;
+  border: 1px solid #ddd6fe;
+}
+
+/* ===========================
+   LOGIN BUTTON
+=========================== */
+
+.login-card .btn-primary {
+  background: linear-gradient(
+    90deg,
+    #7c3aed,
+    #8b5cf6
+  );
+
+  border: none;
+
+  border-radius: 10px;
+
+  font-weight: 600;
+
+  padding: 12px;
+
+  transition: 0.3s;
+}
+
+.login-card .btn-primary:hover {
+  background: linear-gradient(
+    90deg,
+    #6d28d9,
+    #7c3aed
+  );
+
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   LINKS
+=========================== */
+
+.login-card a {
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+.login-card a:hover {
+  color: #5b21b6;
+}
+
+/* ===========================
+   EMAIL SUGGESTIONS
+=========================== */
+
+.email-suggestions {
+  position: absolute;
+
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  background: white;
+
+  border-radius: 10px;
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+  z-index: 10;
+
+  overflow: hidden;
+}
+
+.email-suggestions button {
+  width: 100%;
+
+  padding: 10px;
+
+  border: none;
+
+  background: white;
+
+  text-align: left;
+
+  transition: 0.2s;
+}
+
+.email-suggestions button:hover {
+  background: #f3e8ff;
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 576px) {
+  .login-card {
+    width: 95%;
+    padding: 25px;
+  }
+}
