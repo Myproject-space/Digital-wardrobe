@@ -35,22 +35,24 @@
 =========================== */
 
 .login-card {
-  position: relative;
-  z-index: 2;
-
   width: 400px;
+  padding: 30px;
 
-  background: linear-gradient(135deg, #E9D5FF, #C4B5FD) important;
+  background: linear-gradient(
+    135deg,
+    #fdfbff 0%,
+    #f3e8ff 35%,
+    #e9d5ff 70%,
+    #d8b4fe 100%
+  );
 
   border-radius: 22px;
-
-  border: 1px solid rgba(124, 58, 237, 0.15);
+  border: none;
 
   box-shadow: 0 20px 45px rgba(124, 58, 237, 0.25);
 
-  backdrop-filter: blur(15px);
-
-  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .login-card:hover {

@@ -62,7 +62,7 @@ function Login() {
 >
 
     
-      <div className="card login-card p-4 shadow">
+     <div className="login-card p-4">
 
         
         <Logo />
