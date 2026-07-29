@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
-import ThemeButton from "./ThemeButton";
+import ThemeButton from "./ThemeButton.jsx";
+import Background from "../assets/Background.png";
 import "./welcome.css";
 
 function Welcome() {
@@ -49,7 +50,12 @@ function Welcome() {
 
   return (
     <>
-      <div className={`welcome-page ${darkMode ? "dark" : ""}`}>
+      <div
+  className={`welcome-page ${darkMode ? "dark" : ""}`}
+  style={{
+    backgroundImage: `url(${Background})`,
+  }}
+>
 
         {/* Background Blur */}
         <div className="bg-circle circle1"></div>
@@ -60,11 +66,7 @@ function Welcome() {
         <header className="navbar">
 
   <div className="brand">
-    <img
-      src={logo}
-      alt="logo"
-      className="nav-logo"
-    />
+   
 
     <div className="brand-text">
       <h2>Style</h2>
@@ -117,23 +119,19 @@ function Welcome() {
               <br />
               <span>Style Vault</span>
             </h1>
-
-            <h3 className="tagline">
-              Your Smart Digital Wardrobe
-            </h3>
-
-            <p className="description">
-              Organize your wardrobe, create stylish outfits,
-              and manage your fashion effortlessly.
-            </p>
+          
 
             <button
-              className="start-btn"
-              onClick={() => navigate("/login")}
-            >
-              Get Started →
-            </button>
+  className="start-btn"
+  onClick={() => navigate("/login")}
+>
+  Get Started →
+</button>
           </div>
+
+<p className="hero-copyright">
+  © 2026 StyleVault. All Rights Reserved.
+</p>
 
         </section>
       </div>
@@ -311,7 +309,10 @@ function Welcome() {
       <p>Mon – Sat, 9 AM – 7 PM</p>
     </div>
   </div>
+
+
 </section>
+
     </>
   );
 }

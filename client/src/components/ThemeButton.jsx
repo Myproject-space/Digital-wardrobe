@@ -4,7 +4,10 @@ function ThemeButton({ darkMode, setDarkMode }) {
   return (
     <button
       className="theme-btn"
-      onClick={() => setDarkMode(!darkMode)}
+      onClick={() => {
+        console.log("Button clicked");
+        setDarkMode(!darkMode);
+      }}
     >
       {darkMode ? "☀️" : "🌙"}
     </button>

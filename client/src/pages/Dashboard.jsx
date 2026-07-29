@@ -4,6 +4,7 @@ import axios from "axios";
 import ThemeButton from "../components/ThemeButton";
 import StatCard from "../components/StatCard";
 import { useNavigate } from "react-router-dom";
+import dashboardBg from "../assets/Dashboard.png";
 import { toast } from "react-toastify";
 
 import {
@@ -175,11 +176,12 @@ const saveOutfit = async () => {
         darkMode ? "dark" : ""
       }`}
       style={{
-        minHeight: "100vh",
-        background: darkMode
-          ? "linear-gradient(135deg,#111827,#1F2937,#374151)"
-          : "linear-gradient(135deg,#F8F5FF 0%,#EDE9FE 50%,#D8B4FE 100%)",
-      }}
+  minHeight: "100vh",
+  backgroundImage: `url(${Dashboard})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+}}
     >
       <ThemeButton
         darkMode={darkMode}
