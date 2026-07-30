@@ -447,7 +447,6 @@ body.welcome-dark .service-card p{
 /* ===== Contact Grid ===== */
 .contact-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
     gap:30px;
     margin-top:40px;
     width:100%;
@@ -513,61 +512,67 @@ body.welcome-dark .contact-item p{
 
 @media (max-width:768px){
 
-    .brand h2{
-      font-size:42px;
-  }
-  
-  .navbar{
-      padding:20px 18px;
-  }
+    .feature-grid{
+    grid-template-columns:1fr;
+}
 
-  .menu-icon{
-      font-size:40px;
-      margin-right:10px;
-  }
+    .navbar{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:18px;
+    }
 
+    .menu-icon{
+        display:block;
+        font-size:34px;
+    }
 
     .nav-links{
-        position:absolute;
-        top:80px;
-        left:0;
-        width:100%;
-
-        background:#24154A;
-
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        gap:25px;
-
-        padding:25px 0;
-
-        transform:translateY(-150%);
-        transition:.35s ease;
+        display:none;
     }
 
     .nav-links.show{
-        transform:translateY(0);
+        display:flex;
+        flex-direction:column;
+
+        position:absolute;
+        top:80px;
+        left:0;
+
+        width:100%;
+        background:#24154A;
+
+        padding:25px 0;
+
+        gap:22px;
     }
 
-    .nav-links a{
+    .left{
+        padding:0 20px;
+        transform:translateY(-80px);
+    }
+
+    .left h1{
+        font-size:50px;
+    }
+
+    .start-btn{
+        width:230px;
         font-size:18px;
     }
 
-   
-  .left{
-      transform:translateY(-70px);
-  }
+    .feature-grid,
+    .service-container,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
 
-  .left h1{
-      font-size:54px;
-      line-height:1.05;
-  }
+    .about-stats{
+        flex-direction:column;
+    }
 
-     .start-btn{
-      width:230px;
-      height:60px;
-      font-size:18px;
-      margin-top:35px;
-  }
+    .section{
+        padding:70px 20px;
+    }
 }

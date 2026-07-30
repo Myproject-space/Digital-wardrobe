@@ -126,12 +126,16 @@ function Welcome() {
 
         {/* Hero Section */}
         <section className="hero-section">
-          <div className="left">
-            <h1>
-              Welcome To
-              <br />
-              <span>Style Vault</span>
-            </h1>
+         <div className="container">
+    <div className="row justify-content-center align-items-center min-vh-100">
+
+      <div className="col-lg-8 text-center">
+
+        <h1 className="hero-title">
+          Welcome To
+          <br />
+          <span>Style Vault</span>
+        </h1>
           
 
             <button
@@ -141,13 +145,15 @@ function Welcome() {
   Get Started →
 </button>
           </div>
+           </div>
+            </div>
 
 <p className="hero-copyright">
   © 2026 StyleVault. All Rights Reserved.
 </p>
 
         </section>
-      </div>
+     
 
       {/* Features */}
 <section id="features" className="section">
@@ -158,7 +164,18 @@ function Welcome() {
     organized, accessible, and effortless.
   </p>
 
-  <div className="feature-grid">
+ <div className="container">
+  <div className="row g-4">
+
+    <div className="col-lg-4 col-md-6 col-12">
+      <div className="feature-item">
+        ...
+      </div>
+    </div>
+
+  </div>
+</div>
+
     <div className="feature-item">
       <span className="feature-icon">👕</span>
       <h4>Digital Closet</h4>
@@ -194,7 +211,7 @@ function Welcome() {
       <h4>Light & Dark Mode</h4>
       <p>Switch between themes for a comfortable experience, day or night.</p>
     </div>
-  </div>
+
 </section>
 
 {/* About */}
@@ -325,6 +342,7 @@ function Welcome() {
 
 
 </section>
+</div>
 
     </>
   );
