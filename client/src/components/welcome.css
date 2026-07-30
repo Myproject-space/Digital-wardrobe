@@ -512,10 +512,6 @@ body.welcome-dark .contact-item p{
 
 @media (max-width:768px){
 
-    .feature-grid{
-    grid-template-columns:1fr;
-}
-
     .navbar{
         display:flex;
         justify-content:space-between;
