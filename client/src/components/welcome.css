@@ -512,6 +512,13 @@ body.welcome-dark .contact-item p{
 
 @media (max-width:768px){
 
+
+    .welcome-page{
+        background-size: 100% auto;
+        background-position: top center;
+    }
+
+
     .navbar{
     position: fixed;
     top: 0;
