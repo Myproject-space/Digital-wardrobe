@@ -86,10 +86,6 @@ body{
     gap:60px;
 }
 
-.menu-icon{
-    display:none;
-}
-
 .nav-links a{
     position:relative;
    color: #f9f0f0 !important;
@@ -579,104 +575,4 @@ body.welcome-dark .contact-item p{
     .section{
         padding:70px 20px;
     }
-}
-
-/* ==========================
-   Responsive Design
-========================== */
-
-@media (max-width: 768px) {
-
-    .navbar{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:15px 20px;
-    }
-
-    .menu-icon{
-        display:block;
-        font-size:32px;
-        cursor:pointer;
-    }
-
-    .nav-links{
-        position:absolute;
-        top:80px;
-        left:0;
-        width:100%;
-        background:#24154A;
-
-        display:none;
-        flex-direction:column;
-        align-items:center;
-
-        gap:20px;
-        padding:25px 0;
-    }
-
-    .nav-links.show{
-        display:flex;
-    }
-
-    .brand h2{
-        font-size:30px;
-    }
-
-    .hero-section{
-        min-height:90vh;
-    }
-
-    .hero-title{
-        font-size:52px;
-        line-height:1.1;
-    }
-
-    .start-btn{
-        width:220px;
-        font-size:18px;
-        padding:15px;
-        margin-top:30px;
-    }
-
-    .section{
-        padding:70px 20px;
-    }
-
-    .section h2{
-        font-size:34px;
-    }
-
-    .section p{
-        font-size:16px;
-        line-height:1.7;
-    }
-
-    .feature-grid,
-    .service-container,
-    .contact-grid{
-        display:grid;
-        grid-template-columns:1fr;
-        gap:20px;
-    }
-
-    .about-stats{
-        display:flex;
-        flex-direction:column;
-        gap:20px;
-    }
-
-    .stat-box{
-        width:100%;
-    }
-
-    .hero-copyright{
-        font-size:14px;
-        bottom:15px;
-    }
-
-    .contact-item p{
-        word-break:break-word;
-    }
-
 }
