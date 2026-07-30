@@ -513,16 +513,19 @@ body.welcome-dark .contact-item p{
 
 @media (max-width:768px){
 
-    .navbar{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:20px;
-    }
+    .brand h2{
+      font-size:42px;
+  }
+  
+  .navbar{
+      padding:20px 18px;
+  }
 
-    .menu-icon{
-        display:block;
-    }
+  .menu-icon{
+      font-size:40px;
+      margin-right:10px;
+  }
+
 
     .nav-links{
         position:absolute;
@@ -551,12 +554,20 @@ body.welcome-dark .contact-item p{
         font-size:18px;
     }
 
-    .left h1{
-        font-size:48px;
-    }
+   
+  .left{
+      transform:translateY(-70px);
+  }
 
-    .start-btn{
-        font-size:18px;
-        padding:15px 30px;
-    }
+  .left h1{
+      font-size:54px;
+      line-height:1.05;
+  }
+
+     .start-btn{
+      width:230px;
+      height:60px;
+      font-size:18px;
+      margin-top:35px;
+  }
 }
