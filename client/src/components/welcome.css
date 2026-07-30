@@ -24,6 +24,7 @@ body{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+     background-position:top center;
     overflow:hidden;
     position:relative;
     padding-top: 90px;
