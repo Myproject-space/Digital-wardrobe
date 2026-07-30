@@ -11,6 +11,7 @@ function Welcome() {
 
 
   const [active, setActive] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll(".section");
@@ -74,35 +75,51 @@ function Welcome() {
     </div>
   </div>
 
-  <nav className="nav-links">
-    <a
-      href="#features"
-      className={active === "features" ? "active" : ""}
-    >
-      Features
-    </a>
+  <nav className={`nav-links ${menuOpen ? "show" : ""}`}>
+  
+    <a href="#features"
+    className={active === "features" ? "active" : ""}
+    onClick={() => setMenuOpen(false)}
+  >
+    Features
+  </a>
 
-    <a
-      href="#about"
-      className={active === "about" ? "active" : ""}
-    >
-      About
-    </a>
+  
+    <a href="#about"
+    className={active === "about" ? "active" : ""}
+    onClick={() => setMenuOpen(false)}
+  >
+    About
+  </a>
 
-    <a
-      href="#services"
-      className={active === "services" ? "active" : ""}
-    >
-      Services
-    </a>
+  
+    <a href="#services"
+    className={active === "services" ? "active" : ""}
+    onClick={() => setMenuOpen(false)}
+  >
+    Services
+  </a>
 
-    <a
-      href="#contact"
-      className={active === "contact" ? "active" : ""}
-    >
-      Contact
-    </a>
-  </nav>
+  
+    <a href="#contact"
+    className={active === "contact" ? "active" : ""}
+    onClick={() => setMenuOpen(false)}
+  >
+    Contact
+  </a>
+</nav>
+
+<ThemeButton
+  darkMode={darkMode}
+  setDarkMode={setDarkMode}
+/>
+
+<div
+  className="menu-icon"
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  {menuOpen ? "✕" : "☰"}
+</div>
 
   <ThemeButton
     darkMode={darkMode}
