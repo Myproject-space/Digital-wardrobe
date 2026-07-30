@@ -11,7 +11,6 @@ function Welcome() {
 
 
   const [active, setActive] = useState("");
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll(".section");
@@ -64,29 +63,21 @@ function Welcome() {
 
         {/* Navbar */}
 
-       <header className="navbar">
+        <header className="navbar">
 
   <div className="brand">
+   
+
     <div className="brand-text">
       <h2>Style</h2>
       <h2>Vault</h2>
     </div>
   </div>
 
-  {/* Hamburger */}
-  <div
-    className="menu-icon"
-    onClick={() => setMenuOpen(!menuOpen)}
-  >
-    ☰
-  </div>
-
-  <nav className={`nav-links ${menuOpen ? "show" : ""}`}>
-
+  <nav className="nav-links">
     <a
       href="#features"
       className={active === "features" ? "active" : ""}
-      onClick={() => setMenuOpen(false)}
     >
       Features
     </a>
@@ -94,7 +85,6 @@ function Welcome() {
     <a
       href="#about"
       className={active === "about" ? "active" : ""}
-      onClick={() => setMenuOpen(false)}
     >
       About
     </a>
@@ -102,7 +92,6 @@ function Welcome() {
     <a
       href="#services"
       className={active === "services" ? "active" : ""}
-      onClick={() => setMenuOpen(false)}
     >
       Services
     </a>
@@ -110,32 +99,26 @@ function Welcome() {
     <a
       href="#contact"
       className={active === "contact" ? "active" : ""}
-      onClick={() => setMenuOpen(false)}
     >
       Contact
     </a>
-
-    <ThemeButton
-      darkMode={darkMode}
-      setDarkMode={setDarkMode}
-    />
-
   </nav>
+
+  <ThemeButton
+    darkMode={darkMode}
+    setDarkMode={setDarkMode}
+  />
 
 </header>
 
         {/* Hero Section */}
         <section className="hero-section">
-         <div className="container">
-    <div className="row justify-content-center align-items-center min-vh-100">
-
-      <div className="col-lg-8 text-center">
-
-        <h1 className="hero-title">
-          Welcome To
-          <br />
-          <span>Style Vault</span>
-        </h1>
+          <div className="left">
+            <h1>
+              Welcome To
+              <br />
+              <span>Style Vault</span>
+            </h1>
           
 
             <button
@@ -145,15 +128,13 @@ function Welcome() {
   Get Started →
 </button>
           </div>
-           </div>
-            </div>
 
 <p className="hero-copyright">
   © 2026 StyleVault. All Rights Reserved.
 </p>
 
         </section>
-     
+      </div>
 
       {/* Features */}
 <section id="features" className="section">
@@ -164,18 +145,7 @@ function Welcome() {
     organized, accessible, and effortless.
   </p>
 
- <div className="container">
-  <div className="row g-4">
-
-    <div className="col-lg-4 col-md-6 col-12">
-      <div className="feature-item">
-        ...
-      </div>
-    </div>
-
-  </div>
-</div>
-
+  <div className="feature-grid">
     <div className="feature-item">
       <span className="feature-icon">👕</span>
       <h4>Digital Closet</h4>
@@ -211,7 +181,7 @@ function Welcome() {
       <h4>Light & Dark Mode</h4>
       <p>Switch between themes for a comfortable experience, day or night.</p>
     </div>
-
+  </div>
 </section>
 
 {/* About */}
@@ -342,7 +312,6 @@ function Welcome() {
 
 
 </section>
-</div>
 
     </>
   );
