@@ -21,8 +21,8 @@ body{
     min-height:100vh;
    
     background-image: url("../assets/Background.png");
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: 100% auto;
     background-repeat: no-repeat;
     overflow:hidden;
     position:relative;
@@ -599,6 +599,12 @@ body.welcome-dark .contact-item p{
     .left h1{
         font-size:64px;
     }
+
+    .welcome-page{
+        background-size: 100% auto;
+        background-position: 100% auto;
+    }
+
 
     .navbar{
         padding:18px 3%;
