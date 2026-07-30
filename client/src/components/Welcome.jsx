@@ -109,10 +109,7 @@ function Welcome() {
   </a>
 </nav>
 
-<ThemeButton
-  darkMode={darkMode}
-  setDarkMode={setDarkMode}
-/>
+
 
 <div
   className="menu-icon"
