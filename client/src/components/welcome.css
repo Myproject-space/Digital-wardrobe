@@ -515,11 +515,10 @@ body.welcome-dark .contact-item p{
 @media (max-width:768px){
 
     .hero-section{
-        min-height: 70vh;
-        padding-top: 70px;
-        background-size: cover;
-        background-position: center;
-    }
+    background: url("../assets/Background.png") center center no-repeat;
+    background-size: cover;   /* ya contain, neeche dekho */
+    min-height: 100vh;
+}
 
     .hero-content{
         padding: 20px;
