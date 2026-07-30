@@ -510,7 +510,7 @@ body.welcome-dark .contact-item p{
     user-select:none;
 }
 
-@media (max-width:768px){
+@media (max-width:900px){
 
 
     .welcome-page{
