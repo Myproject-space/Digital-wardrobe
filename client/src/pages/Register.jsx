@@ -11,6 +11,9 @@ import {
   FaEyeSlash,
 } from "react-icons/fa";
 
+// 🔴 APNA LIVE BACKEND URL YAHAN LIKHEIN (Local test ke liye http://localhost:5000)
+const API_URL = "https://your-backend-url.onrender.com"; 
+
 function Register() {
   const navigate = useNavigate();
 
@@ -19,9 +22,15 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Password Match Validation
+    if (password !== confirmPassword) {
+      return toast.error("Passwords do not match!");
+    }
 
     try {
       const res = await axios.post(
@@ -34,10 +43,10 @@ function Register() {
       );
 
       toast.success("Registration Successful 🎉");
-
-      navigate("/");
+      navigate("/"); // Redirect to Login page
     } catch (err) {
-      toast.error(error.response?.data?.message || "Registration Failed");
+      // Fixed 'err' variable here
+      toast.error(err.response?.data?.message || "Registration Failed");
     }
   };
 
@@ -57,13 +66,11 @@ function Register() {
 
           {/* Full Name */}
           <div className="mb-3">
-            <label>Full Name</label>
-
+            <label className="form-label">Full Name</label>
             <div className="input-group">
               <span className="input-group-text">
                 <FaUser />
               </span>
-
               <input
                 type="text"
                 className="form-control"
@@ -77,13 +84,11 @@ function Register() {
 
           {/* Email */}
           <div className="mb-3">
-            <label>Email</label>
-
+            <label className="form-label">Email</label>
             <div className="input-group">
               <span className="input-group-text">
                 <FaEnvelope />
               </span>
-
               <input
                 type="email"
                 className="form-control"
@@ -97,13 +102,11 @@ function Register() {
 
           {/* Password */}
           <div className="mb-3">
-            <label>Password</label>
-
+            <label className="form-label">Password</label>
             <div className="input-group">
               <span className="input-group-text">
                 <FaLock />
               </span>
-
               <input
                 type={showPassword ? "text" : "password"}
                 className="form-control"
@@ -112,24 +115,29 @@ function Register() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-
-             
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
             </div>
           </div>
 
           {/* Confirm Password */}
           <div className="mb-3">
-            <label>Confirm Password</label>
-
+            <label className="form-label">Confirm Password</label>
             <div className="input-group">
               <span className="input-group-text">
                 <FaLock />
               </span>
-
               <input
                 type={showPassword ? "text" : "password"}
                 className="form-control"
                 placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
             </div>
@@ -143,7 +151,6 @@ function Register() {
               id="terms"
               required
             />
-
             <label
               className="form-check-label"
               htmlFor="terms"
