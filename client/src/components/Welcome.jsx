@@ -77,7 +77,8 @@ function Welcome() {
 
   <nav className={`nav-links ${menuOpen ? "show" : ""}`}>
   
-    <a href="#features"
+    <a 
+    href="#features"
     className={active === "features" ? "active" : ""}
     onClick={() => setMenuOpen(false)}
   >
@@ -110,7 +111,8 @@ function Welcome() {
 </nav>
 
 
-
+<div className="nav-controls">
+    <ThemeButton darkMode={darkMode} setDarkMode={setDarkMode} />
 <div
   className="menu-icon"
   onClick={() => setMenuOpen(!menuOpen)}
@@ -123,6 +125,7 @@ function Welcome() {
     setDarkMode={setDarkMode}
   />
 
+</div>
 </header>
 
         {/* Hero Section */}

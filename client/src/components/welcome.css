@@ -81,6 +81,40 @@ body {
     -webkit-backdrop-filter: blur(12px);
 }
 
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 1001; /* Keeps theme button clickable above overlays */
+}
+
+.theme-btn, 
+.nav-controls button {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        height: 70px;
+        padding: 0 16px;
+    }
+
+    .menu-icon {
+        display: block;
+        font-size: 28px;
+        color: #ffffff;
+    }
+
+    /* Keep Theme Button visible on small screens */
+    .nav-controls {
+        gap: 12px;
+    }
+}
+
 .brand {
     display: flex;
     align-items: center;
