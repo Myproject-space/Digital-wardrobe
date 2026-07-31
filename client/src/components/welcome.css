@@ -34,14 +34,34 @@ html, body {
     background-position: center top; /* Keeps top subject framed properly */
     background-repeat: no-repeat;
     position: relative;
-    padding-top: 90px;
+    box-sizing: border-box;
 }
 
 /* Dark Mode Overlay on Hero Background */
 .welcome-page.dark {
-    background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("../assets/Background.png");
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../assets/Background.png");
     background-size: cover;
     background-position: center top;
+}
+
+@media (max-width: 768px) {
+    .welcome-page {
+        /* Mobile screen par image ko contain karega ya fit rakhega */
+        background-size: 100% auto; 
+        background-position: center top;
+        /* Mobile height adjustments */
+        min-height: 85vh; 
+    }
+
+    .hero-section {
+        min-height: 75vh;
+        justify-content: center;
+        padding-top: 40px;
+    }
+
+    .left h1 {
+        font-size: 38px; /* Mobile par text size perfect balance rakhega */
+    }
 }
 
 /* Background Blur Circles */
