@@ -11,26 +11,23 @@ import {
   FaEyeSlash,
 } from "react-icons/fa";
 
-// 🔴 APNA LIVE BACKEND URL YAHAN LIKHEIN (Local test ke liye http://localhost:5000)
-const API_URL = "https://your-backend-url.onrender.com"; 
-
 function Register() {
   const navigate = useNavigate();
+  const API_URL = "https://stylevault-backend.onrender.com";
 
   const [showPassword, setShowPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Password Match Validation
     if (password !== confirmPassword) {
-      return toast.error("Passwords do not match!");
-    }
+  return toast.error("Passwords do not match!");
+}
 
     try {
       const res = await axios.post(
@@ -43,11 +40,11 @@ function Register() {
       );
 
       toast.success("Registration Successful 🎉");
-      navigate("/"); // Redirect to Login page
+
+      navigate("/");
     } catch (err) {
-      // Fixed 'err' variable here
-      toast.error(err.response?.data?.message || "Registration Failed");
-    }
+  toast.error(err.response?.data?.message || "Registration Failed");
+}
   };
 
   return (
@@ -55,7 +52,7 @@ function Register() {
       <div className="card p-4 shadow" style={{ width: "400px" }}>
 
         <h2 className="text-center fw-bold text-primary mb-2">
-          ClosetVault
+          StyleVault
         </h2>
 
         <p className="text-center text-muted">
@@ -63,14 +60,17 @@ function Register() {
         </p>
 
         <form onSubmit={handleSubmit}>
+          
 
           {/* Full Name */}
           <div className="mb-3">
-            <label className="form-label">Full Name</label>
+            <label>Full Name</label>
+
             <div className="input-group">
               <span className="input-group-text">
                 <FaUser />
               </span>
+
               <input
                 type="text"
                 className="form-control"
@@ -84,11 +84,13 @@ function Register() {
 
           {/* Email */}
           <div className="mb-3">
-            <label className="form-label">Email</label>
+            <label>Email</label>
+
             <div className="input-group">
               <span className="input-group-text">
                 <FaEnvelope />
               </span>
+
               <input
                 type="email"
                 className="form-control"
@@ -102,11 +104,13 @@ function Register() {
 
           {/* Password */}
           <div className="mb-3">
-            <label className="form-label">Password</label>
+            <label>Password</label>
+
             <div className="input-group">
               <span className="input-group-text">
                 <FaLock />
               </span>
+
               <input
                 type={showPassword ? "text" : "password"}
                 className="form-control"
@@ -115,31 +119,40 @@ function Register() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+
               <button
-                type="button"
-                className="btn btn-outline-secondary"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
+  type="button"
+  className="btn btn-outline-secondary"
+  onClick={() => setShowPassword(!showPassword)}
+>
+  {showPassword ? <FaEyeSlash /> : <FaEye />}
+</button>
+
+             
             </div>
           </div>
 
           {/* Confirm Password */}
           <div className="mb-3">
-            <label className="form-label">Confirm Password</label>
+            <label>Confirm Password</label>
+
             <div className="input-group">
               <span className="input-group-text">
                 <FaLock />
               </span>
+
+              
+
               <input
-                type={showPassword ? "text" : "password"}
-                className="form-control"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
+  type={showPassword ? "text" : "password"}
+  className="form-control"
+  placeholder="Confirm Password"
+  value={confirmPassword}
+  onChange={(e) => setConfirmPassword(e.target.value)}
+  required
+/>
+
+      
             </div>
           </div>
 
@@ -151,6 +164,7 @@ function Register() {
               id="terms"
               required
             />
+
             <label
               className="form-check-label"
               htmlFor="terms"
