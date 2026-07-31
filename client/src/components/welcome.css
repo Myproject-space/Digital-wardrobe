@@ -358,8 +358,10 @@ body.welcome-dark .contact-item h4 {
    ========================================================================== */
 @media (max-width: 900px) {
     .welcome-page {
+        background-size: contain !important; /* Entire image will fit without cropping */
         background-position: center top !important;
-        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        background-color: #1a1235; /* Empty areas filled with dark theme color */
     }
 
     .navbar {
