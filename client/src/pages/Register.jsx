@@ -13,7 +13,7 @@ import {
 
 function Register() {
   const navigate = useNavigate();
-  const API_URL = "https://stylevault-backend.onrender.com";
+  const API_URL = "https://closetvault-backend.onrender.com";
 
   const [showPassword, setShowPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
