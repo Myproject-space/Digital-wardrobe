@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import "./welcome.css"; // 👈 YE LINE ADD KARO!
+import "./component/welcome.css"; // 👈 YE LINE ADD KARO!
 
 import App from "./App.jsx";
 
