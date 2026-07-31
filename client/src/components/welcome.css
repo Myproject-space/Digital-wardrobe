@@ -18,68 +18,30 @@ html {
 html, body {
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden; /* Prevents side-scrolling whitespace */
+    overflow-x: hidden; /* Side space cut-off prevent karega */
     background-color: #1a1235;
 }
 
 /* ==========================================================================
-   2. WELCOME PAGE & BACKGROUND FIX
+   2. WELCOME PAGE & BACKGROUND SETUP
    ========================================================================== */
 .welcome-page {
     width: 100%;
     min-height: 100vh;
-    /* Default background CSS path */
-    background-image: url("../assets/Background.png");
-    background-size: cover;          /* Covers whole area without distorting */
-    background-position: center top; /* Keeps top subject framed properly */
+    /* Gradient overlay + image balance */
+    background-image: linear-gradient(180deg, rgba(25, 20, 45, 0.4) 0%, rgba(25, 20, 45, 0.6) 100%), url("../assets/Background.png");
+    background-size: cover;
+    background-position: center top; 
     background-repeat: no-repeat;
     position: relative;
     box-sizing: border-box;
 }
 
-/* Dark Mode Overlay on Hero Background */
+/* Dark Mode Background Overlay */
 .welcome-page.dark {
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../assets/Background.png");
+    background-image: linear-gradient(180deg, rgba(10, 10, 20, 0.7) 0%, rgba(10, 10, 20, 0.85) 100%), url("../assets/Background.png");
     background-size: cover;
     background-position: center top;
-}
-
-@media (max-width: 768px) {
-    .welcome-page {
-        /* Image ko poori screen par fit rakhega bina khali space chhode */
-        background-size: cover !important; 
-        background-position: center center !important;
-        min-height: 100vh; 
-        width: 100%;
-    }
-
-    .hero-section {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 80px 20px 40px 20px;
-        box-sizing: border-box;
-    }
-
-    .left {
-        width: 100%;
-        margin-top: 0;
-        transform: none; /* Text overflow aur displacement fix karega */
-    }
-
-   .left h1 {
-        font-size: 38px;
-        line-height: 1.2;
-    }
-
-    .nav-controls {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        gap: 14px !important;
-    }
 }
 
 /* Background Blur Circles */
@@ -108,7 +70,7 @@ html, body {
 }
 
 /* ==========================================================================
-   3. NAVBAR (DESKTOP & MOBILE INTEGRATION)
+   3. NAVBAR
    ========================================================================== */
 .navbar {
     width: 100%;
@@ -177,26 +139,35 @@ html, body {
     width: 100%;
 }
 
+/* Theme Button + Hamburger Wrapper */
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .menu-icon {
     display: none;
-    font-size: 30px;
+    font-size: 28px;
     color: #ffffff;
     cursor: pointer;
     user-select: none;
+    line-height: 1;
 }
 
 /* ==========================================================================
    4. HERO SECTION
    ========================================================================== */
 .hero-section {
-    min-height: calc(100vh - 90px);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px 20px 60px 20px;
+    padding: 100px 20px 60px 20px;
     position: relative;
+    box-sizing: border-box;
 }
 
 .left {
@@ -205,16 +176,17 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 2;
 }
 
 .left h1 {
     font-family: "Outfit", sans-serif;
-    font-size: 80px;
+    font-size: 72px;
     font-weight: 700;
-    line-height: 1.05;
+    line-height: 1.1;
     color: #ffffff;
-    letter-spacing: -2px;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Text readability on image */
+    letter-spacing: -1px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 .start-btn {
@@ -224,16 +196,16 @@ html, body {
     margin-top: 36px;
     padding: 16px 42px;
     border-radius: 12px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: 0.3s ease;
 }
 
 .start-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.4);
     background: #f8f8f8;
 }
 
@@ -243,15 +215,16 @@ html, body {
     left: 50%;
     transform: translateX(-50%);
     color: #ffffff;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
-    opacity: 0.9;
+    opacity: 0.85;
     white-space: nowrap;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    z-index: 2;
 }
 
 /* ==========================================================================
-   5. SECTIONS & RESPONSIVE GRIDS
+   5. SECTIONS & GRIDS
    ========================================================================== */
 .section {
     min-height: 100vh;
@@ -381,22 +354,22 @@ body.welcome-dark .contact-item h4 {
 }
 
 /* ==========================================================================
-   7. MEDIA QUERIES (MOBILE & TABLET RESPONSIVENESS)
+   7. MEDIA QUERIES (TABLET & MOBILE)
    ========================================================================== */
 @media (max-width: 900px) {
-    /* Mobile Background Adjustment */
     .welcome-page {
-        background-position: center center; /* Focuses nicely on mobile screens */
-        padding-top: 80px;
+        background-position: center top !important;
+        background-size: cover !important;
     }
 
     .navbar {
         height: 70px;
-        padding: 0 20px;
+        padding: 0 18px;
     }
 
     .menu-icon {
-        display: block;
+        display: flex;
+        align-items: center;
     }
 
     .nav-links {
@@ -413,11 +386,15 @@ body.welcome-dark .contact-item h4 {
         background: rgba(25, 20, 45, 0.98);
         padding: 30px 0;
         gap: 20px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-section {
+        padding-top: 90px;
     }
 
     .left h1 {
-        font-size: 46px;
+        font-size: 42px;
     }
 
     .section {
@@ -425,7 +402,7 @@ body.welcome-dark .contact-item h4 {
     }
 
     .section h2 {
-        font-size: 32px;
+        font-size: 30px;
     }
 
     .feature-grid,
@@ -446,7 +423,7 @@ body.welcome-dark .contact-item h4 {
 
     .left h1 {
         font-size: 34px;
-        letter-spacing: -1px;
+        letter-spacing: -0.5px;
     }
 
     .start-btn {
