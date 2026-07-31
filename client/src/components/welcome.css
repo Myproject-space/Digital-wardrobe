@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
 
+/* ==========================================================================
+   1. GLOBAL RESET
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -12,37 +15,41 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
-    overflow-x: hidden;
-    background-color: #1A1235;
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* Prevents side-scrolling whitespace */
+    background-color: #1a1235;
 }
 
-/* ========================= */
-/* PAGE & BACKGROUND */
-/* ========================= */
-
+/* ==========================================================================
+   2. WELCOME PAGE & BACKGROUND FIX
+   ========================================================================== */
 .welcome-page {
+    width: 100%;
     min-height: 100vh;
+    /* Default background CSS path */
     background-image: url("../assets/Background.png");
-    background-size: cover;
-    background-position: center;
+    background-size: cover;          /* Covers whole area without distorting */
+    background-position: center top; /* Keeps top subject framed properly */
     background-repeat: no-repeat;
     position: relative;
-    padding-top: 80px;
+    padding-top: 90px;
 }
 
+/* Dark Mode Overlay on Hero Background */
 .welcome-page.dark {
-    background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url("../assets/Background.png");
+    background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("../assets/Background.png");
     background-size: cover;
-    background-position: center;
+    background-position: center top;
 }
 
-/* BACKGROUND BLUR */
+/* Background Blur Circles */
 .bg-circle {
     position: absolute;
     border-radius: 50%;
     filter: blur(90px);
-    opacity: .35;
+    opacity: 0.35;
     pointer-events: none;
 }
 
@@ -62,57 +69,23 @@ body {
     bottom: 40px;
 }
 
-/* ========================= */
-/* NAVBAR */
-/* ========================= */
-
+/* ==========================================================================
+   3. NAVBAR (DESKTOP & MOBILE INTEGRATION)
+   ========================================================================== */
 .navbar {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 4%;
+    padding: 16px 5%;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
     z-index: 1000;
     background: rgba(25, 20, 45, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-}
-
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    z-index: 1001; /* Keeps theme button clickable above overlays */
-}
-
-.theme-btn, 
-.nav-controls button {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1002;
-}
-
-@media (max-width: 900px) {
-    .navbar {
-        height: 70px;
-        padding: 0 16px;
-    }
-
-    .menu-icon {
-        display: block;
-        font-size: 28px;
-        color: #ffffff;
-    }
-
-    /* Keep Theme Button visible on small screens */
-    .nav-controls {
-        gap: 12px;
-    }
+    box-sizing: border-box;
 }
 
 .brand {
@@ -121,24 +94,17 @@ body {
     gap: 12px;
 }
 
-.nav-logo {
-    width: 50px;
-    height: 50px;
-    filter: contrast(1.15) saturate(1.1);
-}
-
 .brand-text h2 {
     font-family: "Playfair Display", serif;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
-    line-height: 0.9;
+    line-height: 0.95;
     color: #e6e2ec;
     letter-spacing: 1px;
 }
 
 .nav-links {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 40px;
 }
@@ -147,9 +113,10 @@ body {
     position: relative;
     color: #f9f0f0 !important;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
-    transition: .3s;
+    transition: 0.3s ease;
+    white-space: nowrap;
 }
 
 .nav-links a::after {
@@ -159,17 +126,13 @@ body {
     bottom: -6px;
     width: 0;
     height: 3px;
-    background: #efeef0;
+    background: #ffffff;
     border-radius: 10px;
     transition: 0.3s;
 }
 
 .nav-links a:hover {
-    color: #E9D5FF !important;
-}
-
-.nav-links a.active {
-    color: #ffffff !important;
+    color: #e9d5ff !important;
 }
 
 .nav-links a.active::after {
@@ -179,23 +142,22 @@ body {
 .menu-icon {
     display: none;
     font-size: 30px;
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
     user-select: none;
 }
 
-/* ========================= */
-/* HERO SECTION */
-/* ========================= */
-
+/* ==========================================================================
+   4. HERO SECTION
+   ========================================================================== */
 .hero-section {
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 90px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 40px 20px 80px 20px;
+    padding: 20px 20px 60px 20px;
     position: relative;
 }
 
@@ -205,8 +167,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Fixed transform offset issue */
-    margin-top: -40px; 
 }
 
 .left h1 {
@@ -214,27 +174,28 @@ body {
     font-size: 80px;
     font-weight: 700;
     line-height: 1.05;
-    color: #ece5e5;
+    color: #ffffff;
     letter-spacing: -2px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Text readability on image */
 }
 
 .start-btn {
     background: #ffffff;
     color: #111827;
     border: none;
-    margin-top: 40px;
-    padding: 16px 40px;
+    margin-top: 36px;
+    padding: 16px 42px;
     border-radius: 12px;
     font-size: 20px;
     font-weight: 600;
-    box-shadow: 0 12px 30px rgba(0,0,0,.18);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
     cursor: pointer;
     transition: 0.3s ease;
 }
 
 .start-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 18px 40px rgba(0,0,0,.25);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
     background: #f8f8f8;
 }
 
@@ -244,16 +205,16 @@ body {
     left: 50%;
     transform: translateX(-50%);
     color: #ffffff;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
-    opacity: 0.85;
+    opacity: 0.9;
     white-space: nowrap;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* ========================= */
-/* SECTIONS & GRIDS */
-/* ========================= */
-
+/* ==========================================================================
+   5. SECTIONS & RESPONSIVE GRIDS
+   ========================================================================== */
 .section {
     min-height: 100vh;
     padding: 100px 8%;
@@ -262,16 +223,16 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #1A1235 0%, #24154A 40%, #341B63 75%, #47207E 100%);
+    background: linear-gradient(135deg, #1a1235 0%, #24154a 40%, #341b63 75%, #47207e 100%);
 }
 
 .section::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(124,58,237,.18) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(124, 58, 237, 0.18) 1px, transparent 1px);
     background-size: 28px 28px;
-    opacity: .35;
+    opacity: 0.35;
     pointer-events: none;
 }
 
@@ -287,12 +248,11 @@ body {
 }
 
 .section p {
-    color: #E5E7EB;
+    color: #e5e7eb;
     font-size: 17px;
     line-height: 1.6;
 }
 
-/* Grids */
 .feature-grid,
 .service-container,
 .contact-grid {
@@ -306,20 +266,20 @@ body {
 .feature-item,
 .service-card,
 .contact-item {
-    background: rgba(255,255,255,.08);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,.12);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 20px;
     padding: 28px;
-    transition: .3s;
+    transition: 0.3s ease;
 }
 
 .feature-item:hover,
 .service-card:hover,
 .contact-item:hover {
     transform: translateY(-6px);
-    box-shadow: 0 15px 35px rgba(124,58,237,.2);
+    box-shadow: 0 15px 35px rgba(124, 58, 237, 0.2);
 }
 
 .feature-icon {
@@ -346,10 +306,10 @@ body {
 .stat-box {
     flex: 1;
     min-width: 180px;
-    background: rgba(255,255,255,.08);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,.12);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 20px;
     padding: 24px;
     text-align: center;
@@ -360,9 +320,11 @@ body {
     font-size: 32px;
 }
 
-/* Dark Mode Overrides */
+/* ==========================================================================
+   6. DARK MODE OVERRIDES
+   ========================================================================== */
 body.welcome-dark .section {
-    background: linear-gradient(135deg, #0B1120 0%, #111827 40%, #1E1B4B 70%, #312E81 100%) !important;
+    background: linear-gradient(135deg, #0b1120 0%, #111827 40%, #1e1b4b 70%, #312e81 100%) !important;
 }
 
 body.welcome-dark .feature-item,
@@ -380,11 +342,21 @@ body.welcome-dark .contact-item h4 {
     color: #c084fc;
 }
 
-/* ========================= */
-/* MOBILE RESPONSIVE FIXES */
-/* ========================= */
-
+/* ==========================================================================
+   7. MEDIA QUERIES (MOBILE & TABLET RESPONSIVENESS)
+   ========================================================================== */
 @media (max-width: 900px) {
+    /* Mobile Background Adjustment */
+    .welcome-page {
+        background-position: center center; /* Focuses nicely on mobile screens */
+        padding-top: 80px;
+    }
+
+    .navbar {
+        height: 70px;
+        padding: 0 20px;
+    }
+
     .menu-icon {
         display: block;
     }
@@ -397,18 +369,13 @@ body.welcome-dark .contact-item h4 {
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 80px;
+        top: 70px;
         left: 0;
         width: 100%;
         background: rgba(25, 20, 45, 0.98);
         padding: 30px 0;
         gap: 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-    }
-
-    .left {
-        margin-top: 0;
-        transform: none; /* Prevent overlapping title under mobile navbar */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
     }
 
     .left h1 {
@@ -416,7 +383,7 @@ body.welcome-dark .contact-item h4 {
     }
 
     .section {
-        padding: 80px 20px;
+        padding: 70px 20px;
     }
 
     .section h2 {
@@ -436,7 +403,7 @@ body.welcome-dark .contact-item h4 {
 
 @media (max-width: 480px) {
     .brand-text h2 {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .left h1 {
@@ -446,8 +413,8 @@ body.welcome-dark .contact-item h4 {
 
     .start-btn {
         width: 100%;
-        max-width: 280px;
-        font-size: 17px;
+        max-width: 260px;
+        font-size: 16px;
         padding: 14px 24px;
     }
 

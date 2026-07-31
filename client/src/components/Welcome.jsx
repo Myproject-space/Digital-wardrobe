@@ -120,10 +120,6 @@ function Welcome() {
   {menuOpen ? "✕" : "☰"}
 </div>
 
-  <ThemeButton
-    darkMode={darkMode}
-    setDarkMode={setDarkMode}
-  />
 
 </div>
 </header>
