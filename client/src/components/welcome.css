@@ -46,21 +46,32 @@ html, body {
 
 @media (max-width: 768px) {
     .welcome-page {
-        /* Mobile screen par image ko contain karega ya fit rakhega */
-        background-size: 100% auto; 
-        background-position: center top;
-        /* Mobile height adjustments */
-        min-height: 85vh; 
+        /* Image ko poori screen par fit rakhega bina khali space chhode */
+        background-size: cover !important; 
+        background-position: center center !important;
+        min-height: 100vh; 
+        width: 100%;
     }
 
     .hero-section {
-        min-height: 75vh;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        padding-top: 40px;
+        align-items: center;
+        padding: 80px 20px 40px 20px;
+        box-sizing: border-box;
     }
 
-    .left h1 {
-        font-size: 38px; /* Mobile par text size perfect balance rakhega */
+    .left {
+        width: 100%;
+        margin-top: 0;
+        transform: none; /* Text overflow aur displacement fix karega */
+    }
+
+   .left h1 {
+        font-size: 38px;
+        line-height: 1.2;
     }
 }
 
