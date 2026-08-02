@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
 import ThemeButton from "./ThemeButton.jsx";
-import Background from "../assets/Background.png";
 import "./welcome.css";
 
 function Welcome() {
@@ -53,9 +52,7 @@ function Welcome() {
     <>
       <div
   className={`welcome-page ${darkMode ? "dark" : ""}`}
-  style={{
-    backgroundImage: `url(${Background})`,
-  }}
+ 
 >
 
         {/* Background Blur */}
