@@ -25,16 +25,18 @@ html, body {
 /* ==========================================================================
    2. WELCOME PAGE & BACKGROUND SETUP
    ========================================================================== */
-.welcome-page {
-    width: 100%;
-    min-height: 100vh;
-    /* Gradient overlay + image balance */
-    background-image: linear-gradient(180deg, rgba(25, 20, 45, 0.7) 0%, rgba(25, 20, 45, 0.5) 100%), url("../assets/Background.png");
-    background-size: cover;
-    background-position: center top; 
-    background-repeat: no-repeat;
-    position: relative;
-    box-sizing: border-box;
+.welcome-page{
+    min-height:100vh;
+    background-color: #1A1235;
+    background-image:
+        linear-gradient(135deg, rgba(26,18,53,0.92) 0%, rgba(71,32,126,0.88) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23a78bfa' stroke-width='1.5' opacity='0.25'%3E%3Cpath d='M60 25 Q60 15 68 15 Q76 15 68 22 L68 25'/%3E%3Cpath d='M20 55 Q60 30 100 55 L100 62 L20 62 Z'/%3E%3Cline x1='20' y1='62' x2='100' y2='62'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover, 120px 120px;
+    background-position: center, center;
+    background-repeat: no-repeat, repeat;
+    overflow:hidden;
+    position:relative;
+    padding-top: 90px;
 }
 
 /* Dark Mode Background Overlay */
@@ -357,12 +359,19 @@ body.welcome-dark .contact-item h4 {
    7. MEDIA QUERIES (TABLET & MOBILE)
    ========================================================================== */
 @media (max-width: 768px) {
-    .welcome-page {
-        background-size: cover !important; /* Entire image will fit without cropping */
-        background-position: center center !important;
-        background-repeat: no-repeat !important;
-        background-color: #1a1235; /* Empty areas filled with dark theme color */
-    }
+   .welcome-page{
+    min-height:100vh;
+    background-color: #1A1235;
+    background-image:
+        linear-gradient(135deg, rgba(26,18,53,0.92) 0%, rgba(71,32,126,0.88) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23a78bfa' stroke-width='1.5' opacity='0.25'%3E%3Cpath d='M60 25 Q60 15 68 15 Q76 15 68 22 L68 25'/%3E%3Cpath d='M20 55 Q60 30 100 55 L100 62 L20 62 Z'/%3E%3Cline x1='20' y1='62' x2='100' y2='62'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover, 120px 120px;
+    background-position: center, center;
+    background-repeat: no-repeat, repeat;
+    overflow:hidden;
+    position:relative;
+    padding-top: 90px;
+}
 
     .navbar {
         height: 70px;
