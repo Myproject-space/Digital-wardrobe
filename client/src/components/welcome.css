@@ -191,6 +191,7 @@ html, body {
     padding: 100px 20px 60px 20px;
     position: relative;
     box-sizing: border-box;
+     transform: translateY(-60px);
 }
 
 .left {
@@ -377,6 +378,14 @@ body.welcome-dark .contact-item h4 {
     color: #c084fc;
 }
 
+.welcome-page.dark .brand-text h2{
+    color:#c084fc;
+}
+
+.welcome-page.dark .nav-logo{
+    filter: brightness(1.3) contrast(1.3) saturate(1.2);
+}
+
 /* ==========================================================================
    7. MEDIA QUERIES (TABLET & MOBILE)
    ========================================================================== */
@@ -472,6 +481,14 @@ body.welcome-dark .contact-item h4 {
     }
 }
 
+.welcome-page.dark .brand-text h2{
+    color:#c084fc;
+}
+
+.welcome-page.dark .nav-logo{
+    filter: brightness(1.3) contrast(1.3) saturate(1.2);
+}
+
 @media (max-width: 480px) {
     .brand-text h2 {
         font-size: 22px;
@@ -479,7 +496,7 @@ body.welcome-dark .contact-item h4 {
 
     
     .left h1{
-        font-size: 52px;
+        font-size: 38px;
     }
 
     .start-btn {
@@ -492,4 +509,20 @@ body.welcome-dark .contact-item h4 {
     .hero-copyright {
         font-size: 12px;
     }
+}
+
+.welcome-page.dark .left h1{
+    color:#ffffff;
+}
+
+.welcome-page.dark .left h1 span{
+    color:#c084fc;
+}
+
+.welcome-page.dark .brand-text h2{
+    color:#c084fc;
+}
+
+.welcome-page.dark .nav-logo{
+    filter: brightness(1.3) contrast(1.3) saturate(1.2);
 }
