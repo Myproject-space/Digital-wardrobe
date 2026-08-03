@@ -443,8 +443,10 @@ body.welcome-dark .contact-item h4 {
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     }
 
-    .hero-section {
-        padding-top: 90px;
+    .hero-section{
+        padding-top: 40px;
+        justify-content: flex-start;
+        padding-top: 100px;
     }
 
     .left h1 {
@@ -475,16 +477,16 @@ body.welcome-dark .contact-item h4 {
         font-size: 22px;
     }
 
-    .left h1 {
-        font-size: 34px;
-        letter-spacing: -0.5px;
+    
+    .left h1{
+        font-size: 52px;
     }
 
     .start-btn {
         width: 100%;
         max-width: 260px;
-        font-size: 16px;
-        padding: 14px 24px;
+        font-size: 20px;
+        padding: 18px 48px;
     }
 
     .hero-copyright {
