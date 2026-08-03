@@ -28,11 +28,15 @@ html, body {
 .welcome-page{
     min-height:100vh;
     background:
-        radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 85% 15%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 75% 85%, rgba(192, 132, 252, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 20% 80%, rgba(91, 33, 182, 0.2) 0%, transparent 50%),
-        linear-gradient(135deg, #1A1235 0%, #24154A 40%, #341B63 75%, #47207E 100%);
+        radial-gradient(circle at 20% 15%, rgba(251, 191, 150, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(192, 132, 252, 0.15) 0%, transparent 50%),
+        linear-gradient(
+            135deg,
+            #d9b8bd 0%,
+            #c9a3d9 40%,
+            #b489d0 70%,
+            #a072c8 100%
+        );
     overflow:hidden;
     position:relative;
     padding-top: 90px;
@@ -90,15 +94,21 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 5%;
+    padding: 16px 5% 16px 1.5%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
-    background: rgba(25, 20, 45, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: transparent;
     box-sizing: border-box;
+}
+
+.nav-logo{
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: brightness(0.7) contrast(1.5) saturate(1.4);
 }
 
 .brand {
@@ -112,7 +122,7 @@ html, body {
     font-size: 28px;
     font-weight: 700;
     line-height: 0.95;
-    color: #e6e2ec;
+    color: #5b21b6;
     letter-spacing: 1px;
 }
 
@@ -124,7 +134,7 @@ html, body {
 
 .nav-links a {
     position: relative;
-    color: #f9f0f0 !important;
+    color: #555 !important;
     text-decoration: none;
     font-size: 16px;
     font-weight: 600;
@@ -139,17 +149,17 @@ html, body {
     bottom: -6px;
     width: 0;
     height: 3px;
-    background: #ffffff;
+    background: #7c3aed;
     border-radius: 10px;
     transition: 0.3s;
 }
 
 .nav-links a:hover {
-    color: #e9d5ff !important;
+    color: #6d28d9 !important;
 }
 
-.nav-links a.active::after {
-    width: 100%;
+.nav-links a.active {
+    color: #7c3aed !important;
 }
 
 /* Theme Button + Hamburger Wrapper */
@@ -197,29 +207,31 @@ html, body {
     font-size: 72px;
     font-weight: 700;
     line-height: 1.1;
-    color: #ffffff;
+    color: #111827;
     letter-spacing: -1px;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.left h1 span{
+    color:#6d28d9;
 }
 
 .start-btn {
-    background: #ffffff;
-    color: #111827;
+    background: linear-gradient(135deg, #7c3aed, #5b21b6);
+    color: #ffffff;
     border: none;
     margin-top: 36px;
     padding: 16px 42px;
     border-radius: 12px;
     font-size: 18px;
     font-weight: 600;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35);
     cursor: pointer;
     transition: 0.3s ease;
 }
 
 .start-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.4);
-    background: #f8f8f8;
+    box-shadow: 0 16px 35px rgba(124, 58, 237, 0.45);
 }
 
 .hero-copyright {
@@ -227,12 +239,11 @@ html, body {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    color: #ffffff;
+    color: #555;
     font-size: 13px;
     font-weight: 500;
     opacity: 0.85;
     white-space: nowrap;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
     z-index: 2;
 }
 
@@ -370,14 +381,18 @@ body.welcome-dark .contact-item h4 {
    7. MEDIA QUERIES (TABLET & MOBILE)
    ========================================================================== */
 @media (max-width: 768px) {
-   .welcome-page{
+ .welcome-page{
     min-height:100vh;
     background:
-        radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 85% 15%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 75% 85%, rgba(192, 132, 252, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 20% 80%, rgba(91, 33, 182, 0.2) 0%, transparent 50%),
-        linear-gradient(135deg, #1A1235 0%, #24154A 40%, #341B63 75%, #47207E 100%);
+        radial-gradient(circle at 20% 15%, rgba(251, 191, 150, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(192, 132, 252, 0.15) 0%, transparent 50%),
+        linear-gradient(
+            135deg,
+            #d9b8bd 0%,
+            #c9a3d9 40%,
+            #b489d0 70%,
+            #a072c8 100%
+        );
     overflow:hidden;
     position:relative;
     padding-top: 90px;
@@ -397,6 +412,14 @@ body.welcome-dark .contact-item h4 {
         height: 70px;
         padding: 0 18px;
     }
+
+    .nav-logo{
+    width: 55px;
+    height: 55px;
+    filter: contrast(1.15) saturate(1.1);
+    object-fit: contain;
+    flex-shrink: 0;
+}
 
     .menu-icon {
         display: flex;

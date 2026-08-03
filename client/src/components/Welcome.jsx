@@ -64,6 +64,11 @@ function Welcome() {
         <header className="navbar">
 
   <div className="brand">
+      <img
+    src={logo}
+    alt="logo"
+    className="nav-logo"
+  />
    
 
     <div className="brand-text">
