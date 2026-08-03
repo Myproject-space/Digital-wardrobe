@@ -67,50 +67,7 @@ function Login() {
 >
 
 
- {/* Left Side */}
-    <div className="welcome-content">
-    <h1>
-        Welcome To <br />
-        <span>StyleVault</span>
-    </h1>
-
-    <p>
-        Manage your wardrobe smarter.
-        <br />
-        Sign in to continue your fashion journey.
-    </p>
-
-    <div className="welcome-features">
-
-        <div className="item">
-            <span>👗</span>
-
-            <div>
-                <h4>Organize</h4>
-                <p>Keep all your outfits in one place.</p>
-            </div>
-        </div>
-
-        <div className="item">
-            <span>✨</span>
-
-            <div>
-                <h4>Create</h4>
-                <p>Create & save amazing outfits.</p>
-            </div>
-        </div>
-
-        <div className="item">
-            <span>💜</span>
-
-            <div>
-                <h4>Favorites</h4>
-                <p>Keep your favorite outfits handy.</p>
-            </div>
-        </div>
-
-    </div>
-</div>
+ 
 
     
      <div className="login-card p-4">
