@@ -127,21 +127,24 @@ function Welcome() {
 </header>
 
         {/* Hero Section */}
-        <section className="hero-section">
+       <section className="hero-section">
+
   <div className="left">
+
     <h1>
       Welcome To
       <br />
       <span>Style Vault</span>
     </h1>
 
-    <p className="hero-subtitle">
+    <p>
       Manage your wardrobe smarter.
       <br />
-      Organize, plan, and style with ease.
+      Sign in to continue your fashion journey.
     </p>
 
     <div className="welcome-features">
+
       <div className="item">
         <span>👗</span>
         <div>
@@ -157,6 +160,7 @@ function Welcome() {
           <p>Get outfit suggestions instantly.</p>
         </div>
       </div>
+
     </div>
 
     <button
@@ -165,12 +169,11 @@ function Welcome() {
     >
       Get Started →
     </button>
+
   </div>
 
-  <p className="hero-copyright">
-    © 2026 StyleVault. All Rights Reserved.
-  </p>
 </section>
+
       </div>
 
       {/* Features */}
