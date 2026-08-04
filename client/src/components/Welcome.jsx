@@ -174,6 +174,10 @@ function Welcome() {
 
 </section>
 
+ <footer className="footer">
+  <p>© 2026 Style Vault. All Rights Reserved.</p>
+</footer>
+
       </div>
 
       {/* Features */}
