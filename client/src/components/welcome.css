@@ -558,16 +558,23 @@ body.welcome-dark .contact-item h4 {
   }
 
   .item h4{
-    font-size:18px;
+    font-family:"Outfit", sans-serif;
+    font-size:17px;
+    font-weight:700;
+    color:#3c1a78;
+    margin-bottom:4px;
   }
 
   .item p{
-    font-size:14px;
+     font-size:14px;
+    color:#4b5563;
+    line-height:1.5;
   }
 
   .start-btn{
     width:260px;
     margin-top:35px;
+    margin-bottom:20px;
     font-size:18px;
     padding:15px 25px;
   }
