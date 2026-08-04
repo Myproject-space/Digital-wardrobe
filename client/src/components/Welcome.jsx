@@ -128,27 +128,49 @@ function Welcome() {
 
         {/* Hero Section */}
         <section className="hero-section">
-          <div className="left">
-            <h1>
-              Welcome To
-              <br />
-              <span>Style Vault</span>
-            </h1>
-          
+  <div className="left">
+    <h1>
+      Welcome To
+      <br />
+      <span>Style Vault</span>
+    </h1>
 
-            <button
-  className="start-btn"
-  onClick={() => navigate("/login")}
->
-  Get Started →
-</button>
-          </div>
+    <p className="hero-subtitle">
+      Manage your wardrobe smarter.
+      <br />
+      Organize, plan, and style with ease.
+    </p>
 
-<p className="hero-copyright">
-  © 2026 StyleVault. All Rights Reserved.
-</p>
+    <div className="welcome-features">
+      <div className="item">
+        <span>👗</span>
+        <div>
+          <h4>Organize</h4>
+          <p>Keep all your outfits in one place.</p>
+        </div>
+      </div>
 
-        </section>
+      <div className="item">
+        <span>✨</span>
+        <div>
+          <h4>Smart Style</h4>
+          <p>Get outfit suggestions instantly.</p>
+        </div>
+      </div>
+    </div>
+
+    <button
+      className="start-btn"
+      onClick={() => navigate("/login")}
+    >
+      Get Started →
+    </button>
+  </div>
+
+  <p className="hero-copyright">
+    © 2026 StyleVault. All Rights Reserved.
+  </p>
+</section>
       </div>
 
       {/* Features */}
