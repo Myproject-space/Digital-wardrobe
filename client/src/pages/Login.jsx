@@ -5,10 +5,7 @@ import Logo from "../components/Logo";
 import "./Login.css";
 import Background2 from "../assets/Background2.png";
 import { toast } from "react-toastify";
-import {
-  FaEnvelope,
-  FaLock,
-} from "react-icons/fa";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Login() {
 
@@ -20,6 +17,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
 
   const [email, setEmail] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
@@ -148,14 +146,22 @@ function Login() {
             </span>
 
               
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Enter Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+              <input
+      type={showPassword ? "text" : "password"}
+      className="form-control"
+      placeholder="Enter Password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      required
+    />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+            
           </div>
         </div>
 

@@ -73,6 +73,26 @@
     position:relative;
 }
 
+.password-toggle{
+    position:absolute;
+    right:14px;
+    top:50%;
+    transform:translateY(-50%);
+    background:none;
+    border:none;
+    cursor:pointer;
+    color:#7C3AED;
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    padding:0;
+    z-index:5;
+}
+
+.password-toggle:hover{
+    color:#5B21B6;
+}
+
 .input-group-text{
     width:50px;
     height:50px;
@@ -96,6 +116,12 @@
 .form-control:focus{
     border-color:#7C3AED;
     box-shadow:0 0 0 4px rgba(124,58,237,.15);
+}
+
+/* Disable Edge's native password reveal icon */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear{
+    display:none;
 }
 
 /* ===========================
