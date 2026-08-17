@@ -1,0 +1,268 @@
+.outfit-generator-page {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #f5f3ff,
+    #faf5ff,
+    #fdf4ff
+  );
+  padding: 40px 20px;
+}
+
+.outfit-generator-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.back-btn {
+  border: none;
+  background: transparent;
+  color: #6d28d9;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  margin-bottom: 25px;
+}
+
+.outfit-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.outfit-header h1 {
+  color: #4c1d95;
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.outfit-header h1 svg {
+  margin-right: 8px;
+}
+
+.outfit-header p {
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.selection-card {
+  background: white;
+  border-radius: 22px;
+  padding: 30px;
+  box-shadow: 0 15px 40px rgba(76, 29, 149, 0.12);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.selection-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selection-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #4c1d95;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.selection-title svg {
+  color: #7c3aed;
+}
+
+.selection-box select {
+  width: 100%;
+  height: 48px;
+
+  border: 1px solid #ddd6fe;
+  border-radius: 12px;
+
+  padding: 0 14px;
+
+  background: white;
+  color: #374151;
+
+  font-size: 15px;
+  outline: none;
+}
+
+.selection-box select:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+.generate-outfit-btn {
+  grid-column: 1 / -1;
+
+  height: 52px;
+
+  border: none;
+  border-radius: 13px;
+
+  background: linear-gradient(
+    90deg,
+    #7c3aed,
+    #8b5cf6
+  );
+
+  color: white;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.generate-outfit-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+}
+
+.generate-outfit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.generated-section {
+  margin-top: 45px;
+  text-align: center;
+}
+
+.generated-section h2 {
+  color: #4c1d95;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.generated-outfit-card {
+  background: white;
+
+  border-radius: 22px;
+  padding: 30px;
+
+  box-shadow: 0 15px 40px rgba(76, 29, 149, 0.12);
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.outfit-item {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.outfit-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    border-radius: 12px;
+    background: #f8f7ff;
+}
+
+.outfit-item h4 {
+  margin-top: 12px;
+  margin-bottom: 4px;
+
+  color: #374151;
+  font-size: 16px;
+}
+
+.outfit-item span {
+  color: #7c3aed;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.save-outfit-btn {
+  margin-top: 25px;
+
+  padding: 13px 35px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #ec4899;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.save-outfit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .outfit-generator-page {
+    padding: 25px 15px;
+  }
+
+  .outfit-header h1 {
+    font-size: 28px;
+  }
+
+  .selection-card {
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+
+  .generate-outfit-btn {
+    grid-column: auto;
+  }
+
+  .generated-outfit-card {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+  .outfit-item img {
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .generated-outfit-card {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+  .outfit-item img {
+    height: 220px;
+  }
+}

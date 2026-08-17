@@ -25,11 +25,12 @@ function Dashboard() {
 
   const [clothes, setClothes] = useState([]);
   const [savedOutfits, setSavedOutfits] = useState([]);
-  const [outfit, setOutfit] = useState(null);
-
-  const [loadingOutfit, setLoadingOutfit] = useState(false);
 
   const [darkMode, setDarkMode] = useState(false);
+
+  // -----------------------------
+  // Fetch Data
+  // -----------------------------
 
   useEffect(() => {
     fetchClothes();
@@ -51,9 +52,9 @@ function Dashboard() {
       setClothes(res.data);
 
     } catch (err) {
-    console.log(err);
-    toast.error("Failed to load clothes");   // ✅ sahi
-  }
+      console.log(err);
+      toast.error("Failed to load clothes");
+    }
   };
 
   // -----------------------------
@@ -71,93 +72,11 @@ function Dashboard() {
       setSavedOutfits(res.data);
 
     } catch (err) {
-    console.log(err);
-    toast.error("Failed to load saved outfits");   // ✅ sahi
-  }
-  };
-
-  // -----------------------------
-  // Generate Outfit
-  // -----------------------------
-
-  const recommendOutfit = async () => {
-
-    // Hide Outfit
-    if (outfit) {
-      setOutfit(null);
-      return;
-    }
-
-    try {
-
-      setLoadingOutfit(true);
-
-      const userId = localStorage.getItem("userId");
-
-      const res = await axios.get(
-        `${API_URL}/api/clothes/recommend/${userId}`
-      );
-
-      setOutfit(res.data);
-
-      toast.success("✨ Outfit Generated");
-
-    } catch (err) {
-
       console.log(err);
-
-      toast.error("Failed to Generate Outfit");
-
-    } finally {
-
-      setLoadingOutfit(false);
-
+      toast.error("Failed to load saved outfits");
     }
   };
 
-  // -----------------------------
-  // Save Outfit
-  // -----------------------------
-
- const [savingOutfit, setSavingOutfit] = useState(false);
-
-const saveOutfit = async () => {
-
-  if (!outfit) {
-    toast.warning("Generate an outfit first.");
-    return;
-  }
-
-  if (savingOutfit) return;   // ✅ agar already save ho raha hai, dobara mat chalao
-
-  try {
-    setSavingOutfit(true);
-
-    const userId = localStorage.getItem("userId");
-
-    await axios.post(
-      `${API_URL}/api/outfit/save`,
-      {
-        userId,
-        top: outfit.top?._id,
-        bottom: outfit.bottom?._id,
-        shoes: outfit.shoes?._id,
-        dress: outfit.dress?._id,
-        accessory: outfit.accessory?._id,
-      }
-    );
-
-    toast.success("💾 Outfit Saved Successfully");
-
-    fetchSavedOutfits();
-
-  } catch (err) {
-    console.log(err);
-    toast.error("Failed to Save Outfit");
-  } finally {
-    setSavingOutfit(false);
-  }
-};
   // -----------------------------
   // Greeting
   // -----------------------------
@@ -171,28 +90,60 @@ const saveOutfit = async () => {
   }
 
   return (
-        <div
+    <div
       className={`container-fluid py-4 wardrobe-page ${
         darkMode ? "dark" : ""
       }`}
       style={{
-  minHeight: "100vh",
-  backgroundImage: `url(${Dashboard})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-}}
+        minHeight: "100vh",
+        backgroundImage: `url(${dashboardBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
+
+      {/* Theme Button */}
+
       <ThemeButton
         darkMode={darkMode}
         setDarkMode={setDarkMode}
       />
 
+      {/* Logo */}
+
       <Logo />
+
+     <button
+  onClick={() => navigate("/login")}
+  style={{
+    position: "absolute",
+    top: "20px",
+    left: "20px",
+    zIndex: 1000,
+    background: "#7c3aed",
+    color: "#fff",
+    border: "none",
+    padding: "9px 18px",
+    borderRadius: "10px",
+    fontWeight: "600",
+    cursor: "pointer",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+  }}
+>
+  🚪 Logout
+</button>
+
+
+      {/* Main Dashboard Card */}
 
       <div className="card shadow-lg p-4 mt-5">
 
-        <h3 className="fw-bold">{greeting}</h3>
+        {/* Greeting */}
+
+        <h3 className="fw-bold">
+          {greeting}
+        </h3>
 
         <h5 className="mt-2">
           Hello, {userName} 👋
@@ -202,7 +153,14 @@ const saveOutfit = async () => {
           Your Fashion, Organized.
         </p>
 
+
+        {/* =========================
+            STAT CARDS
+        ========================= */}
+
         <div className="row">
+
+          {/* Total Clothes */}
 
           <StatCard
             icon={<FaTshirt color="#6366F1" />}
@@ -210,17 +168,32 @@ const saveOutfit = async () => {
             count={clothes.length}
           />
 
+
+          {/* Favorites */}
+
           <StatCard
             icon={<FaHeart color="#EC4899" />}
             title="Favorites"
-            count={clothes.filter((item) => item.favorite).length}
+            count={
+              clothes.filter(
+                (item) => item.favorite
+              ).length
+            }
           />
 
+
+          {/* Outfits */}
+
           <StatCard
-            icon={<FaShoppingBag color="#8B5CF6" />}
+            icon={
+              <FaShoppingBag color="#8B5CF6" />
+            }
             title="Outfits"
             count={savedOutfits.length}
           />
+
+
+          {/* Laundry */}
 
           <StatCard
             icon="🧺"
@@ -230,153 +203,45 @@ const saveOutfit = async () => {
 
         </div>
 
+
         <hr />
+
+
+        {/* =========================
+            GENERATE OUTFIT
+        ========================= */}
 
         <button
           className="btn btn-success"
-          style={{ background: "#3B82F6" }}
-          onClick={recommendOutfit}
-          disabled={loadingOutfit}
+          style={{
+            background: "#3B82F6",
+            border: "none",
+          }}
+          onClick={() =>
+            navigate("/outfit-generator")
+          }
         >
-          {loadingOutfit
-            ? "Generating..."
-            : outfit
-            ? "❌ Hide Outfit"
-            : "✨ Generate Smart Outfit"}
+          ✨ Generate Your Outfit
         </button>
 
-        {outfit && (
 
-          <div
-            className="card mt-4 p-4 shadow"
-            style={{
-              background: "#ECFDF5",
-              border: "2px solid #6EE7B7",
-              borderRadius: "15px",
-            }}
-          >
-
-            <h4
-              className="text-center mb-3"
-              style={{
-                color: "#2563EB",
-                fontWeight: "700",
-              }}
-            >
-              ✨ Today's Smart Outfit
-            </h4>
-
-            {(outfit.dress || (outfit.top && outfit.bottom)) && outfit.shoes ? (
-
-              <div className="alert alert-success">
-                ✅ Complete outfit generated successfully!
-              </div>
-
-            ) : (
-
-              <div className="alert alert-warning">
-                ⚠️ Add more clothes for better recommendations.
-              </div>
-
-            )}
-
-            <div className="row mt-3">
-
-             {[
-  ...(outfit.dress
-    ? [{ title: "Dress", item: outfit.dress, icon: "👗" }]
-    : [
-        { title: "Top", item: outfit.top, icon: "👕" },
-        { title: "Bottom", item: outfit.bottom, icon: "👖" },
-      ]),
-  { title: "Shoes", item: outfit.shoes, icon: "👟" },
-  { title: "Accessory", item: outfit.accessory, icon: "👜" },
-].map(({ title, item, icon }) => (
-
-                <div
-                  className="col-md-4 mb-3"
-                  key={title}
-                >
-
-                  <div className="recommend-card">
-
-                    {item ? (
-                      <>
-
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="recommend-img"
-                        />
-
-                        <h5 className="mt-3">
-                          {icon} {title}
-                        </h5>
-
-                        <p>
-                          <strong>{item.name}</strong>
-                        </p>
-
-                        <p className="text-muted">
-                          🎨 {item.color}
-                        </p>
-
-                        <p className="text-muted">
-                          ☀ {item.season}
-                        </p>
-
-                        <p className="text-muted">
-                          🎉 {item.occasion}
-                        </p>
-
-                      </>
-                    ) : (
-                      <>
-
-                        <div className="recommend-placeholder">
-                          {icon}
-                        </div>
-
-                        <h5 className="mt-3">
-                          {title}
-                        </h5>
-
-                        <p className="text-muted">
-                          Not Available
-                        </p>
-
-                      </>
-                    )}
-
-                  </div>
-
-                </div>
-
-              ))}
-
-            </div>
-
-            <div className="text-center mt-3">
-<button
-  className="btn btn-primary"
-  onClick={saveOutfit}
-  disabled={savingOutfit}
->
-  {savingOutfit ? "Saving..." : "💾 Save Outfit"}
-</button>
-
-            </div>
-
-          </div>
-
-        )}
+        {/* =========================
+            MY WARDROBE
+        ========================= */}
 
         <button
           className="btn btn-outline-primary mt-3"
-          onClick={() => navigate("/wardrobe")}
+          onClick={() =>
+            navigate("/wardrobe")
+          }
         >
           👕 My Wardrobe
         </button>
+
+
+        {/* =========================
+            QUICK ACTIONS
+        ========================= */}
 
         <h5 className="mt-4 mb-3">
           ⚡ Quick Actions

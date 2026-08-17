@@ -550,6 +550,8 @@ body.welcome-dark .nav-links a.active {
     pointer-events:none;
 }
 
+
+
 /* ==========================
    FOOTER
 ========================== */
@@ -637,38 +639,58 @@ body.welcome-dark .nav-links a.active {
     line-height:1.6;
   }
 
-  .welcome-features{
-   display:flex;
-    justify-content:center;
-    gap:90px;
-    margin:40px 0 50px;
+  /* MOBILE FEATURES */
+
+.welcome-features {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin: 40px auto 50px !important;
 }
 
-  .item{
-    width:100%;
-    justify-content:center;
-    text-align:left;
-  }
+.welcome-features .item {
+    width: 48% !important;
+    max-width: 48% !important;
 
-  .item span{
-    width:50px;
-    height:50px;
-    font-size:22px;
-  }
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
 
-  .item h4{
-    font-family:"Outfit", sans-serif;
-    font-size:17px;
-    font-weight:700;
-    color:#3c1a78;
-    margin-bottom:4px;
-  }
+    text-align: center !important;
+    gap: 8px !important;
+}
 
-  .item p{
-     font-size:14px;
-    color:#4b5563;
-    line-height:1.5;
-  }
+.welcome-features .item span {
+    width: 55px !important;
+    height: 55px !important;
+    min-width: 55px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    font-size: 24px !important;
+}
+
+.welcome-features .item h4 {
+    font-family: "Outfit", sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #3c1a78 !important;
+    margin: 0 !important;
+}
+
+.welcome-features .item p {
+    font-size: 13px !important;
+    color: #4b5563 !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    max-width: 135px !important;
+}
 
   .start-btn{
     width:260px;

@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import OutfitGenerator from "./pages/OutfitGenerator";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-otp" element={<OtpVerification />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route
+  path="/outfit-generator"
+  element={<OutfitGenerator />}
+/>
       </Routes>
       <ToastContainer
   position="top-right"

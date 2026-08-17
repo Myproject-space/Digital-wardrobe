@@ -1,9 +1,18 @@
-function StatCard({ icon, title, count }) {
+function StatCard({ icon, title, count, onClick }) {
   return (
-    <div className="col-6 mb-3">
+    <div
+      className="col-6 mb-3"
+      onClick={onClick}
+      style={{
+        cursor: onClick ? "pointer" : "default",
+      }}
+    >
       <div
         className="card p-3 text-center shadow-sm stat-card"
-        style={{ borderRadius: "18px" }}
+        style={{
+          borderRadius: "18px",
+          height: "100%",
+        }}
       >
         <div style={{ fontSize: "32px" }}>
           {icon}

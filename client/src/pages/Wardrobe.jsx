@@ -28,7 +28,11 @@ const filteredClothes = clothes.filter((item) => {
     .includes(search.toLowerCase());
 
   const matchesCategory =
-    category === "All" || item.category === category;
+    category === "All"
+      ? true
+      : category === "Favorites"
+      ? item.favorite === true
+      : item.category === category;
 
   return matchesSearch && matchesCategory;
 });
@@ -99,6 +103,13 @@ toast.success(
     <div className="wardrobe-page">
       <div className="container py-5">
 
+         <button
+      className="back-btn mb-3"
+      onClick={() => navigate("/dashboard")}
+    >
+      ← Back to Dashboard
+    </button>
+
         <h2 className="text-center fw-bold mb-4">
           👕 My Wardrobe
         </h2>
@@ -121,12 +132,14 @@ toast.success(
       value={category}
       onChange={(e) => setCategory(e.target.value)}
     >
-      <option>All</option>
-      <option>Top</option>
-      <option>Bottom</option>
-      <option>Dress</option>
-      <option>Shoes</option>
-      <option>Accessories</option>
+     <option value="All">All</option>
+<option value="Top">Top</option>
+<option value="Bottom">Bottom</option>
+<option value="Dress">Dress</option>
+<option value="Shoes">Shoes</option>
+<option value="Accessories">Accessories</option>
+<option value="Favorites">Favorites ♥ </option>
+
     </select>
   </div>
 
