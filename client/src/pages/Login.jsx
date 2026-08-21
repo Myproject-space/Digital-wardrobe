@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Logo from "../components/Logo";
 import "./Login.css";
-import Background2 from "../assets/Background2.png";
+import Background2 from "../assets/Background2.mp4";
 import { toast } from "react-toastify";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -52,6 +52,7 @@ function Login() {
 };
 
   return (
+    
 
     
 
@@ -63,6 +64,15 @@ function Login() {
     backgroundImage: `url(${Background2})`,
   }}
 >
+  <video
+  className="login-video-bg"
+  autoPlay
+  loop
+  muted
+  playsInline
+>
+  <source src={Background2} type="video/mp4" />
+</video>
 
 
  

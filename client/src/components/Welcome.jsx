@@ -174,9 +174,7 @@ function Welcome() {
 
 </section>
 
- <footer className="footer">
-  <p>© 2026 Style Vault. All Rights Reserved.</p>
-</footer>
+
 
       </div>
 
@@ -357,7 +355,63 @@ function Welcome() {
 
 </section>
 
-    </>
+{/* Contact */}
+<section id="contact" className="section">
+
+  ...
+
+</section>
+
+<footer className="site-footer">
+  <div className="footer-content">
+
+    <div className="footer-brand">
+      <h2>Style Vault</h2>
+      <p>Organize your fashion digitally.</p>
+    </div>
+
+    <div className="footer-column">
+      <h4>Quick Links</h4>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div className="footer-column">
+      <h4>Features</h4>
+      <a href="#features">Digital Closet</a>
+      <a href="#features">Smart Outfits</a>
+      <a href="#features">Favorites</a>
+      <a href="#features">Search & Filter</a>
+    </div>
+
+    <div className="footer-column">
+      <h4>Support</h4>
+      <a href="#contact">Contact Us</a>
+      <a href="#contact">Email Support</a>
+      <a href="#contact">Help Center</a>
+    </div>
+
+  </div>
+
+  <div className="footer-line"></div>
+
+  <div className="footer-bottom">
+    <div className="footer-socials">
+      <span>f</span>
+      <span>𝕏</span>
+      <span>◎</span>
+      <span>in</span>
+    </div>
+
+    <p>© 2026 Style Vault. All Rights Reserved.</p>
+  </div>
+</footer>
+
+</>
+
+  
   );
 }
 
