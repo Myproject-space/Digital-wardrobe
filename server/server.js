@@ -22,8 +22,9 @@ console.log(process.env.MONGODB_URI);
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
-    console.log("✅ MongoDB Connected Successfully");
-  })
+  console.log("✅ MongoDB Connected Successfully");
+  console.log("📦 Database:", mongoose.connection.name);
+})
   .catch((err) => {
     console.log("❌ Database Connection Error:", err);
   });
