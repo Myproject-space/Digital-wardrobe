@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Wardrobe.css";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaTshirt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -84,18 +84,48 @@ const toggleFavorite = async (id) => {
       `${API_URL}/api/clothes/favorite/${id}`
     );
 
-    fetchClothes();
-
     const cloth = clothes.find((c) => c._id === id);
 
-toast.success(
-  cloth.favorite
-    ? "💔 Removed from Favorites"
-    : "❤️ Added to Favorites"
-);
+    toast.success(
+      cloth.favorite
+        ? "💔 Removed from Favorites"
+        : "❤️ Added to Favorites"
+    );
+
+    fetchClothes();
 
   } catch (error) {
     console.log(error);
+    toast.error("Favorite Update Failed");
+  }
+};
+
+
+// =========================
+// TOGGLE LAUNDRY
+// =========================
+
+const toggleLaundry = async (id) => {
+  try {
+    const res = await axios.put(
+      `${API_URL}/api/clothes/laundry/${id}`
+    );
+
+    toast.success(
+      res.data.cloth.laundry
+        ? "🧺 Cloth Added to Laundry"
+        : "✨ Cloth Removed from Laundry"
+    );
+
+    fetchClothes();
+
+  } catch (error) {
+    console.log(error);
+    console.log(error.response?.data);
+
+    toast.error(
+      error.response?.data?.message || "Laundry Update Failed"
+    );
   }
 };
 
@@ -189,22 +219,34 @@ toast.success(
 
 </div>
 
-                  <div className="d-flex gap-2 mt-3">
+                 <div className="d-flex gap-2 mt-3">
 
-                    <button
-  className="btn btn-warning flex-fill"
-  onClick={() => navigate("/add-clothes", { state: item })}
->
-  ✏️ Edit
-</button>
+  <button
+    className="btn btn-warning flex-fill"
+    onClick={() => navigate("/add-clothes", { state: item })}
+  >
+    ✏️ Edit
+  </button>
 
-                    <button
-  className="btn btn-danger flex-fill"
-  onClick={() => deleteCloth(item._id)}
+  <button
+    className="btn btn-danger flex-fill"
+    onClick={() => deleteCloth(item._id)}
+  >
+    🗑 Delete
+  </button>
+
+</div>
+
+<button
+  className={`btn w-100 mt-2 ${
+    item.laundry
+      ? "btn-success"
+      : "btn-outline-secondary"
+  }`}
+  onClick={() => toggleLaundry(item._id)}
 >
-  🗑 Delete
+  {item.laundry ? "✨ Mark as Clean" : "🧺 Add to Laundry"}
 </button>
-                  </div>
 
                 </div>
 

@@ -70,13 +70,19 @@ function ForgotPassword() {
             </span>
 
             <input
-              type="email"
-              className="form-control"
-              placeholder="Enter Registered Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+  type="email"
+  className="form-control"
+  placeholder="Enter Registered Email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendOTP();
+    }
+  }}
+  required
+/>
           </div>
         </div>
 

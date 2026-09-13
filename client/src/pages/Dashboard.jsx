@@ -25,6 +25,7 @@ function Dashboard() {
 
   const [clothes, setClothes] = useState([]);
   const [savedOutfits, setSavedOutfits] = useState([]);
+  const [laundryCount, setLaundryCount] = useState(0);
 
   const [darkMode, setDarkMode] = useState(false);
 
@@ -50,6 +51,12 @@ function Dashboard() {
       );
 
       setClothes(res.data);
+
+const laundryItems = res.data.filter(
+  (item) => item.laundry === true
+);
+
+setLaundryCount(laundryItems.length);
 
     } catch (err) {
       console.log(err);
@@ -195,11 +202,11 @@ function Dashboard() {
 
           {/* Laundry */}
 
-          <StatCard
-            icon="🧺"
-            title="Laundry"
-            count="0"
-          />
+        <StatCard
+  icon="🧺"
+  title="Laundry"
+  count={laundryCount}
+/>
 
         </div>
 

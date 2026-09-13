@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Logo from "../components/Logo";
@@ -16,9 +16,18 @@ function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const [email, setEmail] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [password, setPassword] = useState("");
+const [email, setEmail] = useState("");
+const [showPassword, setShowPassword] = useState(false);
+const [password, setPassword] = useState("");
+const [rememberMe, setRememberMe] = useState(false);
+useEffect(() => {
+  const savedEmail = localStorage.getItem("rememberedEmail");
+
+  if (savedEmail) {
+    setEmail(savedEmail);
+    setRememberMe(true);
+  }
+}, []);
   const [suggestions, setSuggestions] = useState([]);
 
  
@@ -39,7 +48,13 @@ function Login() {
     });
 
     localStorage.setItem("userId", res.data.user.id);
-    localStorage.setItem("userName", res.data.user.name);
+localStorage.setItem("userName", res.data.user.name);
+
+if (rememberMe) {
+  localStorage.setItem("rememberedEmail", email);
+} else {
+  localStorage.removeItem("rememberedEmail");
+}
 
     toast.success(res.data.message);
     navigate("/dashboard");
@@ -177,11 +192,13 @@ function Login() {
 
          <div className="d-flex justify-content-between align-items-center mb-3">
           <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="remember"
-            />
+          <input
+  className="form-check-input"
+  type="checkbox"
+  id="remember"
+  checked={rememberMe}
+  onChange={(e) => setRememberMe(e.target.checked)}
+/>
 
 
                <label

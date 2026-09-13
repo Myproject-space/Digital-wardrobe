@@ -19,6 +19,27 @@ function OtpVerification() {
   }
 };
 
+const resendOTP = () => {
+  const resetEmail = localStorage.getItem("resetEmail");
+
+  if (!resetEmail) {
+    toast.error("❌ Email not found. Please restart the process.");
+    return;
+  }
+
+  const newOTP = Math.floor(100000 + Math.random() * 900000);
+
+  localStorage.setItem("otp", newOTP.toString());
+
+  // Clear old OTP boxes
+  setOtp(["", "", "", "", "", ""]);
+
+  // Focus first box
+  inputRefs.current[0]?.focus();
+
+  toast.success(`📩 New Demo OTP: ${newOTP}`);
+};
+
 const verifyOTP = () => {
   const enteredOTP = otp.join("");
   const savedOTP = localStorage.getItem("otp");
@@ -54,7 +75,7 @@ const handleKeyDown = (e, index) => {
       <div className="card p-4 shadow" style={{ width: "400px" }}>
 
         <h2 className="text-center fw-bold text-primary">
-          ClosetVault
+          Style Vault
         </h2>
 
         <p className="text-center text-muted">
@@ -172,9 +193,22 @@ const handleKeyDown = (e, index) => {
 </button>
 
         <p className="text-center mt-3">
-          Didn't receive OTP?
-          <Link to="/forgot-password"> Resend OTP</Link>
-        </p>
+  Didn't receive OTP?
+  <button
+    type="button"
+    onClick={resendOTP}
+    style={{
+      border: "none",
+      background: "none",
+      color: "#0d6efd",
+      padding: 0,
+      marginLeft: "5px",
+      cursor: "pointer",
+    }}
+  >
+    Resend OTP
+  </button>
+</p>
 
       </div>
     </div>

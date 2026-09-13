@@ -78,6 +78,7 @@ data.append("season", formData.season);
 data.append("occasion", formData.occasion);
 data.append("brand", formData.brand);
 data.append("size", formData.size);
+data.append("notes", formData.notes);
 data.append("favorite", false);
 data.append("userId", userId);
 
