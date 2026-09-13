@@ -259,10 +259,42 @@ router.put("/update/:id", upload.single("image"), async (req, res) => {
   }
 });
 
+// Toggle Laundry
+router.put("/laundry/:id", async (req, res) => {
+  try {
+    const cloth = await Clothes.findById(req.params.id);
+
+    if (!cloth) {
+      return res.status(404).json({
+        message: "Cloth not found",
+      });
+    }
+
+    cloth.laundry = !cloth.laundry;
+
+    await cloth.save();
+
+    res.json({
+      message: cloth.laundry
+        ? "Cloth Added to Laundry"
+        : "Cloth Removed from Laundry",
+      cloth,
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+});
+
 // Toggle Favorite
 router.put("/favorite/:id", async (req, res) => {
   try {
-    const cloth = await Clothes.findById(req.params.id);
+    const clothes = await Clothes.find({
+  userId: req.params.userId,
+  laundry: { $ne: true },
+});
 
     if (!cloth) {
       return res.status(404).json({

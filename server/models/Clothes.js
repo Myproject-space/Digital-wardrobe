@@ -42,6 +42,12 @@ const clothesSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+
+    laundry: {
+  type: Boolean,
+  default: false,
+},
+
   },
   {
     timestamps: true,
