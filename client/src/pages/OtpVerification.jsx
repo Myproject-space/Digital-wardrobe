@@ -7,7 +7,7 @@ function OtpVerification() {
       const inputRefs = useRef([]);
       const [otp, setOtp] = useState(["", "", "", "", "", ""]);
       
-      const handleChange = (e, index) => {
+     const handleChange = (e, index) => {
   const value = e.target.value;
 
   const newOtp = [...otp];
@@ -18,16 +18,7 @@ function OtpVerification() {
     inputRefs.current[index + 1].focus();
   }
 };
-      
-const handleKeyDown = (e, index) => {
-  if (
-    e.key === "Backspace" &&
-    e.target.value === "" &&
-    index > 0
-  ) {
-    inputRefs.current[index - 1].focus();
-  }
-};
+
 const verifyOTP = () => {
   const enteredOTP = otp.join("");
   const savedOTP = localStorage.getItem("otp");
@@ -37,6 +28,24 @@ const verifyOTP = () => {
     navigate("/reset-password");
   } else {
     toast.error("❌ Invalid OTP");
+  }
+};
+
+const handleKeyDown = (e, index) => {
+  // Press Enter → Verify OTP
+  if (e.key === "Enter") {
+    e.preventDefault();
+    verifyOTP();
+    return;
+  }
+
+  // Press Backspace → Go to previous box
+  if (
+    e.key === "Backspace" &&
+    e.target.value === "" &&
+    index > 0
+  ) {
+    inputRefs.current[index - 1].focus();
   }
 };
 
