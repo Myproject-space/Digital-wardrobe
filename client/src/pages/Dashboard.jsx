@@ -202,11 +202,16 @@ setLaundryCount(laundryItems.length);
 
           {/* Laundry */}
 
-        <StatCard
-  icon="🧺"
-  title="Laundry"
-  count={laundryCount}
-/>
+        <div
+  onClick={() => navigate("/laundry")}
+  style={{ cursor: "pointer" }}
+>
+  <StatCard
+    icon="🧺"
+    title="Laundry"
+    count={laundryCount}
+  />
+</div>
 
         </div>
 

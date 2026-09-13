@@ -11,12 +11,14 @@ import Register from "./pages/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OutfitGenerator from "./pages/OutfitGenerator";
+import Laundry from "./pages/Laundry";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Welcome />} />
+        <Route path="/laundry" element={<Laundry />} />
         <Route path="/login" element={<Login />} />
         <Route path="/wardrobe" element={<Wardrobe />} />
         <Route path="/add-clothes" element={<AddClothes />} />
