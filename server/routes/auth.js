@@ -3,14 +3,19 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
-// Register API
-// Login API
+// =========================
+// LOGIN API
+// =========================
+
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check user
-    const user = await User.findOne({ email });
+    const cleanEmail = email.trim().toLowerCase();
+
+    const user = await User.findOne({
+      email: cleanEmail,
+    });
 
     if (!user) {
       return res.status(400).json({
@@ -18,8 +23,10 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    // Compare password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(
+      password,
+      user.password
+    );
 
     if (!isMatch) {
       return res.status(400).json({
@@ -27,15 +34,14 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    // Login Success
-res.status(200).json({
-  message: "Login Successful",
-  user: {
-    id: user._id,
-    name: user.name,
-    email: user.email,
-  },
-});
+    res.status(200).json({
+      message: "Login Successful",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
 
   } catch (error) {
     res.status(500).json({
@@ -44,12 +50,20 @@ res.status(200).json({
   }
 });
 
+
+// =========================
+// REGISTER API
+// =========================
+
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // Check if user already exists
-    const existingUser = await User.findOne({ email });
+    const cleanEmail = email.trim().toLowerCase();
+
+    const existingUser = await User.findOne({
+      email: cleanEmail,
+    });
 
     if (existingUser) {
       return res.status(400).json({
@@ -57,26 +71,27 @@ router.post("/register", async (req, res) => {
       });
     }
 
-    // Create new user
-    // Hash password
-const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(
+      password,
+      10
+    );
 
-// Create new user
-const newUser = new User({
-  name,
-  email,
-  password: hashedPassword,
-});
+    const newUser = new User({
+      name,
+      email: cleanEmail,
+      password: hashedPassword,
+    });
+
     await newUser.save();
 
     res.status(201).json({
-  message: "User Registered Successfully",
-  user: {
-    id: newUser._id,
-    name: newUser.name,
-    email: newUser.email,
-  },
-});
+      message: "User Registered Successfully",
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+      },
+    });
 
   } catch (error) {
     res.status(500).json({
@@ -84,5 +99,42 @@ const newUser = new User({
     });
   }
 });
+
+
+// =========================
+// CHECK EMAIL API
+// =========================
+
+router.post("/check-email", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const cleanEmail = email.trim().toLowerCase();
+
+    const user = await User.findOne({
+      email: cleanEmail,
+    });
+
+    if (!user) {
+      return res.status(404).json({
+        message: "Email is not registered",
+      });
+    }
+
+    res.status(200).json({
+      message: "Email is registered",
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+});
+
+
+// =========================
+// EXPORT ROUTER
+// =========================
 
 module.exports = router;
